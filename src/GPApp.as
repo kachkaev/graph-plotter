@@ -90,6 +90,7 @@
 		private var bHelp:*;
 		private var bGroup:*;
 		private var bReport:*;
+		private var bExtra:*;
 		private var bTranslations:*;
 		private var plotArea:PlotArea;
 		private var graphsContainer:GraphsContainer;
@@ -184,7 +185,7 @@
 			////Application version
 			fsTitleVersion.letterSpacing = -1;
 			
-			var lang:uint = 1;
+			var lang:uint = 0;
 			Security.allowDomain( "*" );
 			
 			if (wrapper_enabled)
@@ -249,24 +250,33 @@
 			
 			
 			////report button
-			bReport = VK.createLinkButton(Lang.getStr("interface", "b_report_an_error"),0,PADDING_TOP);
-			bReport.x = bGroup.x - PADDING_BETWEEN_ELEMS_TOP - bReport.width;
-			layerMain.addChild(bReport);
-			bReport.addEventListener( MouseEvent.CLICK, function(e:MouseEvent):void
-			{
-			  navigateToURL( new URLRequest( WEBADDR_ROOT + "mail.php?act=write&to=1308390"), "_blank" );
-			});
-			
+			//bReport = VK.createLinkButton(Lang.getStr("interface", "b_report_an_error"),0,PADDING_TOP);
+			//bReport.x = bGroup.x - PADDING_BETWEEN_ELEMS_TOP - bReport.width;
+			//layerMain.addChild(bReport);
+			//bReport.addEventListener( MouseEvent.CLICK, function(e:MouseEvent):void
+			//{
+			//  navigateToURL( new URLRequest( WEBADDR_ROOT + "mail.php?act=write&to=1308390"), "_blank" );
+			//});
 			
 			//plotArea
 			plotArea = new PlotArea();
 			DISTANCE_PLOTAREA_WIDTH = plotArea.width;
 			DISTANCE_PLOTAREA_HEIGHT = plotArea.height; 
-			
 			plotArea.y = PADDING_PLOTAREA_TOP;
 			plotArea.x = app_width - DISTANCE_PLOTAREA_WIDTH - PADDING_RIGHT;
-			layerMain.addChild(plotArea);
 			plotArea.em.x += 10; //миллионный костыль, блин! :(
+			
+			//// extra button
+			bExtra = VK.createLightButton(Lang.getStr("interface", "b_extra"), 0, PADDING_TOP - 1, 0, 0xf4ebbd, 0xf6f0d6, 0x908851, 0x908851, VK.LightButton.CENTER, 10);
+			bExtra.x = plotArea.x + DISTANCE_PLOTAREA_ROUNDFACTOR;
+			//bExtra.
+			layerMain.addChild(bExtra);
+			bExtra.addEventListener( MouseEvent.CLICK, function(e:MouseEvent):void
+			{
+			  navigateToURL( new URLRequest( "http://www.photoassessment.org/"), "_blank" );
+			});
+			
+			layerMain.addChild(plotArea);
 			
 			graphsContainer = new GraphsContainer(plotArea, 360, 360)
 			plotArea.coordsContainer.addChild(graphsContainer);
@@ -291,6 +301,7 @@
 													GuiHelper.ALIGN_TOP_LEFT,
 													fsTitleVersion
 												);
+			lVersion.visible = false;
 			
 			////Info Header
 			var lInfoHeader:* = GuiHelper.createHeader(layerMain, Lang.getStr("interface", "h_info"), PADDING_LEFT, lVersion.y+lVersion.height+PADDING_AFTER_VERSION , plotArea.x - PADDING_PLOTAREA_PADDING_LEFT - PADDING_LEFT, GuiHelper.ALIGN_TOP_LEFT);

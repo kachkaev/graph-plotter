@@ -49,7 +49,8 @@
 			addInterfaceElem('b_stop', 'Зупинити');
 			addInterfaceElem('b_del','Видалити');
 			addInterfaceElem('b_help','Довідка');
-			addInterfaceElem('b_group','Група додатка');
+			addInterfaceElem('b_group', 'Група додатка');
+			addInterfaceElem('b_extra', 'Дослідження від британських вчених!');
 			addInterfaceElem('b_report_an_error','Повідомити про помилку');
 			addInterfaceElem('b_add_graph','Додати ще один графік');
 			addInterfaceElem('b_add_app','Додати додаток собі на сторінку');

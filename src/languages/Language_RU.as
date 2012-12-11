@@ -51,6 +51,7 @@
 			addInterfaceElem('b_help','Справка');
 			addInterfaceElem('b_group','Группа приложения');
 			addInterfaceElem('b_report_an_error','Сообщить об ошибке');
+			addInterfaceElem('b_extra','Исследование от британских учёных!');
 			addInterfaceElem('b_add_graph','Добавить ещё один график');
 			addInterfaceElem('b_add_app','Добавить приложение к себе на страницу');
 			addInterfaceElem('b_add_friends','Пригласить друзей!');

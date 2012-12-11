@@ -49,6 +49,7 @@
 			addInterfaceElem('b_stop', 'Stop');
 			addInterfaceElem('b_del','Delete');
 			addInterfaceElem('b_help','Help');
+			addInterfaceElem('b_extra','Take part in a cool research!');
 			addInterfaceElem('b_group','Application group');
 			addInterfaceElem('b_report_an_error','Report an error');
 			addInterfaceElem('b_add_graph','Add one more function');
