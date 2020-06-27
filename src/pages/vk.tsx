@@ -1,13 +1,13 @@
 import React from "react";
 
-import { PageContentsForIndex } from "../ui/PageContentsForIndex";
+import { PageContentsForApp } from "../ui/PageContentsForApp";
 import { PageMetadata } from "../ui/PageMetadata";
 
 const IndexPage = () => {
   return (
     <>
       <PageMetadata />
-      <PageContentsForIndex />
+      <PageContentsForApp />
     </>
   );
 };

@@ -1,9 +1,6 @@
 {
   "private": true,
   "license": "BSD-3-Clause",
-  "workspaces": [
-    "cli"
-  ],
   "scripts": {
     "build": "next build",
     "dev": "next dev",
@@ -48,12 +45,15 @@
     "@kachkaev/eslint-config-react": "^0.1.1",
     "@kachkaev/markdownlint-config": "^0.1.0",
     "@kachkaev/prettier-config": "^1.0.0",
+    "@next/bundle-analyzer": "^9.4.4",
     "@types/node": "^14.0.13",
     "@types/styled-components": "^5.1.0",
+    "@zeit/next-source-maps": "^0.0.3",
     "eslint": "^6.8.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "markdownlint-cli": "^0.23.1",
+    "next-compose-plugins": "^2.2.0",
     "prettier": "^2.0.5",
     "typescript": "^3.9.5",
     "yarn-deduplicate": "^2.0.0"
