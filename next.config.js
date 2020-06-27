@@ -3,10 +3,11 @@ module.exports = require("next-compose-plugins")(
     require("@next/bundle-analyzer")({
       enabled: process.env.ANALYZE === "true",
     }),
-    require("@zeit/next-source-maps")(),
   ],
   {
     experimental: {
+      modern: true,
+      productionBrowserSourceMaps: true,
       redirects: () => [
         {
           source: "/",
