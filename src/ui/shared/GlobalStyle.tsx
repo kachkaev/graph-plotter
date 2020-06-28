@@ -2,6 +2,10 @@ import { createGlobalStyle, css } from "styled-components";
 import normalize from "styled-normalize";
 
 const base = css`
+  :root {
+    --link-color: #2a5885;
+    --background-color: #edeef0;
+  }
   body {
     color: #24292e;
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
@@ -13,7 +17,7 @@ const base = css`
     margin: 0;
     line-height: 160%;
     font-size: 13px;
-    background: #edeef0;
+    background: var(--background-color);
   }
 
   html,
@@ -29,7 +33,7 @@ const base = css`
   }
 
   a {
-    color: #2a5885;
+    color: var(--link-color);
     text-decoration: none;
 
     :hover {

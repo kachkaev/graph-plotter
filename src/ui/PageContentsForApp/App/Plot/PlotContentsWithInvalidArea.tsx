@@ -39,7 +39,7 @@ export const PlotContentsWithInvalidArea: React.FunctionComponent<{
       <MainMessage>{t("ui.cap_f_param_error")}</MainMessage>
       {error ? (
         <ErrorMessage>
-          <Trans i18nKey={error.i18nKey} values={error.args}>
+          <Trans i18nKey={error.i18nKey} values={error.i18nValues}>
             <b />
             <Nobr />
           </Trans>

@@ -11,7 +11,7 @@ export interface RawPlotAreaConfig {
 
 export interface PlotAreaConfigError {
   i18nKey: string;
-  args: Array<string | number>;
+  i18nValues: Array<string | number>;
 }
 
 export type ErrorRange = [number, number];

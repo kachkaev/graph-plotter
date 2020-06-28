@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { defaultRawPlotAreaConfig, usePlotArea } from "./plotArea";
+import { Button } from "./shared/Button";
 import { Checkbox } from "./shared/Checkbox";
 
 const Wrapper = styled.div`
@@ -12,21 +13,24 @@ const Wrapper = styled.div`
 const CheckboxRow = styled.div`
   padding: 5px 0;
 
-  display: flex;
   justify-items: auto;
 
+  & > * {
+    display: inline-block;
+  }
+
   & > :first-child {
-    padding-right: 20px;
+    margin-right: 20px;
   }
 `;
 const ButtonRow = styled.div`
   padding: 5px 0;
 
-  display: flex;
+  text-align: right;
   justify-items: auto;
 
   & > :first-child {
-    padding-right: 20px;
+    margin-right: 10px;
   }
 `;
 
@@ -86,8 +90,10 @@ export const PlotAreaForm: React.FunctionComponent = () => {
         <BoundaryControl name="yMax" />
       </BoundaryControlRow> */}
       <ButtonRow>
-        <button onClick={handleDefaultsClick}>{t("ui.b_defaults")}</button>
-        <button onClick={handleApplyClick}>{t("ui.b_apply")}</button>
+        <Button onClick={handleDefaultsClick} secondary={true}>
+          {t("ui.b_defaults")}
+        </Button>
+        <Button onClick={handleApplyClick}>{t("ui.b_apply")}</Button>
       </ButtonRow>
     </Wrapper>
   );
