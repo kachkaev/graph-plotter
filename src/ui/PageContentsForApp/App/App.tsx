@@ -1,5 +1,5 @@
 import React from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { Plot } from "./Plot";
@@ -10,7 +10,7 @@ const bottomPanelMinHeight = 40;
 const leftPanelMinWidth = 200;
 
 const Wrapper = styled.div`
-  border: 1px solid red;
+  /* outline: 1px solid red; */
 `;
 const TopHalf = styled.div`
   display: flex;
@@ -28,6 +28,8 @@ const LeftPanelHeader = styled.h2`
   font-size: 1em;
   color: #40628a;
   margin: 0;
+  padding-top: 20px;
+  margin-bottom: 3px;
 `;
 
 const AppName = styled.h1`
@@ -37,9 +39,9 @@ const AppName = styled.h1`
   font-weight: bold;
   letter-spacing: -0.05em;
   font-family: "Arial Narrow", "Liberation Sans Narrow";
-  padding-bottom: 20px;
 `;
 
+const Wip = styled.div``;
 const BottomPanel = styled.div``;
 
 export const App: React.FunctionComponent<{
@@ -67,14 +69,20 @@ export const App: React.FunctionComponent<{
             <PlotAreaForm />
             <LeftPanelHeader>{t("ui.h_info")}</LeftPanelHeader>
             <div>{t("ui.l_info")}</div>
+            <Wip>
+              <LeftPanelHeader>Work in progress 🚨</LeftPanelHeader>
+              <a href="https://vk.com/graph_plotter">
+                original flash app (discontinued)
+              </a>
+              <br />
+              <a href="https://github.com/graph-plotter/graph-plotter">
+                github repo
+              </a>
+            </Wip>
           </LeftPanel>
           <Plot style={{ width: canvasSize, height: canvasSize }}></Plot>
         </TopHalf>
-        <BottomPanel>
-          <Trans i18nKey="error.wrong_bound" values={["x", "y"]}>
-            <b />
-          </Trans>
-        </BottomPanel>
+        <BottomPanel></BottomPanel>
       </Wrapper>
     </PlotAreaProvider>
   );

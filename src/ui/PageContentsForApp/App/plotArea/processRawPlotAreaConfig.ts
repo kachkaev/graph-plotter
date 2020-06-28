@@ -1,32 +1,35 @@
 import {
+  BoundaryName,
   ErrorRange,
   PlotAreaConfig,
   PlotAreaConfigError,
   RawPlotAreaConfig,
 } from "./types";
 
-type FieldName = "xMin" | "xMax" | "yMin" | "yMax";
 type ReportError = (error: PlotAreaConfigError) => void;
-type ReportFailedFiled = (fieldName: FieldName, errorRange: ErrorRange) => void;
+type ReportFailedBoundary = (
+  boundaryName: BoundaryName,
+  errorRange: ErrorRange,
+) => void;
 
 const maxValue = 1000;
 const minDelta = 0.5;
 
-const parseField = (
+const parseBoundary = (
   rawPlotAreaConfig: RawPlotAreaConfig,
-  fieldName: FieldName,
+  boundaryName: BoundaryName,
   reportError: ReportError,
-  reportFailedFiled: ReportFailedFiled,
+  reportFailedFiled: ReportFailedBoundary,
 ): number => {
-  const rawValue = rawPlotAreaConfig[fieldName];
+  const rawValue = rawPlotAreaConfig[boundaryName];
   const value = parseFloat(rawValue);
   if (!isFinite(value) || Math.abs(maxValue) > maxValue) {
     reportError({
       i18nKey: "error.wrong_bound",
       //TODO: Replace .toLowerCase() with proper i18n label
-      i18nValues: [fieldName.toLowerCase(), maxValue],
+      i18nValues: [boundaryName.toLowerCase(), maxValue],
     });
-    reportFailedFiled(fieldName, [0, rawValue.length]);
+    reportFailedFiled(boundaryName, [0, rawValue.length]);
     return Number.NaN;
   }
   return value;
@@ -40,33 +43,39 @@ export const processRawPlotAreaConfig = (
   const reportError: ReportError = (error) => {
     errors.push(error);
   };
-  const failedFieldLookup: Partial<Record<FieldName, ErrorRange>> = {};
+  const errorRangeByBoundaryName: Partial<Record<
+    BoundaryName,
+    ErrorRange
+  >> = {};
 
-  const reportFailedFiled: ReportFailedFiled = (fieldName, errorRange) => {
-    if (!failedFieldLookup[fieldName]) {
-      failedFieldLookup[fieldName] = errorRange;
+  const reportFailedFiled: ReportFailedBoundary = (
+    boundaryName,
+    errorRange,
+  ) => {
+    if (!errorRangeByBoundaryName[boundaryName]) {
+      errorRangeByBoundaryName[boundaryName] = errorRange;
     }
   };
 
-  const xMin = parseField(
+  const xMin = parseBoundary(
     rawPlotAreaConfig,
     "xMin",
     reportError,
     reportFailedFiled,
   );
-  const xMax = parseField(
+  const xMax = parseBoundary(
     rawPlotAreaConfig,
     "xMax",
     reportError,
     reportFailedFiled,
   );
-  const yMin = parseField(
+  const yMin = parseBoundary(
     rawPlotAreaConfig,
     "yMin",
     reportError,
     reportFailedFiled,
   );
-  const yMax = parseField(
+  const yMax = parseBoundary(
     rawPlotAreaConfig,
     "yMax",
     reportError,
@@ -92,7 +101,7 @@ export const processRawPlotAreaConfig = (
   if (errors.length) {
     return {
       type: "invalid",
-      errorRangeByField: {},
+      errorRangeByBoundaryName,
       errors,
     };
   }

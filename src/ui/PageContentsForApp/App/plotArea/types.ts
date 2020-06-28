@@ -1,13 +1,11 @@
 import { Draft } from "immer";
 
-export interface RawPlotAreaConfig {
+export type BoundaryName = "xMin" | "xMax" | "yMin" | "yMax";
+
+export type RawPlotAreaConfig = {
   showGrid: boolean;
   showAxes: boolean;
-  xMin: string;
-  xMax: string;
-  yMin: string;
-  yMax: string;
-}
+} & Record<BoundaryName, string>;
 
 export interface PlotAreaConfigError {
   i18nKey: string;
@@ -18,12 +16,7 @@ export type ErrorRange = [number, number];
 
 export interface InvalidPlotAreaConfig {
   type: "invalid";
-  errorRangeByField: {
-    xMin?: ErrorRange;
-    xMax?: ErrorRange;
-    yMin?: ErrorRange;
-    yMax?: ErrorRange;
-  };
+  errorRangeByBoundaryName: Partial<Record<BoundaryName, ErrorRange>>;
   errors: PlotAreaConfigError[];
 }
 
@@ -39,7 +32,7 @@ export type PlotAreaConfig = InvalidPlotAreaConfig | ValidPlotAreaConfig;
 
 export type UpdateRawPlotAreaConfigFn = (
   draft: Draft<RawPlotAreaConfig>,
-) => void;
+) => void | RawPlotAreaConfig;
 
 export type UpdateRawPlotAreaConfig = (
   updateFn: UpdateRawPlotAreaConfigFn,
