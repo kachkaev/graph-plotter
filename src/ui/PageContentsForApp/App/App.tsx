@@ -2,7 +2,9 @@ import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { PlotArea } from "./Plot";
+import { Plot } from "./Plot";
+import { PlotAreaProvider } from "./plotArea";
+import { PlotAreaForm } from "./PlotAreaForm";
 
 const bottomPanelMinHeight = 40;
 const leftPanelMinWidth = 200;
@@ -52,26 +54,28 @@ export const App: React.FunctionComponent<{
   const { t } = useTranslation();
 
   return (
-    <Wrapper style={{ width, height }}>
-      <TopHalf>
-        <LeftPanel>
-          <AppName>
-            {t("ui.l_app_title_1")}
-            <br />
-            {t("ui.l_app_title_2")}
-          </AppName>
-          <LeftPanelHeader>{t("ui.h_boundaries")}</LeftPanelHeader>
-          <div>{t("ui.l_info")}</div>
-          <LeftPanelHeader>{t("ui.h_info")}</LeftPanelHeader>
-          <div>{t("ui.l_info")}</div>
-        </LeftPanel>
-        <PlotArea style={{ width: canvasSize, height: canvasSize }}></PlotArea>
-      </TopHalf>
-      <BottomPanel>
-        <Trans i18nKey="error.wrong_bound" values={["x", "y"]}>
-          <b />
-        </Trans>
-      </BottomPanel>
-    </Wrapper>
+    <PlotAreaProvider>
+      <Wrapper style={{ width, height }}>
+        <TopHalf>
+          <LeftPanel>
+            <AppName>
+              {t("ui.l_app_title_1")}
+              <br />
+              {t("ui.l_app_title_2")}
+            </AppName>
+            <LeftPanelHeader>{t("ui.h_boundaries")}</LeftPanelHeader>
+            <PlotAreaForm />
+            <LeftPanelHeader>{t("ui.h_info")}</LeftPanelHeader>
+            <div>{t("ui.l_info")}</div>
+          </LeftPanel>
+          <Plot style={{ width: canvasSize, height: canvasSize }}></Plot>
+        </TopHalf>
+        <BottomPanel>
+          <Trans i18nKey="error.wrong_bound" values={["x", "y"]}>
+            <b />
+          </Trans>
+        </BottomPanel>
+      </Wrapper>
+    </PlotAreaProvider>
   );
 };
