@@ -34,9 +34,16 @@
     ]
   },
   "dependencies": {
+    "@vx/axis": "^0.0.197",
+    "@vx/grid": "^0.0.197",
+    "@vx/scale": "^0.0.197",
+    "i18next": "^19.5.1",
+    "i18next-icu": "^1.4.2",
     "next": "^9.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-i18next": "^11.7.0",
+    "react-use": "^15.3.0",
     "styled-components": "^5.1.1",
     "styled-normalize": "^8.0.7"
   },
