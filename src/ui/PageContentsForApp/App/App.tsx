@@ -78,6 +78,8 @@ export const App: React.FunctionComponent<{
                 original flash app (discontinued)
               </a>
               <br />
+              <a href="https://vk.com/graph_plotter_club">app community</a>
+              <br />
               <a href="https://github.com/graph-plotter/graph-plotter">
                 github repo
               </a>
