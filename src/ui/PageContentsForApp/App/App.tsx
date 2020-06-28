@@ -20,7 +20,7 @@ const TopHalf = styled.div`
 const LeftPanel = styled.div`
   flex-grow: 1;
   flex-shrink: 1;
-  padding-right: 10px;
+  padding-right: 15px;
 `;
 
 const LeftPanelHeader = styled.h2`

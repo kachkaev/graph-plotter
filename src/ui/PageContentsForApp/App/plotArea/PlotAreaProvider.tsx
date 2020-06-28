@@ -10,6 +10,7 @@ export const PlotAreaProvider: React.FunctionComponent = ({ children }) => {
   const [rawPlotAreaConfig, setRawConfig] = React.useState(
     defaultRawPlotAreaConfig,
   );
+
   const updateRawPlotAreaConfig = React.useCallback<UpdateRawPlotAreaConfig>(
     (updateFn) => {
       setRawConfig((prevValue) => produce(prevValue, updateFn));

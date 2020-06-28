@@ -1,11 +1,28 @@
+import dynamic from "next/dynamic";
 import React from "react";
 import { useMeasure } from "react-use";
 import styled from "styled-components";
 
 import { usePlotArea } from "../plotArea";
 import { Foreground } from "./Foreground";
-import { PlotContentsWithInvalidArea } from "./PlotContentsWithInvalidArea";
-import { PlotContentsWithValidArea } from "./PlotContentsWithValidArea";
+import { PlotContentsWithInvalidAreaProps } from "./PlotContentsWithInvalidArea";
+import { PlotContentsWithValidAreaProps } from "./PlotContentsWithValidArea";
+
+const PlotContentsWithInvalidArea = dynamic<PlotContentsWithInvalidAreaProps>(
+  () =>
+    import("./PlotContentsWithInvalidArea").then(
+      (mod) => mod.PlotContentsWithInvalidArea,
+    ),
+  { ssr: false },
+);
+
+const PlotContentsWithValidArea = dynamic<PlotContentsWithValidAreaProps>(
+  () =>
+    import("./PlotContentsWithValidArea").then(
+      (mod) => mod.PlotContentsWithValidArea,
+    ),
+  { ssr: false },
+);
 
 const offset = 12;
 

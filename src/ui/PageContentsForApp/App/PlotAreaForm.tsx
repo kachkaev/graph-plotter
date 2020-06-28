@@ -1,5 +1,5 @@
 import produce from "immer";
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -147,18 +147,6 @@ export const PlotAreaForm: React.FunctionComponent = () => {
     },
   );
 
-  useEffect(() => {
-    dispatchWipState({
-      type: "reset",
-      value: {
-        xMin: rawPlotAreaConfig.xMin,
-        xMax: rawPlotAreaConfig.xMax,
-        yMin: rawPlotAreaConfig.yMin,
-        yMax: rawPlotAreaConfig.yMax,
-      },
-    });
-  }, [rawPlotAreaConfig]);
-
   const handleCheckboxChange = React.useCallback<
     React.FormEventHandler<HTMLInputElement>
   >(
@@ -175,19 +163,28 @@ export const PlotAreaForm: React.FunctionComponent = () => {
   );
 
   const handleDefaultsClick = () => {
+    dispatchWipState({
+      type: "reset",
+      value: {
+        xMin: defaultRawPlotAreaConfig.xMin,
+        xMax: defaultRawPlotAreaConfig.xMax,
+        yMin: defaultRawPlotAreaConfig.yMin,
+        yMax: defaultRawPlotAreaConfig.yMax,
+      },
+    });
     updateRawPlotAreaConfig(() => {
       return defaultRawPlotAreaConfig;
     });
   };
 
-  const handleApplyClick = () => {
+  const handleApplyClick = React.useCallback(() => {
     updateRawPlotAreaConfig((draft) => {
       return {
         ...draft,
         ...wipState,
       };
     });
-  };
+  }, [updateRawPlotAreaConfig, wipState]);
 
   return (
     <Wrapper>

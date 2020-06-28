@@ -29,9 +29,13 @@ const ErrorMessage = styled.div`
   padding-bottom: 40px;
 `;
 
-export const PlotContentsWithInvalidArea: React.FunctionComponent<{
+export interface PlotContentsWithInvalidAreaProps {
   areaConfig: InvalidPlotAreaConfig;
-}> = ({ areaConfig }) => {
+}
+
+export const PlotContentsWithInvalidArea: React.FunctionComponent<PlotContentsWithInvalidAreaProps> = ({
+  areaConfig,
+}) => {
   const { t } = useTranslation();
   const error = areaConfig.errors[0];
   return (

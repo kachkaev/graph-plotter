@@ -30,6 +30,7 @@ const StyledCheckIcon = styled(CheckedIcon)`
 
 const Label = styled.label`
   padding-left: 1.5em;
+  user-select: none;
   .no-touchscreen &:hover {
     color: #000;
   }
