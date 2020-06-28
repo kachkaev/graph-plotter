@@ -2,7 +2,7 @@ import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { PlotArea } from "./PlotArea";
+import { PlotArea } from "./Plot";
 
 const bottomPanelMinHeight = 40;
 const leftPanelMinWidth = 200;
