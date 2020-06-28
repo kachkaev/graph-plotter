@@ -8,13 +8,6 @@ module.exports = require("next-compose-plugins")(
     experimental: {
       modern: true,
       productionBrowserSourceMaps: true,
-      redirects: () => [
-        {
-          source: "/",
-          destination: "/vk",
-          permanent: false,
-        },
-      ],
     },
     reactStrictMode: true,
     typescript: {

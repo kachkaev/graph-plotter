@@ -9,3 +9,10 @@ export const localeResourceLookup = {
   ru: ruLocalResource,
   uk: ukLocalResource,
 };
+
+export type SupportedLanguage = keyof typeof localeResourceLookup;
+export const supportedLanguages = Object.keys(
+  localeResourceLookup,
+) as SupportedLanguage[];
+
+export const defaultLanguage: SupportedLanguage = "en";

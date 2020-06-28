@@ -5,7 +5,7 @@ import en from "i18next-icu/locale-data/en";
 import ru from "i18next-icu/locale-data/ru";
 import uk from "i18next-icu/locale-data/uk";
 
-import { localeResourceLookup } from "./localeResources";
+import { defaultLanguage, localeResourceLookup } from "./localeResources";
 
 const icu = new ICU();
 icu.addLocaleData(de);
@@ -15,7 +15,7 @@ icu.addLocaleData(uk);
 i18next.use(icu);
 
 i18next.init({
-  fallbackLng: "en",
+  fallbackLng: defaultLanguage,
   resources: localeResourceLookup,
   keySeparator: "###",
 });
