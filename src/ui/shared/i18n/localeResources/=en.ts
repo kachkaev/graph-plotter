@@ -2,15 +2,16 @@ export const enLocalResource = {
   translation: {
     // Interface elements
     "ui.developed_by": "Developed by Alexander Kachkaev",
-    "ui.l_app_title_1": "GRAPH",
-    "ui.l_app_title_2": "PLOTTER",
+    "ui.l_app_title_1": "Graph",
+    "ui.l_app_title_2": "plotter",
     "ui.l_app_version": "version ",
     "ui.h_info": "Information",
     "ui.h_boundaries": "Plot area properties",
     "ui.h_color": "Choose color",
 
-    "ui.l_info":
-      "Graph plotter allows you to plot up to 10 function graphs at once. If find this app useful, invite your friends!",
+    "ui.l_info_1":
+      "Graph plotter allows you to plot up to 10 function graphs at once.",
+    "ui.l_info_2": "If find this app useful, invite your friends!",
     "ui.l_translator": "Translated by ",
     "ui.l_ymax": "ymax",
     "ui.l_ymin": "ymin",

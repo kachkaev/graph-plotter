@@ -5,15 +5,17 @@ export const deLocalResource = {
 
     // Interface elements
     "ui.menu_autor": "Autor - Alexander Kachkaev",
-    "ui.l_app_title_1": "GRAPHISCHE DARSTELLUNG",
-    "ui.l_app_title_2": "DER FUNKTIONEN",
+    "ui.l_app_title_1": "Graphische Darstellung",
+    "ui.l_app_title_2": "der Funktionen",
     "ui.l_app_version": "Version ",
     "ui.h_info": "Information",
     "ui.h_boundaries": "Gesamtflache",
     "ui.h_color": "Farbauswahl",
 
-    "ui.l_info":
-      "Sie konnen sofort bis zu 10 graphischen Funktionen gleichzeitig darstellen. Falls Ihnen diese Anwendung gefallt, laden Sie Ihre Freunde ein!",
+    "ui.l_info_1":
+      "Sie konnen sofort bis zu 10 graphischen Funktionen gleichzeitig darstellen.",
+    "ui.l_info_2":
+      "Falls Ihnen diese Anwendung gefallt, laden Sie Ihre Freunde ein!",
     "ui.l_translator": "Translator — ",
     "ui.l_ymax": "ymax",
     "ui.l_ymin": "ymin",
