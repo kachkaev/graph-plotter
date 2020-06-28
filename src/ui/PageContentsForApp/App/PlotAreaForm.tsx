@@ -29,13 +29,17 @@ const CheckboxRow = styled.div`
 `;
 
 const ButtonRow = styled.div`
-  padding: 5px 0;
+  padding: 2px 0 5px;
 
   text-align: right;
   justify-items: auto;
 
+  & > button {
+    margin: 10px 0 0 10px;
+  }
+
   & > :first-child {
-    margin-right: 10px;
+    margin-left: 0;
   }
 `;
 
@@ -50,7 +54,9 @@ type WipStateAction = WipStateUpdateAction | WipStateResetAction;
 type WipStateReducer = (state: WipState, action: WipStateAction) => WipState;
 
 const BoundaryControlRow = styled.div`
-  padding-bottom: 10px;
+  & + & {
+    padding-top: 10px;
+  }
 `;
 
 const BoundaryControlWrapper = styled.div`

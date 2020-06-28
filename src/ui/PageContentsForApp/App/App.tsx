@@ -7,7 +7,7 @@ import { PlotAreaProvider } from "./plotArea";
 import { PlotAreaForm } from "./PlotAreaForm";
 
 const bottomPanelMinHeight = 40;
-const leftPanelMinWidth = 200;
+const leftPanelMinWidth = 250;
 
 const Wrapper = styled.div`
   /* outline: 1px solid red; */

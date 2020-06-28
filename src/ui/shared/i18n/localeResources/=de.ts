@@ -39,7 +39,7 @@ export const deLocalResource = {
     "ui.b_add_graph": "neue Funktion zufügen",
     "ui.b_add_app": "Anwendung auf meine Seite hinzufugen",
     "ui.b_add_friends": "Freunde einladen!",
-    "ui.b_apply": "anwenden",
+    "ui.b_apply": "Anwenden",
     "ui.b_random_color": "Zufallige Farbe",
     "ui.b_defaults": "Default",
     "ui.b_ok": "OK",
