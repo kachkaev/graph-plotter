@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import React from "react";
 
-import { PageLayout } from "../ui/PageLayout";
+import { GlobalStyle } from "../ui/shared/GlobalStyle";
 
 const App: React.FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   React.useEffect(() => {
@@ -12,9 +12,10 @@ const App: React.FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   }, []);
 
   return (
-    <PageLayout>
+    <>
+      <GlobalStyle />
       <Component {...pageProps} />
-    </PageLayout>
+    </>
   );
 };
 
