@@ -8,7 +8,7 @@ export const deLocalResource = {
     "ui.l_app_title_1": "Graphische Darstellung",
     "ui.l_app_title_2": "der Funktionen",
     "ui.l_app_version": "Version ",
-    "ui.h_info": "Information",
+    "ui.h_info": "Über diese App",
     "ui.h_boundaries": "Gesamtflache",
     "ui.h_color": "Farbauswahl",
 

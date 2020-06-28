@@ -8,7 +8,7 @@ export const ukLocalResource = {
     "ui.l_app_title_1": "Будівник",
     "ui.l_app_title_2": "графіків",
     "ui.l_app_version": "версія ",
-    "ui.h_info": "Інформація",
+    "ui.h_info": "Про це додатку",
     "ui.h_boundaries": "Область побудови",
     "ui.h_color": "Вибір кольору",
 

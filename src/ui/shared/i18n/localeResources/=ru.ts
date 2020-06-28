@@ -5,7 +5,7 @@ export const ruLocalResource = {
     "ui.l_app_title_1": "Построитель",
     "ui.l_app_title_2": "графиков",
     "ui.l_app_version": "версия ",
-    "ui.h_info": "Информация",
+    "ui.h_info": "Об этом приложении",
     "ui.h_boundaries": "Область построения",
     "ui.h_color": "Выбор цвета",
 

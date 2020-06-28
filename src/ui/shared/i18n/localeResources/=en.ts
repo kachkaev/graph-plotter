@@ -5,7 +5,7 @@ export const enLocalResource = {
     "ui.l_app_title_1": "Graph",
     "ui.l_app_title_2": "plotter",
     "ui.l_app_version": "version ",
-    "ui.h_info": "Information",
+    "ui.h_info": "About this app",
     "ui.h_boundaries": "Plot area properties",
     "ui.h_color": "Choose color",
 
