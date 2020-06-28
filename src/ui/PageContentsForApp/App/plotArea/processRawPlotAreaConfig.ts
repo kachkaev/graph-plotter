@@ -77,7 +77,7 @@ export const processRawPlotAreaConfig = (
     reportError({
       i18nKey: "error.small_range",
       //TODO: Replace "xmin" and "xmax" with proper i18n labels
-      i18nValues: ["xmax", "xmin", minDelta],
+      i18nValues: ["xmin", "xmax", minDelta],
     });
   }
 
@@ -85,7 +85,7 @@ export const processRawPlotAreaConfig = (
     reportError({
       i18nKey: "error.small_range",
       //TODO: Replace "ymin" and "ymax" with proper i18n labels
-      i18nValues: ["ymax", "ymin", minDelta],
+      i18nValues: ["ymin", "ymax", minDelta],
     });
   }
 
