@@ -7,6 +7,7 @@ export const enLocalResource = {
     "ui.l_app_version": "version ",
     "ui.h_info": "About this app",
     "ui.h_boundaries": "Plot area properties",
+    "ui.h_charts": "My charts",
     "ui.h_color": "Choose color",
 
     "ui.l_info_1":

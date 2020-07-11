@@ -86,6 +86,10 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
     numberOfPoints: activeRawChartConfig.numberOfPoints,
   });
 
+  React.useLayoutEffect(() => {
+    dispatchWipState({ type: "reset", value: activeRawChartConfig });
+  }, [activeRawChartConfig, dispatchWipState]);
+
   const handleNumberOfPointsChange = React.useCallback((newValue: string) => {
     dispatchWipState({
       type: "update",
