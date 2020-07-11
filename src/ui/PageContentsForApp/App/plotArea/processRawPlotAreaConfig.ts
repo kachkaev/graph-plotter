@@ -1,12 +1,7 @@
-import {
-  BoundaryName,
-  ErrorRange,
-  PlotAreaConfig,
-  PlotAreaConfigError,
-  RawPlotAreaConfig,
-} from "./types";
+import { ErrorConfig, ErrorRange } from "../shared/errors";
+import { BoundaryName, PlotAreaConfig, RawPlotAreaConfig } from "./types";
 
-type ReportError = (error: PlotAreaConfigError) => void;
+type ReportError = (error: ErrorConfig) => void;
 type ReportFailedBoundary = (
   boundaryName: BoundaryName,
   errorRange: ErrorRange,
@@ -38,7 +33,7 @@ const parseBoundary = (
 export const processRawPlotAreaConfig = (
   rawPlotAreaConfig: RawPlotAreaConfig,
 ): PlotAreaConfig => {
-  const errors: PlotAreaConfigError[] = [];
+  const errors: ErrorConfig[] = [];
 
   const reportError: ReportError = (error) => {
     errors.push(error);
