@@ -1,5 +1,7 @@
 import { Draft } from "immer";
 
+import { ErrorConfig, ErrorRange } from "../shared/errors";
+
 export type BoundaryName = "xMin" | "xMax" | "yMin" | "yMax";
 
 export type RawPlotAreaConfig = {
@@ -7,17 +9,10 @@ export type RawPlotAreaConfig = {
   showAxes: boolean;
 } & Record<BoundaryName, string>;
 
-export interface PlotAreaConfigError {
-  i18nKey: string;
-  i18nValues: Array<string | number>;
-}
-
-export type ErrorRange = [number, number];
-
 export interface InvalidPlotAreaConfig {
   type: "invalid";
   errorRangeByBoundaryName: Partial<Record<BoundaryName, ErrorRange>>;
-  errors: PlotAreaConfigError[];
+  errors: ErrorConfig[];
 }
 
 export interface ValidPlotAreaConfig {
