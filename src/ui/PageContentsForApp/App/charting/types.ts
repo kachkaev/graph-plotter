@@ -3,6 +3,9 @@ import { ErrorConfig, ErrorRange } from "../shared/errors";
 export type Formula = (x: number) => number;
 
 export interface RawChartConfig {
+  id: string;
+
+  color: string;
   formula: string;
   numberOfPoints: string;
 }
@@ -29,23 +32,18 @@ export type ChartConfig =
   | ValidChartConfig
   | EmptyChartConfig;
 
-export interface ChartCollectionItem {
-  id: string;
-  rawConfig: RawChartConfig;
-}
-
 export interface ChartCollection {
   activeItemId?: string;
-  items: ChartCollectionItem[];
+  items: RawChartConfig[];
 }
 
 export type ChartCollectionAction =
-  | { type: "updateActiveItem"; rawChartConfig: RawChartConfig }
+  | { type: "updateItem"; rawChartConfig: RawChartConfig }
   | { type: "deleteItem"; itemId: string }
   | { type: "setActiveItem"; itemId?: string };
 
 export type ChartCollectionContextValue = {
-  chartItems: ChartCollectionItem[];
-  activeChartItem?: ChartCollectionItem;
+  rawChartConfigs: RawChartConfig[];
+  activeRawChartConfig?: RawChartConfig;
   modifyChartCollection: React.Dispatch<ChartCollectionAction>;
 };

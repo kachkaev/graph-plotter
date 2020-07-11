@@ -2,6 +2,7 @@ import React from "react";
 
 import { ChartCollectionContext } from "./ChartCollectionContext";
 import { chartCollectionReducer } from "./chartCollectionReducer";
+import { generateRawChartConfig } from "./generateRawChartConfig";
 import { ChartCollectionContextValue } from "./types";
 
 export const ChartCollectionProvider: React.FunctionComponent = ({
@@ -12,16 +13,22 @@ export const ChartCollectionProvider: React.FunctionComponent = ({
     modifyChartCollection,
   ] = React.useReducer(chartCollectionReducer, { items: [] });
 
+  const existingActiveRawChartConfig = chartCollection.items.find(
+    (chartItem) => chartItem.id === chartCollection.activeItemId,
+  );
+
+  const activeRawChartConfig = React.useMemo(
+    () => existingActiveRawChartConfig ?? generateRawChartConfig(),
+    [existingActiveRawChartConfig],
+  );
+
   const contextValue = React.useMemo<ChartCollectionContextValue>(() => {
-    const activeChartItem = chartCollection.items.find(
-      (chartItem) => chartItem.id === chartCollection.activeItemId,
-    );
     return {
-      chartItems: chartCollection.items,
-      activeChartItem,
+      rawChartConfigs: chartCollection.items,
+      activeRawChartConfig,
       modifyChartCollection,
     };
-  }, [chartCollection, modifyChartCollection]);
+  }, [activeRawChartConfig, chartCollection.items]);
 
   return (
     <ChartCollectionContext.Provider value={contextValue}>

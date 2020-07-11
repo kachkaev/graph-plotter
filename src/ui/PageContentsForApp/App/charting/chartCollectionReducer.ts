@@ -1,6 +1,5 @@
 import produce from "immer";
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import { ChartCollection, ChartCollectionAction } from "./types";
 
@@ -14,22 +13,20 @@ export const chartCollectionReducer: React.Reducer<
         draft.activeItemId = action.itemId;
         break;
       }
-      case "updateActiveItem": {
-        if (draft.activeItemId) {
-          const itemIndex = draft.items.findIndex(
-            (chartItem) => chartItem.id === draft.activeItemId,
-          );
-          draft.items[itemIndex].rawConfig = action.rawChartConfig;
+
+      case "updateItem": {
+        const itemIndex = draft.items.findIndex(
+          (rawChartConfig) => rawChartConfig.id === draft.activeItemId,
+        );
+        if (itemIndex === -1) {
+          draft.items.push(action.rawChartConfig);
         } else {
-          const id = uuidv4();
-          draft.items.push({
-            id,
-            rawConfig: action.rawChartConfig,
-          });
-          draft.activeItemId = id;
+          draft.items[itemIndex] = action.rawChartConfig;
         }
+        draft.activeItemId = action.rawChartConfig.id;
         break;
       }
+
       case "deleteItem": {
         const itemIndex = draft.items.findIndex(
           (chartItem) => chartItem.id === action.itemId,
