@@ -44,6 +44,6 @@ export type ChartCollectionAction =
 
 export type ChartCollectionContextValue = {
   rawChartConfigs: RawChartConfig[];
-  activeRawChartConfig?: RawChartConfig;
+  activeRawChartConfig: RawChartConfig;
   modifyChartCollection: React.Dispatch<ChartCollectionAction>;
 };

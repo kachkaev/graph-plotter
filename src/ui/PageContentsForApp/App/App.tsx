@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import { BottomPanel } from "./BottomPanel";
+import { ChartCollectionProvider } from "./charting";
 import { Plot } from "./Plot";
 import { PlotAreaProvider } from "./plotArea";
 import { PlotAreaForm } from "./PlotAreaForm";
@@ -43,7 +45,6 @@ const AppName = styled.h1`
 `;
 
 const Wip = styled.div``;
-const BottomPanel = styled.div``;
 
 export const App: React.FunctionComponent<{
   width: number;
@@ -58,37 +59,39 @@ export const App: React.FunctionComponent<{
 
   return (
     <PlotAreaProvider>
-      <Wrapper style={{ width, height }}>
-        <TopHalf>
-          <LeftPanel>
-            <AppName>
-              {t("ui.l_app_title_1")}
-              <br />
-              {t("ui.l_app_title_2")}
-            </AppName>
-            <LeftPanelHeader>{t("ui.h_boundaries")}</LeftPanelHeader>
-            <PlotAreaForm />
-            <LeftPanelHeader>{t("ui.h_info")}</LeftPanelHeader>
-            <div>
-              {t("ui.l_info_1")} {t("ui.l_info_2")}
-            </div>
-            <Wip>
-              <LeftPanelHeader>Work in progress 🚨</LeftPanelHeader>
-              <a href="https://vk.com/graph_plotter">
-                original flash app (discontinued)
-              </a>
-              <br />
-              <a href="https://vk.com/graph_plotter_club">app community</a>
-              <br />
-              <a href="https://github.com/graph-plotter/graph-plotter">
-                github repo
-              </a>
-            </Wip>
-          </LeftPanel>
-          <Plot style={{ width: canvasSize, height: canvasSize }}></Plot>
-        </TopHalf>
-        <BottomPanel></BottomPanel>
-      </Wrapper>
+      <ChartCollectionProvider>
+        <Wrapper style={{ width, height }}>
+          <TopHalf>
+            <LeftPanel>
+              <AppName>
+                {t("ui.l_app_title_1")}
+                <br />
+                {t("ui.l_app_title_2")}
+              </AppName>
+              <LeftPanelHeader>{t("ui.h_boundaries")}</LeftPanelHeader>
+              <PlotAreaForm />
+              <LeftPanelHeader>{t("ui.h_info")}</LeftPanelHeader>
+              <div>
+                {t("ui.l_info_1")} {t("ui.l_info_2")}
+              </div>
+              <Wip>
+                <LeftPanelHeader>Work in progress 🚨</LeftPanelHeader>
+                <a href="https://vk.com/graph_plotter">
+                  original flash app (discontinued)
+                </a>
+                <br />
+                <a href="https://vk.com/graph_plotter_club">app community</a>
+                <br />
+                <a href="https://github.com/graph-plotter/graph-plotter">
+                  github repo
+                </a>
+              </Wip>
+            </LeftPanel>
+            <Plot style={{ width: canvasSize, height: canvasSize }}></Plot>
+          </TopHalf>
+          <BottomPanel plotAreaWidth={canvasSize} />
+        </Wrapper>
+      </ChartCollectionProvider>
     </PlotAreaProvider>
   );
 };

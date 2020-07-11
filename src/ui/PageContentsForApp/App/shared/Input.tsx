@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export type InputStatus = "modified" | "error";
+export type InputTextAlign = "left" | "right";
 
 const Wrapper = styled.div<{ status?: InputStatus }>`
   position: relative;
@@ -20,10 +21,15 @@ const Wrapper = styled.div<{ status?: InputStatus }>`
   box-sizing: border-box;
 `;
 
-const InputControl = styled.input`
+const Prefix = styled.span`
+  display: inline-block;
+  white-space: pre;
+  flex-grow: 0;
+`;
+
+const InputControl = styled.input<{ textAlign: InputTextAlign }>`
   min-width: 0;
-  padding: 0;
-  text-align: right;
+  text-align: ${(p) => p.textAlign};
   background: transparent;
   border: none;
   flex-grow: 1;
@@ -41,8 +47,13 @@ const Input: React.ForwardRefRenderFunction<
     onChange?: (newValue: string) => void;
     onSubmit?: () => void;
     name?: string;
+    textAlign?: InputTextAlign;
+    prefix?: string;
   } & Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "onChange">
-> = ({ value, onChange, onSubmit, name, ...rest }, ref) => {
+> = (
+  { value, onChange, onSubmit, name, prefix, textAlign = "left", ...rest },
+  ref,
+) => {
   const handleChange = React.useCallback<
     React.ChangeEventHandler<HTMLInputElement>
   >(
@@ -65,11 +76,13 @@ const Input: React.ForwardRefRenderFunction<
 
   return (
     <Wrapper {...rest} ref={ref}>
+      {prefix ? <Prefix>{prefix}</Prefix> : null}
       <InputControl
         name={name}
         value={value}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
+        textAlign={textAlign}
       />
     </Wrapper>
   );

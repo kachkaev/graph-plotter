@@ -8,6 +8,8 @@ import { Foreground } from "./Foreground";
 import { PlotContentsWithInvalidAreaProps } from "./PlotContentsWithInvalidArea";
 import { PlotContentsWithValidAreaProps } from "./PlotContentsWithValidArea";
 
+export const plotBorderRadius = 7;
+
 const PlotContentsWithInvalidArea = dynamic<PlotContentsWithInvalidAreaProps>(
   () =>
     import("./PlotContentsWithInvalidArea").then(
@@ -30,7 +32,7 @@ const Wrapper = styled.div`
   position: relative;
   background: #e6e6e6;
   border: 1px solid #cacaca;
-  border-radius: 7px;
+  border-radius: ${plotBorderRadius}px;
   box-sizing: border-box;
   overflow: hidden;
   flex-shrink: 0;

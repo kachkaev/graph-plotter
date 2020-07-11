@@ -10,7 +10,7 @@ import {
 } from "./plotArea";
 import { Button } from "./shared/Button";
 import { Checkbox } from "./shared/Checkbox";
-import { Input } from "./shared/Input";
+import { NumericInput } from "./shared/NumericInput";
 
 const Wrapper = styled.div``;
 
@@ -72,14 +72,8 @@ const BoundaryControlLabel = styled.label`
   padding-right: 5px;
 `;
 
-const BoundaryControlInput = styled(Input)`
-  width: 60px;
-  text-align: right;
+const BoundaryControlInput = styled(NumericInput)`
   display: inline-flex;
-
-  :focus {
-    outline: none;
-  }
 `;
 
 const BoundaryControl: React.FunctionComponent<{
