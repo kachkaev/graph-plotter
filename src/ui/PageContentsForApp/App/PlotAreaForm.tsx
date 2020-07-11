@@ -51,7 +51,7 @@ type WipStateUpdateAction = {
 };
 type WipStateResetAction = { type: "reset"; value: WipState };
 type WipStateAction = WipStateUpdateAction | WipStateResetAction;
-type WipStateReducer = (state: WipState, action: WipStateAction) => WipState;
+type WipStateReducer = React.Reducer<WipState, WipStateAction>;
 
 const BoundaryControlRow = styled.div`
   & + & {

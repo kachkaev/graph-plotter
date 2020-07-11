@@ -2,7 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { useChartCollection } from "./charting";
+import {
+  RawChartConfig,
+  useChartCollection,
+  useProcessedChartConfig,
+} from "./charting";
 import { plotBorderRadius } from "./Plot";
 import { Button } from "./shared/Button";
 import { Input } from "./shared/Input";
@@ -47,27 +51,109 @@ const SectionUnderPlotArea = styled.div`
 
 const FormulaInput = styled(Input)`
   flex-grow: 1;
-  margin-right: ${plotBorderRadius}px;
+  margin-right: 10px;
 `;
 
 FormulaInput.defaultProps = {
   prefix: "y = ",
 };
 
+type WipStateField = "formula" | "numberOfPoints";
+type WipState = Pick<RawChartConfig, WipStateField>;
+type WipStateAction =
+  | { type: "reset"; value: WipState }
+  | { type: "update"; fieldName: WipStateField; value: string };
+type WipStateReducer = React.Reducer<WipState, WipStateAction>;
+const wipStateReducer: WipStateReducer = (wipState, action) => {
+  switch (action.type) {
+    case "reset":
+      return action.value;
+
+    case "update":
+      return { ...wipState, [action.fieldName]: action.value };
+  }
+};
+
 export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
   plotAreaWidth,
 }) => {
-  const { activeRawChartConfig } = useChartCollection();
+  const { activeRawChartConfig, modifyChartCollection } = useChartCollection();
+  const processedChartConfig = useProcessedChartConfig(activeRawChartConfig);
+
   const { t } = useTranslation();
+  const [wipState, dispatchWipState] = React.useReducer(wipStateReducer, {
+    formula: activeRawChartConfig.formula,
+    numberOfPoints: activeRawChartConfig.numberOfPoints,
+  });
+
+  const handleNumberOfPointsChange = React.useCallback((newValue: string) => {
+    dispatchWipState({
+      type: "update",
+      fieldName: "numberOfPoints",
+      value: newValue,
+    });
+  }, []);
+
+  const handleFormulaChange = React.useCallback((newValue: string) => {
+    dispatchWipState({
+      type: "update",
+      fieldName: "formula",
+      value: newValue,
+    });
+  }, []);
+
+  const handleSubmit = React.useCallback(() => {
+    const rawChartConfig = {
+      ...activeRawChartConfig,
+      ...wipState,
+    };
+    modifyChartCollection({
+      type: "updateItem",
+      rawChartConfig,
+    });
+  }, [activeRawChartConfig, modifyChartCollection, wipState]);
+
+  const numberOfPointsHasError =
+    processedChartConfig.type == "invalid" &&
+    processedChartConfig.numberOfPointsErrorRange;
+
+  const formulaHasError =
+    processedChartConfig.type == "invalid" &&
+    processedChartConfig.formulaErrorRange;
+
+  const numberOfPointsStatus =
+    wipState.numberOfPoints !== activeRawChartConfig.numberOfPoints
+      ? "modified"
+      : numberOfPointsHasError
+      ? "error"
+      : undefined;
+
+  const formulaStatus =
+    wipState.formula !== activeRawChartConfig.formula
+      ? "modified"
+      : formulaHasError
+      ? "error"
+      : undefined;
+
   return (
     <Wrapper>
       <SectionBeforePlotArea>
         <NumberOfPointsLabel>{t("ui.l_n_of_points")}</NumberOfPointsLabel>
-        <NumberOfPointsInput value={activeRawChartConfig.numberOfPoints} />
+        <NumberOfPointsInput
+          value={wipState.numberOfPoints}
+          status={numberOfPointsStatus}
+          onChange={handleNumberOfPointsChange}
+          onSubmit={handleSubmit}
+        />
       </SectionBeforePlotArea>
       <SectionUnderPlotArea style={{ width: plotAreaWidth }}>
-        <FormulaInput value={activeRawChartConfig.formula} />
-        <Button>{t("ui.b_plot")}</Button>
+        <FormulaInput
+          value={wipState.formula}
+          status={formulaStatus}
+          onChange={handleFormulaChange}
+          onSubmit={handleSubmit}
+        />
+        <Button onClick={handleSubmit}>{t("ui.b_plot")}</Button>
       </SectionUnderPlotArea>
     </Wrapper>
   );
