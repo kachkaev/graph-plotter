@@ -2,13 +2,18 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { RawChartConfig, useChartCollection } from "./charting";
-import { PlotAreaForm } from "./PlotAreaForm";
+import { useChartCollection } from "../charting";
+import { PlotAreaForm } from "../PlotAreaForm";
+import { ChartListItem } from "./ChartListItem";
 
 const Wrapper = styled.div`
-  flex-grow: 1;
-  flex-shrink: 1;
+  flex: 1;
   padding-right: 15px;
+  min-width: 0;
+  display: flex;
+  max-height: 100%;
+  align-items: stretch;
+  flex-direction: column;
 `;
 
 const Header = styled.h2`
@@ -53,41 +58,14 @@ const AppName = styled.h1`
 
 const Wip = styled.div``;
 
-const ChartList = styled.div``;
-
-const ChartListItem: React.FunctionComponent<{
-  rawChartConfig: RawChartConfig;
-}> = ({ rawChartConfig }) => {
-  const { activeRawChartConfig, modifyChartCollection } = useChartCollection();
-
-  const isActive = activeRawChartConfig === rawChartConfig;
-
-  const handleClick = React.useCallback(() => {
-    modifyChartCollection({
-      type: "setActiveItem",
-      itemId: rawChartConfig.id,
-    });
-  }, [rawChartConfig.id, modifyChartCollection]);
-
-  const handleDeleteClick = React.useCallback<React.MouseEventHandler>(
-    (e) => {
-      modifyChartCollection({
-        type: "deleteItem",
-        itemId: rawChartConfig.id,
-      });
-      e.stopPropagation();
-    },
-    [rawChartConfig.id, modifyChartCollection],
-  );
-
-  return (
-    <div onClick={handleClick}>
-      y = {rawChartConfig.formula} {isActive ? "active" : ""}
-      <br />
-      <button onClick={handleDeleteClick}>delete</button>
-    </div>
-  );
-};
+const ChartList = styled.div`
+  flex: 1;
+  min-height: 0;
+  margin-left: -5px;
+  margin-right: -15px;
+  padding-right: 10px;
+  overflow: scroll;
+`;
 
 export const LeftPanel: React.FunctionComponent<{ children?: never }> = () => {
   const { t } = useTranslation();

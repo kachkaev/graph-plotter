@@ -19,7 +19,7 @@ export const chartCollectionReducer: React.Reducer<
           (rawChartConfig) => rawChartConfig.id === draft.activeItemId,
         );
         if (itemIndex === -1) {
-          draft.items.push(action.rawChartConfig);
+          draft.items.unshift(action.rawChartConfig);
         } else {
           draft.items[itemIndex] = action.rawChartConfig;
         }
@@ -34,6 +34,8 @@ export const chartCollectionReducer: React.Reducer<
         if (itemIndex !== -1) {
           delete draft.activeItemId;
           draft.items.splice(itemIndex, 1);
+          draft.activeItemId =
+            draft.items[itemIndex]?.id ?? draft.items[itemIndex - 1]?.id;
         }
         break;
       }

@@ -31,7 +31,7 @@ export const App: React.FunctionComponent<{
     <PlotAreaProvider>
       <ChartCollectionProvider>
         <Wrapper style={{ width, height }}>
-          <TopHalf>
+          <TopHalf style={{ height: canvasSize }}>
             <LeftPanel />
             <Plot style={{ width: canvasSize, height: canvasSize }}></Plot>
           </TopHalf>
