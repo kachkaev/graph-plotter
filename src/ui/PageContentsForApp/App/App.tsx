@@ -7,12 +7,11 @@ import { LeftPanel } from "./LeftPanel";
 import { Plot } from "./Plot";
 import { PlotAreaProvider } from "./plotArea";
 
-const bottomPanelMinHeight = 40;
+const bottomPanelMinHeight = 80;
 const leftPanelMinWidth = 250;
 
-const Wrapper = styled.div`
-  /* outline: 1px solid red; */
-`;
+const Wrapper = styled.div``;
+
 const TopHalf = styled.div`
   display: flex;
   flex-direction: row;

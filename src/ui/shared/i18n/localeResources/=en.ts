@@ -18,8 +18,8 @@ export const enLocalResource = {
     "ui.l_ymin": "ymin",
     "ui.l_xmax": "xmax",
     "ui.l_xmin": "xmin",
-    "ui.l_n_of_points": "Number of dots",
-    "ui.l_y_equals": "y =",
+    "ui.l_n_of_points": "Number of points",
+    "ui.l_y_equals": "y = ",
     "ui.l_saving": "Saving your information…",
     "ui.l_error_load":
       "An error occurred when loading your graphs. It is recommended to reload current page. Please, notice that no changes that you will make before reloading will can be saved. Sorry for any inconvenience.",
@@ -132,8 +132,8 @@ export const enLocalResource = {
     //// Different errors for functions
     "error.wrong_bound":
       "Field <0>{0}</0> must contain a number from <1>-{1} to {1}.</1>",
-    "error.wrong_number_of_dots":
-      "The field with number of dots must contain an integer number in range between {0} and {1}.",
+    "error.wrong_number_of_points":
+      "The field with number of dots must contain an integer number in range between <1>{0} and {1}</1>.",
     "error.small_range":
       "<0>{1}</0> must be greater than <0>{0}</0> and their minimum difference must be equal to {2}.",
     "error.y_in_f":

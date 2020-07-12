@@ -1,7 +1,8 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import { Nobr } from "../../shared/essentials";
 import {
   RawChartConfig,
   useChartCollection,
@@ -16,9 +17,20 @@ interface BottomPanelProps {
   plotAreaWidth: number;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div``;
+
+const MainRow = styled.div`
   padding: 10px 0 0 0;
   display: flex;
+`;
+
+const ErrorRow = styled.div`
+  margin-left: auto;
+  padding-top: 5px;
+`;
+
+const ErrorMesage = styled.div`
+  margin-left: -70px;
 `;
 
 const SectionBeforePlotArea = styled.div`
@@ -53,10 +65,6 @@ const FormulaInput = styled(Input)`
   flex-grow: 1;
   margin-right: 10px;
 `;
-
-FormulaInput.defaultProps = {
-  prefix: "y = ",
-};
 
 type WipStateField = "formula" | "numberOfPoints";
 type WipState = Pick<RawChartConfig, WipStateField>;
@@ -139,26 +147,45 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
       ? "error"
       : undefined;
 
+  const errorConfigToShow =
+    processedChartConfig.type === "invalid" && processedChartConfig.errors[0];
+
   return (
     <Wrapper>
-      <SectionBeforePlotArea>
-        <NumberOfPointsLabel>{t("ui.l_n_of_points")}</NumberOfPointsLabel>
-        <NumberOfPointsInput
-          value={wipState.numberOfPoints}
-          status={numberOfPointsStatus}
-          onChange={handleNumberOfPointsChange}
-          onSubmit={handleSubmit}
-        />
-      </SectionBeforePlotArea>
-      <SectionUnderPlotArea style={{ width: plotAreaWidth }}>
-        <FormulaInput
-          value={wipState.formula}
-          status={formulaStatus}
-          onChange={handleFormulaChange}
-          onSubmit={handleSubmit}
-        />
-        <Button onClick={handleSubmit}>{t("ui.b_plot")}</Button>
-      </SectionUnderPlotArea>
+      <MainRow>
+        <SectionBeforePlotArea>
+          <NumberOfPointsLabel>{t("ui.l_n_of_points")}</NumberOfPointsLabel>
+          <NumberOfPointsInput
+            value={wipState.numberOfPoints}
+            status={numberOfPointsStatus}
+            onChange={handleNumberOfPointsChange}
+            onSubmit={handleSubmit}
+          />
+        </SectionBeforePlotArea>
+        <SectionUnderPlotArea style={{ width: plotAreaWidth }}>
+          <FormulaInput
+            prefix={t("ui.l_y_equals")}
+            value={wipState.formula}
+            status={formulaStatus}
+            onChange={handleFormulaChange}
+            onSubmit={handleSubmit}
+          />
+          <Button onClick={handleSubmit}>{t("ui.b_plot")}</Button>
+        </SectionUnderPlotArea>
+      </MainRow>
+      {errorConfigToShow ? (
+        <ErrorRow style={{ width: plotAreaWidth }}>
+          <ErrorMesage>
+            <Trans
+              i18nKey={errorConfigToShow.i18nKey}
+              values={errorConfigToShow.i18nValues}
+            >
+              <b />
+              <Nobr />
+            </Trans>
+          </ErrorMesage>
+        </ErrorRow>
+      ) : null}
     </Wrapper>
   );
 };

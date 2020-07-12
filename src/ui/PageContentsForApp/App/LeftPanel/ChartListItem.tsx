@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import {
@@ -68,6 +69,7 @@ export const ChartListItem: React.FunctionComponent<{
 }> = ({ rawChartConfig }) => {
   const { activeRawChartConfig, modifyChartCollection } = useChartCollection();
   const processedChartConfig = useProcessedChartConfig(rawChartConfig);
+  const { t } = useTranslation();
 
   const isActive = activeRawChartConfig === rawChartConfig;
   const isInvalid = processedChartConfig.type !== "valid";
@@ -97,7 +99,10 @@ export const ChartListItem: React.FunctionComponent<{
         style={{ background: rawChartConfig.color }}
       />
       <FormulaContainer>
-        <Formula isInvalid={isInvalid}>y = {rawChartConfig.formula}</Formula>
+        <Formula isInvalid={isInvalid}>
+          {t("ui.l_y_equals")}
+          {rawChartConfig.formula}
+        </Formula>
       </FormulaContainer>
       {isActive ? (
         <DeleteButton onClick={handleDeleteClick}></DeleteButton>

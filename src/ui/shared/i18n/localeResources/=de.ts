@@ -23,7 +23,7 @@ export const deLocalResource = {
     "ui.l_xmax": "xmax",
     "ui.l_xmin": "xmin",
     "ui.l_n_of_points": "Anzahl der Punkte",
-    "ui.l_y_equals": "y =",
+    "ui.l_y_equals": "y = ",
     "ui.l_saving": "Saving Private Informationen auf...",
     "ui.l_error_load":
       "Fehler beim Verbinden zum Server Facebook bei der graphischen Darstellung der gespeicherten Funktion. Es ist zu empfehlen, die Seite zu aktualisieren, um Ihre graphische Darstellung zu sehen. Beachten Sie, dass alle Anderungen, die Sie jetzt machen, gehen nach dem Schliessen des Browser-Fenster verloren, wenn die Seite nicht neu geladen wird.",
@@ -140,8 +140,8 @@ export const deLocalResource = {
     //// Different errors for functions
     "error.wrong_bound":
       "Feld <0>{0}</0> muss eine Zahl enthalten, diese Zahl muss im Bereich von -{1} bis {1} sein.",
-    "error.wrong_number_of_dots":
-      "Feld mit einer Reihe von Punkten muss eine ganze Zahl enthalten, diese Zahl muss zwischen {0} bis {1} sein.",
+    "error.wrong_number_of_points":
+      "Feld mit einer Reihe von Punkten muss eine ganze Zahl enthalten, diese Zahl muss zwischen <1>{0} bis {1} sein.</1>",
     "error.small_range":
       "<0>{1}</0> muss großer sein  <0>{0}</0>, minimaler Unterschied muss gleich {2} sein.",
     "error.y_in_f":
