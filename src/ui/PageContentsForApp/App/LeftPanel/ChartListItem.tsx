@@ -7,6 +7,7 @@ import {
   useChartCollection,
   useProcessedChartConfig,
 } from "../charting";
+import { ColorPicker } from "./ColorPicker";
 
 const Wrapper = styled.div<{ isActive?: boolean }>`
   border-radius: 4px;
@@ -17,15 +18,10 @@ const Wrapper = styled.div<{ isActive?: boolean }>`
   ${(p) => (p.isActive ? "background-color: #dedede; " : "cursor: default;")};
 `;
 
-const ColorIndicator = styled.span<{ isInvalid?: boolean }>`
+const Indicator = styled.span`
   display: block;
-  width: 5px;
-  height: 5px;
-  border-radius: 10px;
-  margin-right: 5px;
-  ${(p) => (p.isInvalid ? "opacity: 0;" : "")};
+  width: 10px;
 `;
-
 const FormulaContainer = styled.span`
   display: block;
   flex: 1;
@@ -81,6 +77,16 @@ export const ChartListItem: React.FunctionComponent<{
     });
   }, [rawChartConfig.id, modifyChartCollection]);
 
+  const handleColorPickerChange = React.useCallback(
+    (newValue: string) => {
+      modifyChartCollection({
+        type: "updateItem",
+        rawChartConfig: { ...rawChartConfig, color: newValue },
+      });
+    },
+    [rawChartConfig, modifyChartCollection],
+  );
+
   const handleDeleteClick = React.useCallback<React.MouseEventHandler>(
     (e) => {
       modifyChartCollection({
@@ -94,10 +100,15 @@ export const ChartListItem: React.FunctionComponent<{
 
   return (
     <Wrapper isActive={isActive} onClick={isActive ? undefined : handleClick}>
-      <ColorIndicator
-        isInvalid={isInvalid}
-        style={{ background: rawChartConfig.color }}
-      />
+      <Indicator>
+        {isInvalid ? null : (
+          <ColorPicker
+            disabled={!isActive}
+            value={rawChartConfig.color}
+            onChange={handleColorPickerChange}
+          />
+        )}
+      </Indicator>
       <FormulaContainer>
         <Formula isInvalid={isInvalid}>
           {t("ui.l_y_equals")}

@@ -5,7 +5,7 @@ import { RawChartConfig } from "./types";
 export const generateRawChartConfig = (): RawChartConfig => ({
   id: uuidv4(),
 
-  color: "#f00",
+  color: "#2a5885",
   formula: "",
   numberOfPoints: "2000",
 });

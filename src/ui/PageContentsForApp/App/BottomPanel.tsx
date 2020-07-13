@@ -37,7 +37,7 @@ const SectionBeforePlotArea = styled.div`
   flex-grow: 1;
   flex-shrink: 1;
   overflow: hidden;
-  padding-right: 10px;
+  padding-right: 15px;
   display: flex;
   justify-content: flex-end;
 `;
