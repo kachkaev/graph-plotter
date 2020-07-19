@@ -1,10 +1,13 @@
 import { AxisBottom, AxisLeft, AxisRight, AxisTop } from "@vx/axis";
 import { Grid } from "@vx/grid";
+import { Group } from "@vx/group";
 import { scaleLinear } from "@vx/scale";
 import React from "react";
 import styled from "styled-components";
 
+import { useChartCollection } from "../charting";
 import { ValidPlotAreaConfig } from "../plotArea";
+import { Graph } from "./Chart";
 
 const Svg = styled.svg`
   position: absolute;
@@ -55,6 +58,9 @@ export const PlotContentsWithValidArea: React.FunctionComponent<PlotContentsWith
   const axisYLeft = offset + clampedXScale(0);
   const AxisY = canvasWidth - offset - axisYLeft > 20 ? AxisRight : AxisLeft;
 
+  const { rawChartConfigs, activeRawChartConfig } = useChartCollection();
+  const reversedRawChartConfigs = [...rawChartConfigs].reverse();
+
   return (
     <Svg width={width} height={height}>
       {showGrid ? (
@@ -91,6 +97,17 @@ export const PlotContentsWithValidArea: React.FunctionComponent<PlotContentsWith
             numTicks={numTicksRows}
             hideZero={true}
           />
+          <Group top={offset} left={offset}>
+            {reversedRawChartConfigs.map((rawChartConfig) => (
+              <Graph
+                key={rawChartConfig.id}
+                rawConfig={rawChartConfig}
+                isActive={rawChartConfig === activeRawChartConfig}
+                xScale={xScale}
+                yScale={yScale}
+              />
+            ))}
+          </Group>
         </>
       ) : null}
     </Svg>

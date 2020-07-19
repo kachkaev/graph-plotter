@@ -40,6 +40,10 @@ const base = css`
       text-decoration: underline;
     }
   }
+
+  button {
+    padding: 1px 6px;
+  }
 `;
 
 export const GlobalStyle = createGlobalStyle`

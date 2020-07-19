@@ -1,7 +1,20 @@
-import { ChartConfig, InvalidChartConfig, RawChartConfig } from "./types";
+import {
+  ChartConfig,
+  Formula,
+  InvalidChartConfig,
+  RawChartConfig,
+} from "./types";
 
-const minNumberOfDots = 50;
-const maxNumberOfDots = 10000;
+const minNumberOfPoints = 50;
+const maxNumberOfPoints = 10000;
+
+const predefinedFormulaLookup: Record<string, Formula> = {
+  x: (x) => x,
+  "sin(x)": (x) => Math.sin(x),
+  "tan(x)": (x) => Math.tan(x),
+  "x^2": (x) => x * x,
+  "1/x": (x) => 1 / x,
+};
 
 export const useProcessedChartConfig = (
   rawChartConfig: RawChartConfig,
@@ -17,12 +30,12 @@ export const useProcessedChartConfig = (
   if (
     !isFinite(numberOfPoints) ||
     numberOfPoints !== parseInt(rawNumberOfPoints) ||
-    numberOfPoints > maxNumberOfDots ||
-    numberOfPoints < minNumberOfDots
+    numberOfPoints > maxNumberOfPoints ||
+    numberOfPoints < minNumberOfPoints
   ) {
     result.errors.push({
       i18nKey: "error.wrong_number_of_points",
-      i18nValues: [minNumberOfDots, maxNumberOfDots],
+      i18nValues: [minNumberOfPoints, maxNumberOfPoints],
     });
     result.numberOfPointsErrorRange = [0, rawNumberOfPoints.length];
   }
@@ -37,13 +50,14 @@ export const useProcessedChartConfig = (
   }
 
   // FIXME: implement parsing
-  if (trimmedFormula === "x") {
+  if (!result.errors.length && predefinedFormulaLookup[trimmedFormula]) {
     return {
       type: "valid",
       numberOfPoints,
-      formula: (x) => x,
+      formula: predefinedFormulaLookup[trimmedFormula],
     };
   }
+
   result.formulaErrorRange = [0, rawFormula.length];
   result.errors.push({
     i18nKey: "error.formula.30",
