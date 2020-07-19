@@ -1,15 +1,27 @@
 import produce from "immer";
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocalStorage } from "react-use";
 
 import { defaultRawPlotAreaConfig } from "./defaultRawPlotAreaConfig";
 import { PlotAreaContext } from "./PlotAreaContext";
 import { processRawPlotAreaConfig } from "./processRawPlotAreaConfig";
-import { PlotAreaContextValue, UpdateRawPlotAreaConfig } from "./types";
+import {
+  PlotAreaContextValue,
+  RawPlotAreaConfig,
+  UpdateRawPlotAreaConfig,
+} from "./types";
 
 export const PlotAreaProvider: React.FunctionComponent = ({ children }) => {
+  const [savedRawPlotAreaConfig, saveRawPlotAreaConfig] = useLocalStorage<
+    RawPlotAreaConfig
+  >("gp.plotAreaConfig");
+
   const [rawPlotAreaConfig, setRawConfig] = React.useState(
-    defaultRawPlotAreaConfig,
+    savedRawPlotAreaConfig ?? defaultRawPlotAreaConfig,
   );
+  useEffect(() => {
+    saveRawPlotAreaConfig(rawPlotAreaConfig);
+  }, [rawPlotAreaConfig, saveRawPlotAreaConfig]);
 
   const updateRawPlotAreaConfig = React.useCallback<UpdateRawPlotAreaConfig>(
     (updateFn) => {
