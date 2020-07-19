@@ -34,11 +34,11 @@
     ]
   },
   "dependencies": {
-    "@vx/axis": "^0.0.197",
-    "@vx/grid": "^0.0.197",
-    "@vx/scale": "^0.0.197",
+    "@vx/axis": "^0.0.198",
+    "@vx/grid": "^0.0.198",
+    "@vx/scale": "^0.0.198",
     "accept-language-parser": "^1.5.0",
-    "i18next": "^19.5.1",
+    "i18next": "^19.6.2",
     "i18next-icu": "^1.4.2",
     "immer": "^7.0.5",
     "next": "^9.4.4",
@@ -46,7 +46,7 @@
     "react-dom": "^16.13.1",
     "react-i18next": "^11.7.0",
     "react-is": "^16.13.1",
-    "react-use": "^15.3.0",
+    "react-use": "^15.3.2",
     "styled-components": "^5.1.1",
     "styled-normalize": "^8.0.7",
     "uuid": "^8.2.0"
@@ -58,17 +58,17 @@
     "@kachkaev/prettier-config": "^1.0.0",
     "@next/bundle-analyzer": "^9.4.4",
     "@types/accept-language-parser": "^1.5.1",
-    "@types/node": "^14.0.13",
-    "@types/styled-components": "^5.1.0",
+    "@types/node": "^14.0.23",
+    "@types/styled-components": "^5.1.1",
     "@types/uuid": "^8.0.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.5.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "markdownlint-cli": "^0.23.1",
+    "markdownlint-cli": "^0.23.2",
     "next-compose-plugins": "^2.2.0",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.5",
-    "yarn-deduplicate": "^2.0.0"
+    "typescript": "^3.9.7",
+    "yarn-deduplicate": "^2.1.1"
   },
   "run-if-changed": {
     "yarn.lock": "yarn install --prefer-offline --pure-lockfile"
