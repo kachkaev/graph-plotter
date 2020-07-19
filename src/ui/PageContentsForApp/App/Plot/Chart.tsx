@@ -100,7 +100,7 @@ const Chart: React.FunctionComponent<{
       isActive={isActive}
       xScale={xScale}
       yScale={yScale}
-      color={rawConfig.color}
+      color={chartConfig.color}
       formula={chartConfig.formula}
       numberOfPoints={chartConfig.numberOfPoints}
     />

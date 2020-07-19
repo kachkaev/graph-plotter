@@ -21,6 +21,7 @@ export interface ValidChartConfig {
   type: "valid";
   formula: Formula;
   numberOfPoints: number;
+  color: string;
 }
 
 export interface EmptyChartConfig {
@@ -47,3 +48,5 @@ export type ChartCollectionContextValue = {
   activeRawChartConfig: RawChartConfig;
   modifyChartCollection: React.Dispatch<ChartCollectionAction>;
 };
+
+export type FormulaParseResult = Formula | ErrorConfig[];
