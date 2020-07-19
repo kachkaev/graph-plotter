@@ -1,4 +1,5 @@
 import { ErrorConfig, ErrorRange } from "../shared/errors";
+import { parseNumericValue } from "../shared/parseNumericValue";
 import { BoundaryName, PlotAreaConfig, RawPlotAreaConfig } from "./types";
 
 type ReportError = (error: ErrorConfig) => void;
@@ -17,7 +18,7 @@ const parseBoundary = (
   reportFailedFiled: ReportFailedBoundary,
 ): number => {
   const rawValue = rawPlotAreaConfig[boundaryName];
-  const value = parseFloat(rawValue);
+  const value = parseNumericValue(rawValue);
   if (!isFinite(value) || Math.abs(maxValue) > maxValue) {
     reportError({
       i18nKey: "error.wrong_bound",

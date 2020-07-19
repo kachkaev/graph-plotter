@@ -1,3 +1,4 @@
+import { parseNumericValue } from "../shared/parseNumericValue";
 import {
   ChartConfig,
   Formula,
@@ -26,10 +27,10 @@ export const useProcessedChartConfig = (
 
   // Parse number of points
   const rawNumberOfPoints = rawChartConfig.numberOfPoints;
-  const numberOfPoints = parseFloat(rawNumberOfPoints);
+  const numberOfPoints = parseNumericValue(rawNumberOfPoints);
   if (
     !isFinite(numberOfPoints) ||
-    numberOfPoints !== parseInt(rawNumberOfPoints) ||
+    Math.round(numberOfPoints) !== numberOfPoints ||
     numberOfPoints > maxNumberOfPoints ||
     numberOfPoints < minNumberOfPoints
   ) {
