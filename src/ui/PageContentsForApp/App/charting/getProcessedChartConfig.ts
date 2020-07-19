@@ -1,7 +1,7 @@
 import LRU from "lru-cache";
 
 import { parseNumericValue } from "../shared/parseNumericValue";
-import { parseFormula } from "./parseFormula";
+import { getParsedFormula } from "./getParsedFormula";
 import { ChartConfig, InvalidChartConfig, RawChartConfig } from "./types";
 
 const chartConfigCache = new LRU<string, ChartConfig>(1000);
@@ -42,7 +42,7 @@ const generateProcessedChartConfig = (
     };
   }
 
-  const formulaOrErrors = parseFormula(rawFormula);
+  const formulaOrErrors = getParsedFormula(rawFormula);
   if (!result.errors.length && typeof formulaOrErrors === "function") {
     return {
       type: "valid",

@@ -10,7 +10,7 @@ export const deLocalResource = {
     "ui.l_app_version": "Version ",
     "ui.h_info": "Über diese App",
     "ui.h_boundaries": "Gesamtflache",
-    "ui.h_charts": "Meine Funktionen",
+    "ui.h_graphs": "Meine Funktionen",
     "ui.h_color": "Farbauswahl",
 
     "ui.l_info_1":

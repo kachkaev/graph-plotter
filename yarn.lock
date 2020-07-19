@@ -1268,6 +1268,14 @@
     classnames "^2.2.5"
     prop-types "^15.6.0"
 
+"@vx/clip-path@^0.0.198":
+  version "0.0.198"
+  resolved "https://registry.yarnpkg.com/@vx/clip-path/-/clip-path-0.0.198.tgz#fe8406e9d904826aeba16f3ad4e1e5e9b74fae75"
+  integrity sha512-wRKZhd2mwlBmMIPtpKwCAg+dczmapRlCjTDEU4XHUI65pTt/YCPg8ZpEzqgGYKUNDarlllz/87dT4gxrI5OvWg==
+  dependencies:
+    "@types/react" "*"
+    prop-types "^15.5.10"
+
 "@vx/curve@0.0.198":
   version "0.0.198"
   resolved "https://registry.yarnpkg.com/@vx/curve/-/curve-0.0.198.tgz#3b9e19d39974507fb1b0e4c2f5fdeb0aaab12078"

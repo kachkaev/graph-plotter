@@ -1,4 +1,5 @@
 import { AxisBottom, AxisLeft, AxisRight, AxisTop } from "@vx/axis";
+import { RectClipPath } from "@vx/clip-path";
 import { Grid } from "@vx/grid";
 import { Group } from "@vx/group";
 import { scaleLinear } from "@vx/scale";
@@ -63,6 +64,7 @@ export const PlotContentsWithValidArea: React.FunctionComponent<PlotContentsWith
 
   return (
     <Svg width={width} height={height}>
+      <RectClipPath id="graphs" width={canvasWidth} height={canvasHeight} />
       {showGrid ? (
         <Grid
           top={offset}
@@ -76,6 +78,17 @@ export const PlotContentsWithValidArea: React.FunctionComponent<PlotContentsWith
           numTicksRows={numTicksRows}
         />
       ) : null}
+      <Group top={offset} left={offset} clipPath="url(#graphs)">
+        {reversedRawChartConfigs.map((rawChartConfig) => (
+          <Graph
+            key={rawChartConfig.id}
+            rawConfig={rawChartConfig}
+            isActive={rawChartConfig === activeRawChartConfig}
+            xScale={xScale}
+            yScale={yScale}
+          />
+        ))}
+      </Group>
       {showAxes ? (
         <>
           <AxisX
@@ -97,17 +110,6 @@ export const PlotContentsWithValidArea: React.FunctionComponent<PlotContentsWith
             numTicks={numTicksRows}
             hideZero={true}
           />
-          <Group top={offset} left={offset}>
-            {reversedRawChartConfigs.map((rawChartConfig) => (
-              <Graph
-                key={rawChartConfig.id}
-                rawConfig={rawChartConfig}
-                isActive={rawChartConfig === activeRawChartConfig}
-                xScale={xScale}
-                yScale={yScale}
-              />
-            ))}
-          </Group>
         </>
       ) : null}
     </Svg>

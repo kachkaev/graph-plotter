@@ -10,7 +10,7 @@ export const ukLocalResource = {
     "ui.l_app_version": "версія ",
     "ui.h_info": "Про це додатку",
     "ui.h_boundaries": "Область побудови",
-    "ui.h_charts": "Мої графіки",
+    "ui.h_graphs": "Мої графіки",
     "ui.h_color": "Вибір кольору",
 
     "ui.l_info_1":

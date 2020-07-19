@@ -67,7 +67,7 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
       {rawChartConfigs.length ? (
         <>
           <Header>
-            {t("ui.h_charts")}
+            {t("ui.h_graphs")}
             <AddChartButton
               onClick={handleAddChartButtonClick}
               title={t("ui.b_add_graph")}
