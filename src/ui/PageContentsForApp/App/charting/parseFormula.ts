@@ -1,22 +1,18 @@
-import { Formula, FormulaParseResult } from "./types";
+import { Parser } from "expr-eval";
 
-const predefinedFormulaLookup: Record<string, Formula> = {
-  x: (x) => x,
-  "sin(x)": (x) => Math.sin(x),
-  "tan(x)": (x) => Math.tan(x),
-  "x^2": (x) => x * x,
-  "1/x": (x) => 1 / x,
-};
+import { FormulaParseResult } from "./types";
 
 export const parseFormula = (rawFormula: string): FormulaParseResult => {
-  if (predefinedFormulaLookup[rawFormula]) {
-    return predefinedFormulaLookup[rawFormula];
+  try {
+    const parser = new Parser();
+    const expression = parser.parse(rawFormula);
+    return (x) => expression.evaluate({ x });
+  } catch (e) {
+    return [
+      {
+        i18nKey: "error.formula.30",
+        i18nValues: ["", "", rawFormula],
+      },
+    ];
   }
-
-  return [
-    {
-      i18nKey: "error.formula.30",
-      i18nValues: ["", "", rawFormula],
-    },
-  ];
 };
