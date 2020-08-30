@@ -17,6 +17,7 @@ const Header = styled.h2`
 `;
 
 const AddChartButton = styled.button`
+  background: rgb(250, 251, 252);
   position: absolute;
   bottom: 3px;
   right: -5px;

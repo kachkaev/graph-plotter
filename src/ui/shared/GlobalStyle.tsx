@@ -4,7 +4,7 @@ import normalize from "styled-normalize";
 const base = css`
   :root {
     --link-color: #2a5885;
-    --background-color: #edeef0;
+    --background-color: rgb(250, 251, 252);
   }
   body {
     color: #24292e;
