@@ -10,9 +10,5 @@ module.exports = require("next-compose-plugins")(
       productionBrowserSourceMaps: true,
     },
     reactStrictMode: true,
-    typescript: {
-      ignoreDevErrors: true,
-      ignoreBuildErrors: true,
-    },
   },
 );
