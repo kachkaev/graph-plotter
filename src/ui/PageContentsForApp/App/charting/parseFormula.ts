@@ -6,6 +6,10 @@ export const parseFormula = (rawFormula: string): FormulaParseResult => {
   try {
     const parser = new Parser();
     const expression = parser.parse(rawFormula);
+
+    // Testing for undefined symbols
+    expression.evaluate({ x: 0 });
+
     return (x) => expression.evaluate({ x });
   } catch (e) {
     return [
