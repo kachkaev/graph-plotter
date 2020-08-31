@@ -48,7 +48,7 @@ export const PageLayout: React.FunctionComponent = ({ children }) => {
       <GlobalStyle />
       <TopSection>
         <Title>Graph plotter</Title>
-        <Description>Work in progress</Description>
+        <Description>Web app to plot function graphs</Description>
         <ExternalLinks>
           <a href="https://github.com/graph-plotter/graph-plotter">
             github repo

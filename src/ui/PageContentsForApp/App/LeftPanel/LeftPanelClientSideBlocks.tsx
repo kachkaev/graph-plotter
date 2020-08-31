@@ -17,7 +17,7 @@ const Header = styled.h2`
 `;
 
 const AddChartButton = styled.button`
-  background: rgb(250, 251, 252);
+  background: var(--background-color);
   position: absolute;
   bottom: 3px;
   right: -5px;
@@ -36,8 +36,6 @@ const AddChartButton = styled.button`
 AddChartButton.defaultProps = {
   children: "+",
 };
-
-const Wip = styled.div``;
 
 const ChartList = styled.div`
   flex: 1;
@@ -89,18 +87,6 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
           <div>
             {t("ui.l_info_1")} {t("ui.l_info_2")}
           </div>
-          <Wip>
-            <Header>Work in progress 🚨</Header>
-            <a href="https://vk.com/graph_plotter">
-              original flash app (discontinued)
-            </a>
-            <br />
-            <a href="https://vk.com/graph_plotter_club">app community</a>
-            <br />
-            <a href="https://github.com/graph-plotter/graph-plotter">
-              github repo
-            </a>
-          </Wip>
         </>
       )}
     </>
