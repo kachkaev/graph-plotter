@@ -14,7 +14,7 @@ export const deLocalResource = {
     "ui.h_color": "Farbauswahl",
 
     "ui.l_info_1":
-      "Sie konnen sofort bis zu 10 graphischen Funktionen gleichzeitig darstellen.",
+      "Sie konnen sofort mehrere graphische Funktionen gleichzeitig darstellen.",
     "ui.l_info_2":
       "Falls Ihnen diese Anwendung gefallt, laden Sie Ihre Freunde ein!",
     "ui.l_translator": "Translator — ",

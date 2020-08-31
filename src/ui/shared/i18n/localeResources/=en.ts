@@ -11,7 +11,7 @@ export const enLocalResource = {
     "ui.h_color": "Choose color",
 
     "ui.l_info_1":
-      "Graph plotter allows you to plot up to 10 function graphs at once.",
+      "Graph plotter allows you to plot dozens of function graphs at once.",
     "ui.l_info_2": "If find this app useful, invite your friends!",
     "ui.l_translator": "Translated by ",
     "ui.l_ymax": "ymax",

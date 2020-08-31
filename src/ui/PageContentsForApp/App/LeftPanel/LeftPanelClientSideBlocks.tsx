@@ -62,6 +62,13 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
     modifyChartCollection({ type: "setActiveItem", itemId: undefined });
   }, [modifyChartCollection]);
 
+  const addChartButton = (
+    <AddChartButton
+      onClick={handleAddChartButtonClick}
+      title={t("ui.b_add_graph")}
+    />
+  );
+
   return (
     <>
       <Header>{t("ui.h_boundaries")}</Header>
@@ -70,10 +77,7 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
         <>
           <Header>
             {t("ui.h_graphs")}
-            <AddChartButton
-              onClick={handleAddChartButtonClick}
-              title={t("ui.b_add_graph")}
-            />
+            {addChartButton}
           </Header>
           <ChartList onClick={handleEmptySpaceClick}>
             {rawChartConfigs.map((rawChartConfig) => (
@@ -86,7 +90,10 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
         </>
       ) : (
         <>
-          <Header>{t("ui.h_info")}</Header>
+          <Header>
+            {t("ui.h_info")}
+            {addChartButton}
+          </Header>
           <div>
             {t("ui.l_info_1")} {t("ui.l_info_2")}
           </div>
