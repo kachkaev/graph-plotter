@@ -1,11 +1,17 @@
+import dynamic from "next/dynamic";
 import React from "react";
 import styled from "styled-components";
 
-import { BottomPanel } from "./BottomPanel";
+import { BottomPanelProps } from "./BottomPanel";
 import { ChartCollectionProvider } from "./charting";
 import { LeftPanel } from "./LeftPanel";
 import { Plot } from "./Plot";
 import { PlotAreaProvider } from "./plotArea";
+
+const BottomPanel = dynamic<BottomPanelProps>(
+  () => import("./BottomPanel").then((mod) => mod.BottomPanel),
+  { ssr: false },
+);
 
 const bottomPanelMinHeight = 80;
 const leftPanelMinWidth = 250;

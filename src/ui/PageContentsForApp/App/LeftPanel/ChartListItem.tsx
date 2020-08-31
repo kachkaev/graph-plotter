@@ -7,7 +7,8 @@ import {
   useChartCollection,
   useProcessedChartConfig,
 } from "../charting";
-import { ColorPicker } from "./ColorPicker";
+import { transparentColor } from "../shared/availableColors";
+import { ColorPicker } from "./ColorPicker/ColorPicker";
 
 const Wrapper = styled.div<{ isActive?: boolean }>`
   border-radius: 4px;
@@ -27,12 +28,12 @@ const FormulaContainer = styled.span`
   flex: 1;
   min-width: 0;
 `;
-const Formula = styled.span<{ isInvalid?: boolean }>`
+const Formula = styled.span<{ isHidden?: boolean; isInvalid?: boolean }>`
   display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
+  ${(p) => (p.isHidden && !p.isInvalid ? "opacity: 0.5" : "")};
   ${(p) => (p.isInvalid ? "text-decoration: line-through;" : "")};
 `;
 
@@ -103,7 +104,7 @@ export const ChartListItem: React.FunctionComponent<{
   );
 
   return (
-    <Wrapper isActive={isActive} onClick={isActive ? undefined : handleClick}>
+    <Wrapper isActive={isActive} onClick={handleClick}>
       <Indicator>
         {isInvalid ? null : (
           <ColorPicker
@@ -114,7 +115,10 @@ export const ChartListItem: React.FunctionComponent<{
         )}
       </Indicator>
       <FormulaContainer>
-        <Formula isInvalid={isInvalid}>
+        <Formula
+          isInvalid={isInvalid}
+          isHidden={rawChartConfig.color === transparentColor}
+        >
           {t("ui.l_y_equals")}
           {rawChartConfig.formula}
         </Formula>

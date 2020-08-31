@@ -13,10 +13,6 @@ import { Button } from "./shared/Button";
 import { Input } from "./shared/Input";
 import { NumericInput } from "./shared/NumericInput";
 
-interface BottomPanelProps {
-  plotAreaWidth: number;
-}
-
 const Wrapper = styled.div``;
 
 const MainRow = styled.div`
@@ -81,6 +77,10 @@ const wipStateReducer: WipStateReducer = (wipState, action) => {
       return { ...wipState, [action.fieldName]: action.value };
   }
 };
+
+export interface BottomPanelProps {
+  plotAreaWidth: number;
+}
 
 export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
   plotAreaWidth,
