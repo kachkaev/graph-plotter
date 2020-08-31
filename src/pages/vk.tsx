@@ -6,6 +6,22 @@ import { PageContentsForApp } from "../ui/PageContentsForApp";
 import { PageMetadata } from "../ui/PageMetadata";
 import { i18next } from "../ui/shared/i18n";
 
+// https://vk.com/faq11565
+const parseVkLanguage = (language: unknown): string | undefined => {
+  switch (language) {
+    case "0":
+    case "2":
+      return "ru";
+    case "1":
+      return "uk";
+    case "3":
+      return "en";
+    case "6":
+      return "de";
+  }
+  return undefined;
+};
+
 interface VkPageProps {
   locale: string;
 }
@@ -27,9 +43,14 @@ const VkPage: NextPage<VkPageProps> = ({ locale }) => {
 export const getServerSideProps: GetServerSideProps<VkPageProps> = async (
   context,
 ) => {
+  const locale =
+    parseVkLanguage(context.query.language) ??
+    parseVkLanguage(context.query.parent_language) ??
+    (typeof context.query.l === "string" ? context.query.l : undefined) ??
+    "en";
   return {
     props: {
-      locale: `${context.query.l}`,
+      locale,
     },
   };
 };
