@@ -60,7 +60,6 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
 
   return (
     <>
-      {" "}
       <Header>{t("ui.h_boundaries")}</Header>
       <PlotAreaForm />
       {rawChartConfigs.length ? (

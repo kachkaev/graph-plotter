@@ -29,7 +29,7 @@ const AppName = styled.h1`
   line-height: 22px;
   font-weight: bold;
   letter-spacing: -0.05em;
-  font-family: "Arial Narrow", "Liberation Sans Narrow";
+  font-family: "Arial Narrow", "Liberation Sans Narrow", "PT Sans Narrow";
   text-transform: uppercase;
 `;
 
