@@ -70,12 +70,16 @@ export const ChartListItem: React.FunctionComponent<{
   const isActive = activeRawChartConfig === rawChartConfig;
   const isInvalid = processedChartConfig.type !== "valid";
 
-  const handleClick = React.useCallback(() => {
-    modifyChartCollection({
-      type: "setActiveItem",
-      itemId: rawChartConfig.id,
-    });
-  }, [rawChartConfig.id, modifyChartCollection]);
+  const handleClick = React.useCallback<React.MouseEventHandler>(
+    (e) => {
+      modifyChartCollection({
+        type: "setActiveItem",
+        itemId: rawChartConfig.id,
+      });
+      e.stopPropagation();
+    },
+    [rawChartConfig.id, modifyChartCollection],
+  );
 
   const handleColorPickerChange = React.useCallback(
     (newValue: string) => {

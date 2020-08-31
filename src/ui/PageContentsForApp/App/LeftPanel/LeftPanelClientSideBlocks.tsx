@@ -72,7 +72,7 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
               title={t("ui.b_add_graph")}
             />
           </Header>
-          <ChartList>
+          <ChartList onClick={handleAddChartButtonClick}>
             {rawChartConfigs.map((rawChartConfig) => (
               <ChartListItem
                 key={rawChartConfig.id}
