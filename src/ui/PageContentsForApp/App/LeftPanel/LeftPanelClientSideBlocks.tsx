@@ -55,6 +55,10 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
   const { rawChartConfigs, modifyChartCollection } = useChartCollection();
 
   const handleAddChartButtonClick = React.useCallback(() => {
+    modifyChartCollection({ type: "addNewItem" });
+  }, [modifyChartCollection]);
+
+  const handleEmptySpaceClick = React.useCallback(() => {
     modifyChartCollection({ type: "setActiveItem", itemId: undefined });
   }, [modifyChartCollection]);
 
@@ -71,7 +75,7 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientS
               title={t("ui.b_add_graph")}
             />
           </Header>
-          <ChartList onClick={handleAddChartButtonClick}>
+          <ChartList onClick={handleEmptySpaceClick}>
             {rawChartConfigs.map((rawChartConfig) => (
               <ChartListItem
                 key={rawChartConfig.id}

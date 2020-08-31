@@ -69,7 +69,7 @@ export const ChartListItem: React.FunctionComponent<{
   const { t } = useTranslation();
 
   const isActive = activeRawChartConfig === rawChartConfig;
-  const isInvalid = processedChartConfig.type !== "valid";
+  const isInvalid = processedChartConfig.type === "invalid";
 
   const handleClick = React.useCallback<React.MouseEventHandler>(
     (e) => {

@@ -39,6 +39,7 @@ export interface ChartCollection {
 }
 
 export type ChartCollectionAction =
+  | { type: "addNewItem" }
   | { type: "updateItem"; rawChartConfig: RawChartConfig }
   | { type: "deleteItem"; itemId: string }
   | { type: "setActiveItem"; itemId?: string };

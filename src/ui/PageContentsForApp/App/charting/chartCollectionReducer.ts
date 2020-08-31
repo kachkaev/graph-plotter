@@ -1,6 +1,7 @@
 import produce from "immer";
 import React from "react";
 
+import { generateRawChartConfig } from "./generateRawChartConfig";
 import { ChartCollection, ChartCollectionAction } from "./types";
 
 export const chartCollectionReducer: React.Reducer<
@@ -9,21 +10,36 @@ export const chartCollectionReducer: React.Reducer<
 > = (chartCollection, action) =>
   produce(chartCollection, (draft) => {
     switch (action.type) {
+      case "addNewItem": {
+        const rawChartConfig = generateRawChartConfig(chartCollection.items);
+        const selectedItemIndex = draft.items.findIndex(
+          (currentRawChartConfig) =>
+            currentRawChartConfig.id === chartCollection.activeItemId,
+        );
+
+        const newItemIndex = selectedItemIndex === -1 ? 0 : selectedItemIndex;
+        draft.items.splice(newItemIndex, 0, rawChartConfig);
+        draft.activeItemId = rawChartConfig.id;
+        return;
+      }
+
       case "setActiveItem": {
         draft.activeItemId = action.itemId;
         break;
       }
 
       case "updateItem": {
+        const rawChartConfig = action.rawChartConfig;
         const itemIndex = draft.items.findIndex(
-          (rawChartConfig) => rawChartConfig.id === draft.activeItemId,
+          (currentRawChartConfig) =>
+            currentRawChartConfig.id === draft.activeItemId,
         );
         if (itemIndex === -1) {
-          draft.items.unshift(action.rawChartConfig);
+          draft.items.unshift(rawChartConfig);
         } else {
-          draft.items[itemIndex] = action.rawChartConfig;
+          draft.items[itemIndex] = rawChartConfig;
         }
-        draft.activeItemId = action.rawChartConfig.id;
+        draft.activeItemId = rawChartConfig.id;
         break;
       }
 

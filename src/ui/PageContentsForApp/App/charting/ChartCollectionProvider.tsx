@@ -29,8 +29,10 @@ export const ChartCollectionProvider: React.FunctionComponent = ({
   );
 
   const activeRawChartConfig = React.useMemo(
-    () => existingActiveRawChartConfig ?? generateRawChartConfig(),
-    [existingActiveRawChartConfig],
+    () =>
+      existingActiveRawChartConfig ??
+      generateRawChartConfig(chartCollection.items),
+    [existingActiveRawChartConfig, chartCollection.items],
   );
 
   const contextValue = React.useMemo<ChartCollectionContextValue>(() => {
