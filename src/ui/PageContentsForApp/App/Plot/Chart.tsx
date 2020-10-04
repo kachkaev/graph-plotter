@@ -1,5 +1,5 @@
-import { curveLinear } from "@vx/curve";
-import { LinePath } from "@vx/shape";
+import { curveLinear } from "@visx/curve";
+import { LinePath } from "@visx/shape";
 import { ScaleLinear } from "d3-scale";
 import React from "react";
 
@@ -70,8 +70,8 @@ const ChartShape: React.FunctionComponent<{
           key={sectionIndex}
           curve={curveLinear}
           data={dataPoints}
-          x={(d) => xScale(d[0])}
-          y={(d) => yScale(d[1])}
+          x={(d) => xScale(d[0]) ?? 0}
+          y={(d) => yScale(d[1]) ?? 0}
           stroke={color}
           strokeWidth={isActive ? 2 : 1}
           shapeRendering="geometricPrecision"

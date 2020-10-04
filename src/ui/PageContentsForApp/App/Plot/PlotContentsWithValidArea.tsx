@@ -1,8 +1,8 @@
-import { AxisBottom, AxisLeft, AxisRight, AxisTop } from "@vx/axis";
-import { RectClipPath } from "@vx/clip-path";
-import { Grid } from "@vx/grid";
-import { Group } from "@vx/group";
-import { scaleLinear } from "@vx/scale";
+import { AxisBottom, AxisLeft, AxisRight, AxisTop } from "@visx/axis";
+import { RectClipPath } from "@visx/clip-path";
+import { Grid } from "@visx/grid";
+import { Group } from "@visx/group";
+import { scaleLinear } from "@visx/scale";
 import React from "react";
 import styled from "styled-components";
 
@@ -53,10 +53,10 @@ export const PlotContentsWithValidArea: React.FunctionComponent<PlotContentsWith
     clamp: true,
   });
 
-  const axisXTop = offset + clampedYScale(0);
+  const axisXTop = offset + (clampedYScale(0) ?? 0);
   const AxisX = canvasHeight - offset - axisXTop > 20 ? AxisBottom : AxisTop;
 
-  const axisYLeft = offset + clampedXScale(0);
+  const axisYLeft = offset + (clampedXScale(0) ?? 0);
   const AxisY = canvasWidth - offset - axisYLeft > 20 ? AxisRight : AxisLeft;
 
   const { rawChartConfigs, activeRawChartConfig } = useChartCollection();
