@@ -33,6 +33,9 @@
       "prettier --write"
     ]
   },
+  "resolutions": {
+    "node-fetch": ">=2.6.1"
+  },
   "dependencies": {
     "@vx/axis": "^0.0.198",
     "@vx/grid": "^0.0.198",

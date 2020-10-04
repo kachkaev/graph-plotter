@@ -31,7 +31,7 @@ Batman
 
 ```txt
 5 - abs(x) > 0
-    ? abs(x) - 1.8 > 0
+    ? abs(x) - 1.8 < 0
       ? ((0.3 * x - round(0.3 * x)) * x * 2 + 3) * sign(sin(180 * x))
       : sin(180 * x)
       ? ((0.3 * x - round(0.3 * x)) * x * 2 + 3) * sign(sin(180 * x))
