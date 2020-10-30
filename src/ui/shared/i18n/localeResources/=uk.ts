@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export const ukLocalResource = {
   translation: {
     "ui.translator_name": "Дмитро Рубанов",
@@ -59,13 +60,13 @@ export const ukLocalResource = {
 
     // Errors in formula
 
-    //// Common errors
+    // // Common errors
     "error.formula.0": "Невідома помилка.",
     "error.formula.1": "Формула відсутня.",
     "error.formula.2": "Формула занадто велика.",
     "error.formula.3": "Зустрівся заборонений символ <0>{2}</0>.",
 
-    //// Equals sign
+    // // Equals sign
     "error.formula.10": "Формула має містити знак рівності.",
     "error.formula.11": "Формула не може містити більше одного знака рівності.",
     "error.formula.12":
@@ -75,7 +76,7 @@ export const ukLocalResource = {
     "error.formula.14":
       "Знак рівності не може знаходитися у дужках (кількість відкриваючих дужок у лівій частині формули менше, ніж кількість закриваючих на {2}). ",
 
-    //// Brackets
+    // // Brackets
     "error.formula.20":
       "Зайва закриваюча дужка. Закриваючих дужок не може бути більше, ніж відкритих дужок до цього.",
     "error.formula.21": "Відкриваючих дужок більше, ніж закриваючих (на {2}).",
@@ -84,7 +85,7 @@ export const ukLocalResource = {
     "error.formula.23":
       "Пусті дужки допустимі тільку після ім'я функції, що не має параметрів.",
 
-    //// Wrong elements / element placement
+    // // Wrong elements / element placement
     "error.formula.30": "<0>{2}</0> не підлягає розбору.",
     "error.formula.31": "Невідомий аргумент/константа <0>{2}</0>.",
     "error.formula.32": "<0>{2}</0> — невірний формат для числа.",
@@ -99,7 +100,7 @@ export const ukLocalResource = {
     "error.formula.38": "Не вистачає знака арифметичної дії.",
     "error.formula.39": "<0>{2}</0> — занадто велике число.",
 
-    //// Sign misplacement
+    // // Sign misplacement
     "error.formula.40": "Недопустиме положення знака <0>{2}</0>.",
     "error.formula.41": "Знак <0>{2}</0> не може стояти у самому кінці виразу.",
     "error.formula.42":
@@ -113,7 +114,7 @@ export const ukLocalResource = {
     "error.formula.47":
       "Знак <0>{2}</0> не може стояти після іншого знака арифметичної дії.",
 
-    //// Arguments of a function
+    // // Arguments of a function
     "error.formula.50": "Невірна кількість аргументів для функції <0>{2}</0>.",
     "error.formula.51":
       "Занадто багато аргументів передано у функцію <0>{2}</0>. Кількість аргументів має бути від {3} до {4}.",
@@ -130,7 +131,7 @@ export const ukLocalResource = {
       "Між дужкою и комою очікувався аргумент функції <0>{2}</0>.",
     "error.formula.58": "Після коми очікувався аргумент функції <0>{2}</0>.",
 
-    //// Different errors for functions
+    // // Different errors for functions
     "error.wrong_bound":
       "Поле <0>{0}</0> має містити число у діапазані від —{1} до {1}.",
     "error.wrong_number_of_points":

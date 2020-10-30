@@ -126,11 +126,11 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
   }, [activeRawChartConfig, modifyChartCollection, wipState]);
 
   const numberOfPointsHasError =
-    processedChartConfig.type == "invalid" &&
+    processedChartConfig.type === "invalid" &&
     processedChartConfig.numberOfPointsErrorRange;
 
   const formulaHasError =
-    processedChartConfig.type == "invalid" &&
+    processedChartConfig.type === "invalid" &&
     processedChartConfig.formulaErrorRange;
 
   const numberOfPointsStatus =

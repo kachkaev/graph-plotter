@@ -3,7 +3,9 @@ import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 
 import { defaultLanguage, supportedLanguages } from "../ui/shared/i18n";
-type IndexPageProps = {};
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface IndexPageProps {}
 
 const IndexPage: NextPage<IndexPageProps> = () => {
   return <div />;
@@ -21,6 +23,7 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async ({
     pickedLanguage === defaultLanguage ? "" : `?l=${pickedLanguage}`;
   res.writeHead(302, { Location: `/vk${query}` });
   res.end();
+
   return { props: {} };
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export const ruLocalResource = {
   translation: {
     // Interface elements
@@ -56,13 +57,13 @@ export const ruLocalResource = {
 
     // Errors in formula
 
-    //// Common errors
+    // // Common errors
     "error.formula.0": "Неизвестная ошибка.",
     "error.formula.1": "Формула отсутствует.",
     "error.formula.2": "Формула слишком большая.",
     "error.formula.3": "Встретился запрещенный символ <0>{2}</0>.",
 
-    //// Equals sign
+    // // Equals sign
     "error.formula.10": "Формула должна содержать знак равенства.",
     "error.formula.11":
       "Формула не должна содержать более одного знака равенства.",
@@ -73,7 +74,7 @@ export const ruLocalResource = {
     "error.formula.14":
       "Знак равенства не должен находиться внутри скобок (число открывающихся скобок в левой части формулы меньше, чем число закрывающихся на {2}). ",
 
-    //// Brackets
+    // // Brackets
     "error.formula.20":
       "Лишняя закрывающаяся скобка. Закрывающихся скобок не может быть больше, чем открытых скобок до этого.",
     "error.formula.21":
@@ -83,7 +84,7 @@ export const ruLocalResource = {
     "error.formula.23":
       "Пустые скобки допустимы только после имени функции, не имеющей параметров.",
 
-    //// Wrong elements / element placement
+    // // Wrong elements / element placement
     "error.formula.30": "<0>{2}</0> не подлежит разбору.",
     "error.formula.31": "Неизвестный аргумент/константа <0>{2}</0>.",
     "error.formula.32": "<0>{2}</0> — неверный формат для числа.",
@@ -98,7 +99,7 @@ export const ruLocalResource = {
     "error.formula.38": "Не хватает знака арифметического действия.",
     "error.formula.39": "<0>{2}</0> — слишком большое число.",
 
-    //// Sign misplacement
+    // // Sign misplacement
     "error.formula.40": "Недопустимое положение знака <0>{2}</0>.",
     "error.formula.41":
       "Знак <0>{2}</0> не может стоять в самом конце выражения.",
@@ -113,7 +114,7 @@ export const ruLocalResource = {
     "error.formula.47":
       "Знак <0>{2}</0> не может стоять после другого знака арифметического действия.",
 
-    //// Arguments of a function
+    // // Arguments of a function
     "error.formula.50": "Неверное число аргументов для функции <0>{2}</0>.",
     "error.formula.51":
       "Слишком много аргументов передано в функцию <0>{2}</0>. Число аргументов должно быть от {3} до {4}.",
@@ -130,7 +131,7 @@ export const ruLocalResource = {
       "Между скобкой и запятой ожидался аргумент функци <0>{2}</0>.",
     "error.formula.58": "После запятой ожидался аргумент функции <0>{2}</0>.",
 
-    //// Different errors for functions
+    // // Different errors for functions
     "error.wrong_bound":
       "Поле <0>{0}</0> должно содержать число, это число обязано быть в диапазоне <1>от -{1} до {1}.</1>",
     "error.wrong_number_of_points":

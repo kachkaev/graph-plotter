@@ -38,7 +38,7 @@ export const App: React.FunctionComponent<{
         <Wrapper style={{ width, height }}>
           <TopHalf style={{ height: canvasSize }}>
             <LeftPanel />
-            <Plot style={{ width: canvasSize, height: canvasSize }}></Plot>
+            <Plot style={{ width: canvasSize, height: canvasSize }} />
           </TopHalf>
           <BottomPanel plotAreaWidth={canvasSize} />
         </Wrapper>

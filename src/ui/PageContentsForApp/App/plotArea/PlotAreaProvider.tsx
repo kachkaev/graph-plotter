@@ -32,6 +32,7 @@ export const PlotAreaProvider: React.FunctionComponent = ({ children }) => {
 
   const contextValue = React.useMemo<PlotAreaContextValue>(() => {
     const plotAreaConfig = processRawPlotAreaConfig(rawPlotAreaConfig);
+
     return {
       rawPlotAreaConfig,
       plotAreaConfig,

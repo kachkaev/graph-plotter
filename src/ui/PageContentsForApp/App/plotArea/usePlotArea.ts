@@ -7,5 +7,6 @@ export const usePlotArea = () => {
   if (!result) {
     throw new Error("Cannot call usePlotArea() outside <PlotAreaProvider />");
   }
+
   return result;
 };

@@ -9,5 +9,6 @@ export const useChartCollection = () => {
       "Cannot call useChartCollection() outside <ChartCollectionProvider />",
     );
   }
+
   return result;
 };

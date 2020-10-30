@@ -70,5 +70,6 @@ export const getProcessedChartConfig = (
 
   const newEntry = generateProcessedChartConfig(rawChartConfig);
   chartConfigCache.set(cacheKey, newEntry);
+
   return newEntry;
 };

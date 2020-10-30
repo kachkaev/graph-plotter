@@ -20,6 +20,7 @@ export const chartCollectionReducer: React.Reducer<
         const newItemIndex = selectedItemIndex === -1 ? 0 : selectedItemIndex;
         draft.items.splice(newItemIndex, 0, rawChartConfig);
         draft.activeItemId = rawChartConfig.id;
+
         return;
       }
 

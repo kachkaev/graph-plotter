@@ -124,6 +124,7 @@ const wipStateReducer: WipStateReducer = (state, action) => {
     switch (action.type) {
       case "update": {
         draft[action.boundaryName] = action.value;
+
         return;
       }
       case "reset": {

@@ -4,7 +4,10 @@ const Foreground: React.FunctionComponent<React.HTMLAttributes<SVGElement>> = (
   props,
 ) => {
   return (
-    <svg {...props} viewBox="5 5 355 360" /*height="381.5px" width="380.85px"*/>
+    <svg
+      {...props}
+      viewBox="5 5 355 360" /* height="381.5px" width="380.85px" */
+    >
       <g>
         <path
           d="M380.45 10.0 L380.5 33.75 370.75 34.0 Q176.25 39.6 11.0 80.95 L0.0 83.75 0.0 10.0 Q0.0 2.15 6.2 0.45 L9.5 0.0 370.45 0.0 373.15 0.25 Q380.45 1.45 380.45 10.0 M370.5 10.95 L370.5 11.0 370.6 11.0 370.55 10.95 370.5 10.95"

@@ -38,6 +38,7 @@ export const PlotContentsWithInvalidArea: React.FunctionComponent<PlotContentsWi
 }) => {
   const { t } = useTranslation();
   const error = areaConfig.errors[0];
+
   return (
     <Wrapper>
       <MainMessage>{t("ui.cap_f_param_error")}</MainMessage>

@@ -123,9 +123,7 @@ export const ChartListItem: React.FunctionComponent<{
           {rawChartConfig.formula}
         </Formula>
       </FormulaContainer>
-      {isActive ? (
-        <DeleteButton onClick={handleDeleteClick}></DeleteButton>
-      ) : null}
+      {isActive ? <DeleteButton onClick={handleDeleteClick} /> : null}
     </Wrapper>
   );
 };

@@ -4,5 +4,6 @@ export const parseNumericValue = (rawValue: string): number => {
   if (result.toString() !== rawValueWithoutSpaces) {
     return NaN;
   }
+
   return result;
 };

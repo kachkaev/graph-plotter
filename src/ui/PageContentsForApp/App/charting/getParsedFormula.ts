@@ -16,5 +16,6 @@ export const getParsedFormula = (rawFormula: string): FormulaParseResult => {
 
   const newEntry = parseFormula(rawFormula);
   formulaCache.set(rawFormula, newEntry);
+
   return newEntry;
 };

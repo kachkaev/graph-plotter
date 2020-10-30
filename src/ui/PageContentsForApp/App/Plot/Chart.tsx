@@ -60,6 +60,7 @@ const ChartShape: React.FunctionComponent<{
       currentSection.push(dataPoint);
       prevDataPoint = dataPoint;
     }
+
     return result;
   }, [xMax, xMin, yMax, yMin, numberOfPoints, formula]);
 

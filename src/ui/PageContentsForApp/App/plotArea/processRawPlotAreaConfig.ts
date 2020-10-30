@@ -22,12 +22,14 @@ const parseBoundary = (
   if (!isFinite(value) || Math.abs(maxValue) > maxValue) {
     reportError({
       i18nKey: "error.wrong_bound",
-      //TODO: Replace .toLowerCase() with proper i18n label
+      // TODO: Replace .toLowerCase() with proper i18n label
       i18nValues: [boundaryName.toLowerCase(), maxValue],
     });
     reportFailedFiled(boundaryName, [0, rawValue.length]);
+
     return Number.NaN;
   }
+
   return value;
 };
 
@@ -81,7 +83,7 @@ export const processRawPlotAreaConfig = (
   if (xMax - xMin < minDelta) {
     reportError({
       i18nKey: "error.small_range",
-      //TODO: Replace "xmin" and "xmax" with proper i18n labels
+      // TODO: Replace "xmin" and "xmax" with proper i18n labels
       i18nValues: ["xmin", "xmax", minDelta],
     });
   }
@@ -89,7 +91,7 @@ export const processRawPlotAreaConfig = (
   if (yMax - yMin < minDelta) {
     reportError({
       i18nKey: "error.small_range",
-      //TODO: Replace "ymin" and "ymax" with proper i18n labels
+      // TODO: Replace "ymin" and "ymax" with proper i18n labels
       i18nValues: ["ymin", "ymax", minDelta],
     });
   }

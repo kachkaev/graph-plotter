@@ -19,6 +19,7 @@ const parseVkLanguage = (language: unknown): string | undefined => {
     case "6":
       return "de";
   }
+
   return undefined;
 };
 
@@ -29,6 +30,7 @@ interface VkPageProps {
 const VkPage: NextPage<VkPageProps> = ({ locale }) => {
   const i18n = React.useMemo(() => {
     const instance = i18next.cloneInstance({ lng: locale });
+
     return instance;
   }, [locale]);
 
@@ -48,6 +50,7 @@ export const getServerSideProps: GetServerSideProps<VkPageProps> = async (
     parseVkLanguage(context.query.parent_language) ??
     (typeof context.query.l === "string" ? context.query.l : undefined) ??
     "en";
+
   return {
     props: {
       locale,

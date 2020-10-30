@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export const enLocalResource = {
   translation: {
     // Interface elements
@@ -55,13 +56,13 @@ export const enLocalResource = {
 
     // Errors in formula
 
-    //// Common errors
+    // // Common errors
     "error.formula.0": "Unknown error occurred.",
     "error.formula.1": "Expression is empty.",
     "error.formula.2": "Expression is too long.",
     "error.formula.3": "Symbol <0>{2}</0> can not be used.",
 
-    //// Equals sign
+    // // Equals sign
     "error.formula.10": "The expression must contain the equals sign.",
     "error.formula.11":
       "The expression can not contain more than one equals sign.",
@@ -72,7 +73,7 @@ export const enLocalResource = {
     "error.formula.14":
       "Equals sign cannot be inside of brackets (there are {2} unpaired left brackets before it).",
 
-    //// Brackets
+    // // Brackets
     "error.formula.20":
       "Extra right bracket found. The number of right brackets must not be more than the number of left brackets before it.",
     "error.formula.21":
@@ -82,7 +83,7 @@ export const enLocalResource = {
     "error.formula.23":
       "Empty brackets are allowed only when calling a function without any parameters.",
 
-    //// Wrong elements / element placement
+    // // Wrong elements / element placement
     "error.formula.30": "Couldn't parse <0>{2}</0>.",
     "error.formula.31": "Unknown argument or constant <0>{2}</0>.",
     "error.formula.32": "<0>{2}</0> — wrong numeric format.",
@@ -96,7 +97,7 @@ export const enLocalResource = {
     "error.formula.38": "Arithmetical sign expected.",
     "error.formula.39": "<0>{2}</0> — this number is too big.",
 
-    //// Sign misplacement
+    // // Sign misplacement
     "error.formula.40": "Sign <0>{2}</0> cannot be placed here.",
     "error.formula.41":
       "Sign <0>{2}</0> cannot be placed to the very end of an expression.",
@@ -111,7 +112,7 @@ export const enLocalResource = {
     "error.formula.47":
       "Sign <0>{2}</0> cannot follow any other arithmetical signs.",
 
-    //// Arguments of a function
+    // // Arguments of a function
     "error.formula.50": "Wrong number of parameters for <0>{2}</0> function.",
     "error.formula.51":
       "Function <0>{2}</0> has too many arguments. The number of arguments must vary from {3} to {4}.",
@@ -129,7 +130,7 @@ export const enLocalResource = {
     "error.formula.58":
       "An argument for function <0>{2}</0> expected after the comma.",
 
-    //// Different errors for functions
+    // // Different errors for functions
     "error.wrong_bound":
       "Field <0>{0}</0> must contain a number from <1>-{1} to {1}.</1>",
     "error.wrong_number_of_points":

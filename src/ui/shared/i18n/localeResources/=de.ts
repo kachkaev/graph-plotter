@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export const deLocalResource = {
   translation: {
     "ui.translator_name": "Джейсон Соло",
@@ -59,13 +60,13 @@ export const deLocalResource = {
 
     // Errors in formula
 
-    //// Common errors
+    // // Common errors
     "error.formula.0": "Unbekannter Fehler.",
     "error.formula.1": "Die Formel fehlt.",
     "error.formula.2": "Die Formel ist zu groß.",
     "error.formula.3": "Ein verbotenes Symbol <0>{2}</0>.",
 
-    //// Equals sign
+    // // Equals sign
     "error.formula.10": "Die Formel muss ein Gleichheitszeichen beinhalten.",
     "error.formula.11":
       "Formel sollte nicht mehr als ein Gleichheitszeichen beinhalten.",
@@ -76,7 +77,7 @@ export const deLocalResource = {
     "error.formula.14":
       "Gleichheitszeichen sollte nicht innerhalb der Klammern stehen (die Anzahl der offnenden Klammern auf der linken Seite der Formel ist um {2} kleiner als die Anzahl der Klammern rechts ).",
 
-    //// Brackets
+    // // Brackets
     "error.formula.20":
       "Überfluessige schliessende Klammer. die Anzahl der schließenden Klammern kann nicht mehr als die Anzahl der offenen Klammern am Anfang sein.",
     "error.formula.21":
@@ -86,7 +87,7 @@ export const deLocalResource = {
     "error.formula.23":
       "Leere Klammern sind nur nach den Namen der Funktion ohne Parameter zulassig.",
 
-    //// Wrong elements / element placement
+    // // Wrong elements / element placement
     "error.formula.30": "<0>{2}</0> ist nicht verständlich .",
     "error.formula.31": "Unbekanntes Argument / konstant <0>{2}</0>.",
     "error.formula.32": "<0>{2}</0> — falsche Format fur die Nummer.",
@@ -102,7 +103,7 @@ export const deLocalResource = {
     "error.formula.38": "Nicht genug arithmetischen Zeichen.",
     "error.formula.39": "<0>{2}</0> - Zu grosse Zahl.",
 
-    //// Sign misplacement
+    // // Sign misplacement
     "error.formula.40": "Ungultige Position des Zeichens <0>{2}</0>.",
     "error.formula.41":
       "Die Zeichen <0>{2}</0> kann nicht am Ende der Formel stehen.",
@@ -119,7 +120,7 @@ export const deLocalResource = {
     "error.formula.47":
       "Die Zeichen <0>{2}</0> kann nicht nach dem anderen Rechenarten stehen.",
 
-    //// Arguments of a function
+    // // Arguments of a function
     "error.formula.50":
       "Falsche Anzahl von Argumenten fur Funktion <0>{2}</0>.",
     "error.formula.51":
@@ -137,7 +138,7 @@ export const deLocalResource = {
       "Zwischen der Klammer und dem Komma ist ein Argument zu erwarten <0>{2}</0>.",
     "error.formula.58": "Nach dem Komma ist Argument zu erwartet <0>{2}</0> .",
 
-    //// Different errors for functions
+    // // Different errors for functions
     "error.wrong_bound":
       "Feld <0>{0}</0> muss eine Zahl enthalten, diese Zahl muss im Bereich von -{1} bis {1} sein.",
     "error.wrong_number_of_points":
