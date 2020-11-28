@@ -6,7 +6,6 @@ module.exports = require("next-compose-plugins")(
   ],
   {
     experimental: {
-      modern: true,
       productionBrowserSourceMaps: true,
     },
     reactStrictMode: true,
