@@ -41,10 +41,9 @@ export const processRawPlotAreaConfig = (
   const reportError: ReportError = (error) => {
     errors.push(error);
   };
-  const errorRangeByBoundaryName: Partial<Record<
-    BoundaryName,
-    ErrorRange
-  >> = {};
+  const errorRangeByBoundaryName: Partial<
+    Record<BoundaryName, ErrorRange>
+  > = {};
 
   const reportFailedFiled: ReportFailedBoundary = (
     boundaryName,

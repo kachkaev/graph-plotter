@@ -56,9 +56,9 @@ const StyledForeground = styled(Foreground)`
   right: 0;
 `;
 
-export const Plot: React.FunctionComponent<React.HTMLAttributes<
-  HTMLDivElement
->> = (props) => {
+export const Plot: React.FunctionComponent<
+  React.HTMLAttributes<HTMLDivElement>
+> = (props) => {
   const { plotAreaConfig } = usePlotArea();
   const [ref, { width, height }] = useMeasure<HTMLDivElement>();
 

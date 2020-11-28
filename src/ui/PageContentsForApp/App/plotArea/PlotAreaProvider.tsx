@@ -12,9 +12,10 @@ import {
 } from "./types";
 
 export const PlotAreaProvider: React.FunctionComponent = ({ children }) => {
-  const [savedRawPlotAreaConfig, saveRawPlotAreaConfig] = useLocalStorage<
-    RawPlotAreaConfig
-  >("gp.plotAreaConfig");
+  const [
+    savedRawPlotAreaConfig,
+    saveRawPlotAreaConfig,
+  ] = useLocalStorage<RawPlotAreaConfig>("gp.plotAreaConfig");
 
   const [rawPlotAreaConfig, setRawConfig] = React.useState(
     savedRawPlotAreaConfig ?? defaultRawPlotAreaConfig,
