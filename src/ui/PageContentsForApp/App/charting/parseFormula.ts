@@ -2,15 +2,20 @@ import { Parser } from "expr-eval";
 
 import { FormulaParseResult } from "./types";
 
+const constantLookup = {
+  pi: Math.PI,
+  e: Math.E,
+};
+
 export const parseFormula = (rawFormula: string): FormulaParseResult => {
   try {
     const parser = new Parser();
     const expression = parser.parse(rawFormula);
 
     // Testing for undefined symbols
-    expression.evaluate({ x: 0 });
+    expression.evaluate({ x: 0, ...constantLookup });
 
-    return (x) => expression.evaluate({ x });
+    return (x) => expression.evaluate({ x, ...constantLookup });
   } catch (e) {
     return [
       {
