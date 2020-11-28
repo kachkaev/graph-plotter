@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 export const PageContentsForApp: React.FunctionComponent = () => {
   return (
     <Wrapper>
-      <App width={800} height={600} />
+      <App width={780} height={570} />
     </Wrapper>
   );
 };
