@@ -3,7 +3,7 @@ import { RectClipPath } from "@visx/clip-path";
 import { Grid } from "@visx/grid";
 import { Group } from "@visx/group";
 import { scaleLinear } from "@visx/scale";
-import React from "react";
+import * as React from "react";
 import styled from "styled-components";
 
 import { useChartCollection } from "../charting";

@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import React from "react";
+import * as React from "react";
 import { useMeasure } from "react-use";
 import styled from "styled-components";
 

@@ -1,7 +1,7 @@
 import { curveLinear } from "@visx/curve";
 import { LinePath } from "@visx/shape";
 import { ScaleLinear } from "d3-scale";
-import React from "react";
+import * as React from "react";
 
 import { Formula, RawChartConfig, useProcessedChartConfig } from "../charting";
 

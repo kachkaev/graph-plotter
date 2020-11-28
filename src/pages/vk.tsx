@@ -1,5 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
-import React from "react";
+import * as React from "react";
 import { I18nextProvider } from "react-i18next";
 
 import { PageContentsForApp } from "../ui/PageContentsForApp";

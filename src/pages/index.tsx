@@ -1,6 +1,6 @@
 import { pick } from "accept-language-parser";
 import { GetServerSideProps, NextPage } from "next";
-import React from "react";
+import * as React from "react";
 
 import { defaultLanguage, supportedLanguages } from "../ui/shared/i18n";
 

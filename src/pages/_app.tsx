@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import React from "react";
+import * as React from "react";
 
 import { GlobalStyle } from "../ui/shared/GlobalStyle";
 
