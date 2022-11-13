@@ -11,7 +11,9 @@ import {
   UpdateRawPlotAreaConfig,
 } from "./types";
 
-export const PlotAreaProvider: React.FunctionComponent = ({ children }) => {
+export const PlotAreaProvider: React.FunctionComponent<{
+  children?: React.ReactNode;
+}> = ({ children }) => {
   const [savedRawPlotAreaConfig, saveRawPlotAreaConfig] =
     useLocalStorage<RawPlotAreaConfig>("gp.plotAreaConfig");
 

@@ -6,9 +6,9 @@ import { chartCollectionReducer } from "./chart-collection-reducer";
 import { generateRawChartConfig } from "./generate-raw-chart-config";
 import { ChartCollectionContextValue, RawChartConfig } from "./types";
 
-export const ChartCollectionProvider: React.FunctionComponent = ({
-  children,
-}) => {
+export const ChartCollectionProvider: React.FunctionComponent<{
+  children?: React.ReactNode;
+}> = ({ children }) => {
   const [savedRawChartConfigs, saveRawChartConfigs] =
     useLocalStorage<RawChartConfig[]>("gp.chartConfigs");
 

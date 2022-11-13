@@ -42,7 +42,9 @@ const ExternalLinks = styled.div`
   }
 `;
 
-export const PageLayout: React.FunctionComponent = ({ children }) => {
+export const PageLayout: React.FunctionComponent<{
+  children?: React.ReactNode;
+}> = ({ children }) => {
   return (
     <Container>
       <GlobalStyle />
