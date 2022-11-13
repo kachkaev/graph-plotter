@@ -22,8 +22,8 @@ const Toggler = styled.button<{ disabled?: boolean }>`
   margin: -5px;
   background: none;
   border: none;
-  ${(p) =>
-    p.disabled
+  ${(props) =>
+    props.disabled
       ? "pointer-events: none;"
       : `
   :active {
@@ -51,7 +51,8 @@ const Swatches = styled.div<{ toggled: boolean }>`
   top: -2px;
   bottom: -3px;
   overflow: hidden;
-  width: ${(p) => (p.toggled ? (availableColors.length + 1) * 20 : 0)}px;
+  width: ${(props) =>
+    props.toggled ? (availableColors.length + 1) * 20 : 0}px;
   transition: all 0.3s;
   z-index: 10;
 `;

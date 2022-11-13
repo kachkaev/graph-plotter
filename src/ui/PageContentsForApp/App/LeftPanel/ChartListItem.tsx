@@ -16,7 +16,8 @@ const Wrapper = styled.div<{ isActive?: boolean }>`
   display: flex;
   align-items: center;
   margin: 0;
-  ${(p) => (p.isActive ? "background-color: #dedede; " : "cursor: default;")};
+  ${(props) =>
+    props.isActive ? "background-color: #dedede; " : "cursor: default;"};
 `;
 
 const Indicator = styled.span`
@@ -33,8 +34,8 @@ const Formula = styled.span<{ isHidden?: boolean; isInvalid?: boolean }>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  ${(p) => (p.isHidden && !p.isInvalid ? "opacity: 0.5" : "")};
-  ${(p) => (p.isInvalid ? "text-decoration: line-through;" : "")};
+  ${(props) => (props.isHidden && !props.isInvalid ? "opacity: 0.5" : "")};
+  ${(props) => (props.isInvalid ? "text-decoration: line-through;" : "")};
 `;
 
 const DeleteButton = styled.button`
@@ -72,12 +73,12 @@ export const ChartListItem: React.FunctionComponent<{
   const isInvalid = processedChartConfig.type === "invalid";
 
   const handleClick = React.useCallback<React.MouseEventHandler>(
-    (e) => {
+    (event) => {
       modifyChartCollection({
         type: "setActiveItem",
         itemId: rawChartConfig.id,
       });
-      e.stopPropagation();
+      event.stopPropagation();
     },
     [rawChartConfig.id, modifyChartCollection],
   );
@@ -93,12 +94,12 @@ export const ChartListItem: React.FunctionComponent<{
   );
 
   const handleDeleteClick = React.useCallback<React.MouseEventHandler>(
-    (e) => {
+    (event) => {
       modifyChartCollection({
         type: "deleteItem",
         itemId: rawChartConfig.id,
       });
-      e.stopPropagation();
+      event.stopPropagation();
     },
     [rawChartConfig.id, modifyChartCollection],
   );

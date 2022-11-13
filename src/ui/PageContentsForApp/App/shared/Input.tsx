@@ -11,11 +11,12 @@ const Wrapper = styled.div<{ status?: InputStatus }>`
   display: flex;
   padding: 0 5px;
   border: 1px solid;
-  border-color: ${(p) => (p.status === "error" ? "#dd9e8c" : "#cacaca")};
-  background: ${(p) =>
-    p.status === "error"
+  border-color: ${(props) =>
+    props.status === "error" ? "#dd9e8c" : "#cacaca"};
+  background: ${(props) =>
+    props.status === "error"
       ? "#fcefe9"
-      : p.status === "modified"
+      : props.status === "modified"
       ? "#fffeb4"
       : "#fff"};
   box-sizing: border-box;
@@ -31,7 +32,7 @@ const Prefix = styled.span`
 
 const InputControl = styled.input<{ textAlign: InputTextAlign }>`
   min-width: 0;
-  text-align: ${(p) => p.textAlign};
+  text-align: ${(props) => props.textAlign};
   background: transparent;
   border: none;
   flex-grow: 1;

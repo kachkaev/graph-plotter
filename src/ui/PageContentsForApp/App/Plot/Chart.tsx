@@ -42,12 +42,12 @@ const ChartShape: React.FunctionComponent<{
     const result: Section[] = [];
     let prevDataPoint: DataPoint | undefined;
     let currentSection: Section = [];
-    for (let i = 0; i <= numberOfPoints + 1; i += 1) {
-      const x = xMin + ((xMax - xMin) * i) / numberOfPoints;
+    for (let index = 0; index <= numberOfPoints + 1; index += 1) {
+      const x = xMin + ((xMax - xMin) * index) / numberOfPoints;
       const dataPoint: DataPoint = [x, formula(x)];
 
       if (
-        i > numberOfPoints ||
+        index > numberOfPoints ||
         (prevDataPoint &&
           !deriveDrawability(dataPoint[1], prevDataPoint[1], yMin, yMax))
       ) {
@@ -71,8 +71,8 @@ const ChartShape: React.FunctionComponent<{
           key={sectionIndex}
           curve={curveLinear}
           data={dataPoints}
-          x={(d) => xScale(d[0]) ?? 0}
-          y={(d) => yScale(d[1]) ?? 0}
+          x={(data) => xScale(data[0]) ?? 0}
+          y={(data) => yScale(data[1]) ?? 0}
           stroke={color}
           strokeWidth={isActive ? 2 : 1}
           shapeRendering="geometricPrecision"
