@@ -25,7 +25,7 @@ const ErrorRow = styled.div`
   padding-top: 5px;
 `;
 
-const ErrorMesage = styled.div`
+const ErrorMessage = styled.div`
   margin-left: -70px;
 `;
 
@@ -177,7 +177,7 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
       </MainRow>
       {errorConfigToShow ? (
         <ErrorRow style={{ width: plotAreaWidth }}>
-          <ErrorMesage>
+          <ErrorMessage>
             <Trans
               i18nKey={errorConfigToShow.i18nKey}
               values={errorConfigToShow.i18nValues}
@@ -185,7 +185,7 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
               <b />
               <Nobr />
             </Trans>
-          </ErrorMesage>
+          </ErrorMessage>
         </ErrorRow>
       ) : undefined}
     </Wrapper>
