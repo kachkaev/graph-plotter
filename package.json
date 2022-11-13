@@ -49,7 +49,7 @@
     "uuid": "9.0.0"
   },
   "devDependencies": {
-    "@kachkaev/eslint-config-react": "0.5.0",
+    "@kachkaev/eslint-config-react": "0.5.1",
     "@kachkaev/markdownlint-config": "0.5.0",
     "@kachkaev/prettier-config": "1.4.0",
     "@next/eslint-plugin-next": "13.0.3",
