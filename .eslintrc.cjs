@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 module.exports = {
-  extends: ["@kachkaev/eslint-config-react"],
+  extends: ["@kachkaev/eslint-config-react", "plugin:@next/next/recommended"],
   rules: {
     "id-length": "off",
     "import/no-default-export": "error",
