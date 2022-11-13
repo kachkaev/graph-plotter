@@ -50,10 +50,10 @@ export const PlotContentsWithValidArea: React.FunctionComponent<
     clamp: true,
   });
 
-  const axisXTop = offset + (clampedYScale(0) ?? 0);
+  const axisXTop = offset + (clampedYScale(0) || 0);
   const AxisX = canvasHeight - offset - axisXTop > 20 ? AxisBottom : AxisTop;
 
-  const axisYLeft = offset + (clampedXScale(0) ?? 0);
+  const axisYLeft = offset + (clampedXScale(0) || 0);
   const AxisY = canvasWidth - offset - axisYLeft > 20 ? AxisRight : AxisLeft;
 
   const { rawChartConfigs, activeRawChartConfig } = useChartCollection();

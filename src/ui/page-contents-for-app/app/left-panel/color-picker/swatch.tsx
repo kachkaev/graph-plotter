@@ -36,7 +36,7 @@ export type SwatchSelectCallback = (color: string) => void;
 export interface SwatchProps {
   value: string;
   selected: boolean;
-  onSelect: SwatchSelectCallback;
+  onSelect?: SwatchSelectCallback;
 }
 
 export const Swatch: React.FunctionComponent<SwatchProps> = ({

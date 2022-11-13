@@ -36,8 +36,8 @@ const ChartShape: React.FunctionComponent<{
   xScale: ScaleLinear<number, number>;
   yScale: ScaleLinear<number, number>;
 }> = ({ numberOfPoints, formula, isActive, xScale, yScale, color }) => {
-  const [xMin, xMax] = xScale.domain();
-  const [yMin, yMax] = yScale.domain();
+  const [xMin, xMax] = xScale.domain() as [number, number];
+  const [yMin, yMax] = yScale.domain() as [number, number];
   const sections: Section[] = React.useMemo(() => {
     const result: Section[] = [];
     let prevDataPoint: DataPoint | undefined;
@@ -71,8 +71,8 @@ const ChartShape: React.FunctionComponent<{
           key={sectionIndex}
           curve={curveLinear}
           data={dataPoints}
-          x={(data) => xScale(data[0]) ?? 0}
-          y={(data) => yScale(data[1]) ?? 0}
+          x={(data) => xScale(data[0]) || 0}
+          y={(data) => yScale(data[1]) || 0}
           stroke={color}
           strokeWidth={isActive ? 2 : 1}
           shapeRendering="geometricPrecision"

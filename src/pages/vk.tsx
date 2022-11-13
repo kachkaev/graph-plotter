@@ -48,6 +48,7 @@ const VkPage: NextPage<VkPageProps> = ({ locale }) => {
 
 export const getServerSideProps: GetServerSideProps<VkPageProps> = async (
   context,
+  // eslint-disable-next-line @typescript-eslint/require-await
 ) => {
   const locale =
     parseVkLanguage(context.query.language) ??

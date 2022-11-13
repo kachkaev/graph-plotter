@@ -14,13 +14,16 @@ const IndexPage: NextPage<IndexPageProps> = () => {
 export const getServerSideProps: GetServerSideProps<IndexPageProps> = async ({
   req,
   res,
+  // eslint-disable-next-line @typescript-eslint/require-await
 }) => {
   const pickedLanguage = pick(
     supportedLanguages,
     req.headers["accept-language"] ?? "",
   );
   const query =
-    pickedLanguage === defaultLanguage ? "" : `?l=${pickedLanguage}`;
+    !pickedLanguage || pickedLanguage === defaultLanguage
+      ? ""
+      : `?l=${pickedLanguage}`;
   res.writeHead(302, { Location: `/vk${query}` });
   res.end();
 

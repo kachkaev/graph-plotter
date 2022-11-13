@@ -6,6 +6,7 @@ import { defaultLanguage, localeResourceLookup } from "./locale-resources";
 const icu = new ICU();
 i18next.use(icu);
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 i18next.init({
   fallbackLng: defaultLanguage,
   resources: localeResourceLookup,

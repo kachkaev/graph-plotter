@@ -1,16 +1,11 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 module.exports = {
-  extends: ["@kachkaev/eslint-config-react", "plugin:@next/next/recommended"],
+  extends: [
+    "@kachkaev/eslint-config-react",
+    "@kachkaev/eslint-config-react/extra-type-checking",
+    "plugin:@next/next/recommended",
+  ],
   rules: {
-    "import/no-default-export": "error",
     "no-restricted-syntax": "off",
   },
-  overrides: [
-    {
-      files: ["src/pages/**"],
-      rules: {
-        "import/no-default-export": "off",
-      },
-    },
-  ],
 };

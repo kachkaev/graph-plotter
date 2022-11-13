@@ -10,6 +10,6 @@ export const availableColors = [
   "#6a3d9a",
   "#cab2d6",
   "#000000",
-];
+] as const;
 
 export const transparentColor = "#ffffff00";

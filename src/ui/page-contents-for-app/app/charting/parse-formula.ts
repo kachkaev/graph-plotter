@@ -15,7 +15,7 @@ export const parseFormula = (rawFormula: string): FormulaParseResult => {
     // Testing for undefined symbols
     expression.evaluate({ x: 0, ...constantLookup });
 
-    return (x) => expression.evaluate({ x, ...constantLookup });
+    return (x) => expression.evaluate({ x, ...constantLookup }) as number;
   } catch {
     return [
       {
