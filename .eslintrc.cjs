@@ -5,8 +5,6 @@ module.exports = {
     "import/no-default-export": "error",
     "no-restricted-syntax": "off",
     "unicorn/filename-case": "off",
-    "unicorn/no-null": "off",
-    "unicorn/prefer-number-properties": "off",
   },
   overrides: [
     {

@@ -107,7 +107,7 @@ export const ChartListItem: React.FunctionComponent<{
   return (
     <Wrapper isActive={isActive} onClick={handleClick}>
       <Indicator>
-        {isInvalid ? null : (
+        {isInvalid ? undefined : (
           <ColorPicker
             disabled={!isActive}
             value={rawChartConfig.color}
@@ -124,7 +124,7 @@ export const ChartListItem: React.FunctionComponent<{
           {rawChartConfig.formula}
         </Formula>
       </FormulaContainer>
-      {isActive ? <DeleteButton onClick={handleDeleteClick} /> : null}
+      {isActive ? <DeleteButton onClick={handleDeleteClick} /> : undefined}
     </Wrapper>
   );
 };

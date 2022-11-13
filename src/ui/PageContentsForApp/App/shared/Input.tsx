@@ -81,7 +81,7 @@ const Input: React.ForwardRefRenderFunction<
 
   return (
     <Wrapper {...rest} ref={ref}>
-      {prefix ? <Prefix>{prefix}</Prefix> : null}
+      {prefix ? <Prefix>{prefix}</Prefix> : undefined}
       <InputControl
         name={name}
         value={value}

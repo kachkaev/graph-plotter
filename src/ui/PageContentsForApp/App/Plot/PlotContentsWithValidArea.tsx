@@ -74,7 +74,7 @@ export const PlotContentsWithValidArea: React.FunctionComponent<
           numTicksColumns={numTicksColumns}
           numTicksRows={numTicksRows}
         />
-      ) : null}
+      ) : undefined}
       <Group top={offset} left={offset} clipPath="url(#graphs)">
         {reversedRawChartConfigs.map((rawChartConfig) => (
           <Graph
@@ -108,7 +108,7 @@ export const PlotContentsWithValidArea: React.FunctionComponent<
             hideZero={true}
           />
         </>
-      ) : null}
+      ) : undefined}
     </Svg>
   );
 };

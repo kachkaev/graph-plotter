@@ -12,8 +12,8 @@ const deriveDrawability = (
   max: number,
 ) => {
   if (
-    !isFinite(value1) ||
-    !isFinite(value2) ||
+    !Number.isFinite(value1) ||
+    !Number.isFinite(value2) ||
     (value1 < min && value2 < min) ||
     (value1 > max && value2 > max) ||
     (value1 < min && value2 > max) ||
@@ -93,7 +93,7 @@ const Chart: React.FunctionComponent<{
   const chartConfig = useProcessedChartConfig(rawConfig);
 
   if (chartConfig.type !== "valid") {
-    return null;
+    return <></>;
   }
 
   return (

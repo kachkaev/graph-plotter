@@ -187,7 +187,7 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
             </Trans>
           </ErrorMesage>
         </ErrorRow>
-      ) : null}
+      ) : undefined}
     </Wrapper>
   );
 };

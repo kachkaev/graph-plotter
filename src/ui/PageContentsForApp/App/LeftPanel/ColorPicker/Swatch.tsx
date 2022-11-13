@@ -55,8 +55,8 @@ export const Swatch: React.FunctionComponent<SwatchProps> = ({
       onClick={handleClick}
       style={{ backgroundColor: transparent ? "#fff" : value }}
     >
-      {selected ? <Frame /> : null}
-      {transparent ? <DiagonalLine /> : null}
+      {selected ? <Frame /> : undefined}
+      {transparent ? <DiagonalLine /> : undefined}
     </Square>
   );
 };

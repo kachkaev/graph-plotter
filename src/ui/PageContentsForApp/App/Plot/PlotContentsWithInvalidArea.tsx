@@ -49,7 +49,7 @@ export const PlotContentsWithInvalidArea: React.FunctionComponent<
             <Nobr />
           </Trans>
         </ErrorMessage>
-      ) : null}
+      ) : undefined}
     </Wrapper>
   );
 };
