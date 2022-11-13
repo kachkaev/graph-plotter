@@ -2,8 +2,8 @@ import { GetServerSideProps, NextPage } from "next";
 import * as React from "react";
 import { I18nextProvider } from "react-i18next";
 
-import { PageContentsForApp } from "../ui/PageContentsForApp";
-import { PageMetadata } from "../ui/PageMetadata";
+import { PageContentsForApp } from "../ui/page-contents-for-app";
+import { PageMetadata } from "../ui/page-metadata";
 import { i18next } from "../ui/shared/i18n";
 
 // https://vk.com/faq11565

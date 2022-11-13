@@ -1,2 +1,2 @@
 export * from "./i18next";
-export * from "./localeResources";
+export * from "./locale-resources";

@@ -4,7 +4,6 @@ module.exports = {
   rules: {
     "import/no-default-export": "error",
     "no-restricted-syntax": "off",
-    "unicorn/filename-case": "off",
   },
   overrides: [
     {

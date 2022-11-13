@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import ICU from "i18next-icu";
 
-import { defaultLanguage, localeResourceLookup } from "./localeResources";
+import { defaultLanguage, localeResourceLookup } from "./locale-resources";
 
 const icu = new ICU();
 i18next.use(icu);

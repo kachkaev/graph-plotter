@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import * as React from "react";
 
-import { GlobalStyle } from "../ui/shared/GlobalStyle";
+import { GlobalStyle } from "../ui/shared/global-style";
 
 const App: React.FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   React.useEffect(() => {
