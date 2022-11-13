@@ -1,5 +1,12 @@
-## extensions
-*.*
+#######################
+## Specific to Prettier
+#######################
+
+## ignore all files (but still allow sub-folder scanning)
+*
+!*/
+
+## allow certain file types
 !*.cjs
 !*.js
 !*.json
@@ -8,29 +15,34 @@
 !*.ts
 !*.tsx
 !*.yml
-LICENSE
 
-!/.github/
+########################
+## Same as in .gitignore
+########################
 
-## same as in .gitignore
-# dependencies
+## dependencies
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 node_modules
-.pnp
-.pnp.js
 
-# testing
+## testing
 /coverage
 
-# next.js
+## next.js
 /.next/
 /out/
-
-# misc
-.DS_Store
-.env*
 tsconfig.tsbuildinfo
 
-# debug
+## misc
+.DS_Store
+.env*
+
+## debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
