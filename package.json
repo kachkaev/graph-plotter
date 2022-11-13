@@ -4,22 +4,22 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "fix": "npm-run-all --continue-on-error fix:*",
-    "fix:eslint": "eslint --fix \"**/*\"",
-    "fix:markdownlint": "markdownlint --fix \"**/*\"",
-    "fix:prettier": "prettier --write \"**/*\"",
+    "fix": "npm-run-all --continue-on-error \"fix:*\"",
+    "fix:eslint": "eslint --fix .",
+    "fix:markdownlint": "markdownlint --fix .",
+    "fix:prettier": "prettier --write .",
     "fix:yarn-deduplicate": "yarn install && yarn-deduplicate --strategy=fewer && yarn install",
-    "lint": "npm-run-all --continue-on-error lint:*",
-    "lint:eslint": "eslint \"**/*\" --report-unused-disable-directives",
-    "lint:markdownlint": "markdownlint \"**/*\"",
-    "lint:prettier": "prettier --check \"**/*\"",
+    "lint": "npm-run-all --continue-on-error \"lint:*\"",
+    "lint:eslint": "eslint . --report-unused-disable-directives",
+    "lint:markdownlint": "markdownlint .",
+    "lint:prettier": "prettier --check .",
     "lint:tsc": "tsc --project .",
     "lint:yarn-deduplicate": "yarn-deduplicate --fail --list --strategy=fewer",
     "start": "next start",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*": [
+    "**": [
       "eslint --fix",
       "markdownlint --fix",
       "prettier --write"
