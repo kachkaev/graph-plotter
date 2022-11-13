@@ -1,4 +1,4 @@
-name: Checks
+name: CI
 
 on:
   push:
@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 12
+          cache: yarn
+          node-version: 16
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
