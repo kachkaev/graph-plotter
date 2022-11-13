@@ -1,5 +1,5 @@
 import produce from "immer";
-import React, { useEffect } from "react";
+import * as React from "react";
 import { useLocalStorage } from "react-use";
 
 import { defaultRawPlotAreaConfig } from "./defaultRawPlotAreaConfig";
@@ -18,7 +18,7 @@ export const PlotAreaProvider: React.FunctionComponent = ({ children }) => {
   const [rawPlotAreaConfig, setRawConfig] = React.useState(
     savedRawPlotAreaConfig ?? defaultRawPlotAreaConfig,
   );
-  useEffect(() => {
+  React.useEffect(() => {
     saveRawPlotAreaConfig(rawPlotAreaConfig);
   }, [rawPlotAreaConfig, saveRawPlotAreaConfig]);
 

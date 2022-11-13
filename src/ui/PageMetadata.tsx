@@ -10,7 +10,7 @@ export const PageMetadata: React.FunctionComponent<{
 
   const resolvedTitle =
     title ?? `${t("ui.l_app_title_1")} ${t("ui.l_app_title_2")}`;
-  const resolvedDescription = title ?? t("ui.l_info_1");
+  const resolvedDescription = title ?? t("ui.l_info_1")!;
 
   return (
     <Head>

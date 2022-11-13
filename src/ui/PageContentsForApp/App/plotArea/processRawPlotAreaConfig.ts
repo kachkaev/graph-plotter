@@ -19,7 +19,7 @@ const parseBoundary = (
 ): number => {
   const rawValue = rawPlotAreaConfig[boundaryName];
   const value = parseNumericValue(rawValue);
-  if (!isFinite(value) || Math.abs(maxValue) > maxValue) {
+  if (!Number.isFinite(value) || Math.abs(maxValue) > maxValue) {
     reportError({
       i18nKey: "error.wrong_bound",
       // TODO: Replace .toLowerCase() with proper i18n label
@@ -94,7 +94,7 @@ export const processRawPlotAreaConfig = (
     });
   }
 
-  if (errors.length) {
+  if (errors.length > 0) {
     return {
       type: "invalid",
       errorRangeByBoundaryName,

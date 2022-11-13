@@ -67,7 +67,7 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<
   const addChartButton = (
     <AddChartButton
       onClick={handleAddChartButtonClick}
-      title={t("ui.b_add_graph")}
+      title={t("ui.b_add_graph")!}
     />
   );
 
@@ -75,7 +75,7 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<
     <>
       <Header>{t("ui.h_boundaries")}</Header>
       <PlotAreaForm />
-      {rawChartConfigs.length ? (
+      {rawChartConfigs.length > 0 ? (
         <>
           <Header>
             {t("ui.h_graphs")}

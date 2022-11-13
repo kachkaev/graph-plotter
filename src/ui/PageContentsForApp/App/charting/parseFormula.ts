@@ -16,7 +16,7 @@ export const parseFormula = (rawFormula: string): FormulaParseResult => {
     expression.evaluate({ x: 0, ...constantLookup });
 
     return (x) => expression.evaluate({ x, ...constantLookup });
-  } catch (e) {
+  } catch {
     return [
       {
         i18nKey: "error.formula.30",

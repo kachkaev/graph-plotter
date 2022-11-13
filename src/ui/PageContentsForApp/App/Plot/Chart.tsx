@@ -40,7 +40,7 @@ const ChartShape: React.FunctionComponent<{
   const [yMin, yMax] = yScale.domain();
   const sections: Section[] = React.useMemo(() => {
     const result: Section[] = [];
-    let prevDataPoint: DataPoint | undefined = undefined;
+    let prevDataPoint: DataPoint | undefined;
     let currentSection: Section = [];
     for (let i = 0; i <= numberOfPoints + 1; i += 1) {
       const x = xMin + ((xMax - xMin) * i) / numberOfPoints;

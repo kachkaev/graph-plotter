@@ -70,11 +70,13 @@ type WipStateAction =
 type WipStateReducer = React.Reducer<WipState, WipStateAction>;
 const wipStateReducer: WipStateReducer = (wipState, action) => {
   switch (action.type) {
-    case "reset":
+    case "reset": {
       return action.value;
+    }
 
-    case "update":
+    case "update": {
       return { ...wipState, [action.fieldName]: action.value };
+    }
   }
 };
 
@@ -164,7 +166,7 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
         </SectionBeforePlotArea>
         <SectionUnderPlotArea style={{ width: plotAreaWidth }}>
           <FormulaInput
-            prefix={t("ui.l_y_equals")}
+            prefix={t("ui.l_y_equals")!}
             value={wipState.formula}
             status={formulaStatus}
             onChange={handleFormulaChange}

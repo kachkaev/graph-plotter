@@ -4,10 +4,10 @@ import { parseNumericValue } from "../shared/parseNumericValue";
 import { getParsedFormula } from "./getParsedFormula";
 import { ChartConfig, InvalidChartConfig, RawChartConfig } from "./types";
 
-const chartConfigCache = new LRU<string, ChartConfig>(1000);
+const chartConfigCache = new LRU<string, ChartConfig>({ max: 1000 });
 
 const minNumberOfPoints = 50;
-const maxNumberOfPoints = 10000;
+const maxNumberOfPoints = 10_000;
 
 const generateProcessedChartConfig = (
   rawChartConfig: RawChartConfig,
@@ -21,7 +21,7 @@ const generateProcessedChartConfig = (
   const rawNumberOfPoints = rawChartConfig.numberOfPoints;
   const numberOfPoints = parseNumericValue(rawNumberOfPoints);
   if (
-    !isFinite(numberOfPoints) ||
+    !Number.isFinite(numberOfPoints) ||
     Math.round(numberOfPoints) !== numberOfPoints ||
     numberOfPoints > maxNumberOfPoints ||
     numberOfPoints < minNumberOfPoints
@@ -36,14 +36,14 @@ const generateProcessedChartConfig = (
   // Parse formula
   const rawFormula = rawChartConfig.formula;
   const trimmedFormula = rawFormula.trim();
-  if (!trimmedFormula.length && !result.errors.length) {
+  if (trimmedFormula.length === 0 && result.errors.length === 0) {
     return {
       type: "empty",
     };
   }
 
   const formulaOrErrors = getParsedFormula(rawFormula);
-  if (!result.errors.length && typeof formulaOrErrors === "function") {
+  if (result.errors.length === 0 && typeof formulaOrErrors === "function") {
     return {
       type: "valid",
       numberOfPoints,

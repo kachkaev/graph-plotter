@@ -10,14 +10,18 @@ import { i18next } from "../ui/shared/i18n";
 const parseVkLanguage = (language: unknown): string | undefined => {
   switch (language) {
     case "0":
-    case "2":
+    case "2": {
       return "ru";
-    case "1":
+    }
+    case "1": {
       return "uk";
-    case "3":
+    }
+    case "3": {
       return "en";
-    case "6":
+    }
+    case "6": {
       return "de";
+    }
   }
 
   return undefined;

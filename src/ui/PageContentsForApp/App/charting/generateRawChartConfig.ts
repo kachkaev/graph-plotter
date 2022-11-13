@@ -7,9 +7,11 @@ export const generateRawChartConfig = (
   existingItems?: RawChartConfig[],
 ): RawChartConfig => {
   const colorUsageCount: Record<string, number> = {};
-  existingItems?.forEach((item) => {
-    colorUsageCount[item.color] = (colorUsageCount[item.color] ?? 0) + 1;
-  });
+  if (existingItems) {
+    for (const item of existingItems) {
+      colorUsageCount[item.color] = (colorUsageCount[item.color] ?? 0) + 1;
+    }
+  }
 
   const color =
     availableColors.find(

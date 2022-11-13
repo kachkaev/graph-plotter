@@ -12,4 +12,4 @@ i18next.init({
   keySeparator: "###",
 });
 
-export { i18next };
+export { default as i18next } from "i18next";
