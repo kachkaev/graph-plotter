@@ -21,12 +21,9 @@ export interface PlotContentsWithValidAreaProps {
   offset: number;
 }
 
-export const PlotContentsWithValidArea: React.FunctionComponent<PlotContentsWithValidAreaProps> = ({
-  areaConfig,
-  width,
-  height,
-  offset,
-}) => {
+export const PlotContentsWithValidArea: React.FunctionComponent<
+  PlotContentsWithValidAreaProps
+> = ({ areaConfig, width, height, offset }) => {
   const { xDomain, yDomain, showGrid, showAxes } = areaConfig;
   const canvasWidth = width - offset * 2;
   const canvasHeight = height - offset * 2;

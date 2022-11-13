@@ -33,9 +33,9 @@ export interface PlotContentsWithInvalidAreaProps {
   areaConfig: InvalidPlotAreaConfig;
 }
 
-export const PlotContentsWithInvalidArea: React.FunctionComponent<PlotContentsWithInvalidAreaProps> = ({
-  areaConfig,
-}) => {
+export const PlotContentsWithInvalidArea: React.FunctionComponent<
+  PlotContentsWithInvalidAreaProps
+> = ({ areaConfig }) => {
   const { t } = useTranslation();
   const error = areaConfig.errors[0];
 

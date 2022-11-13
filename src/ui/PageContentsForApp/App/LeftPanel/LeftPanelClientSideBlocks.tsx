@@ -50,7 +50,9 @@ export interface LeftPanelClientSideBlocksProps {
   children?: never;
 }
 
-export const LeftPanelClientSideBlocks: React.FunctionComponent<LeftPanelClientSideBlocksProps> = () => {
+export const LeftPanelClientSideBlocks: React.FunctionComponent<
+  LeftPanelClientSideBlocksProps
+> = () => {
   const { t } = useTranslation();
   const { rawChartConfigs, modifyChartCollection } = useChartCollection();
 
