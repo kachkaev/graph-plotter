@@ -1,6 +1,7 @@
 {
   "private": true,
   "license": "BSD-3-Clause",
+  "type": "module",
   "scripts": {
     "build": "next build",
     "dev": "next dev",

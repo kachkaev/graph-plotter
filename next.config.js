@@ -1,7 +1,11 @@
-/** @type {import('next').NextConfig} */
+/* eslint-disable import/no-anonymous-default-export */
 
-// eslint-disable-next-line unicorn/prefer-module
-module.exports = {
+/** @type {import('next').NextConfig} */
+export default {
+  compiler: {
+    styledComponents: true,
+  },
+
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
 
