@@ -2175,9 +2175,9 @@ __metadata:
   linkType: hard
 
 "fast-loops@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "fast-loops@npm:1.1.3"
-  checksum: 3d1e8ecec0ae331ea4aca8f0ff5f56db547529d29dba448b778c54fe9454a36c82d454344285984f014f2486d5c22752d1d6186aad68cae2fe5337df305e563e
+  version: 1.1.4
+  resolution: "fast-loops@npm:1.1.4"
+  checksum: 50ca0b0ba669f69d016bd3dbf15c1656cb0521ea3a9ffedbf14cd5551a8cf0a1dc6ffc98f679a6aaceb20b55bea8ed71be81c3b4fa86544e5a9bc45558d1bb33
   languageName: node
   linkType: hard
 
