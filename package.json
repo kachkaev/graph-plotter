@@ -38,7 +38,7 @@
     "immer": "9.0.17",
     "intl-messageformat": "10.2.5",
     "lru-cache": "7.14.1",
-    "next": "14.2.30",
+    "next": "14.2.32",
     "npm-run-all": "4.1.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
