@@ -3164,9 +3164,9 @@ __metadata:
   linkType: hard
 
 "lodash@npm:^4.17.11, lodash@npm:^4.17.21":
-  version: 4.17.21
-  resolution: "lodash@npm:4.17.21"
-  checksum: 3ac18e92108d68f88429fcddee609e42cf2b653583d9bac22308815a4cd6b185b89a0ad0d9b0c670c371d9d6b61571a98fee6b36e1db14e52766ca253ed9cba0
+  version: 4.17.23
+  resolution: "lodash@npm:4.17.23"
+  checksum: a36308f39d9dd3e35430ee0f4270ad3d3be27c8f27e72bc3a106e91dd1cdf414856a6b07f7198a18c52eb7af8e8093a0b6195cbd11627a084c22490c4b57245e
   languageName: node
   linkType: hard
 
