@@ -3428,15 +3428,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "lru-cache@npm:6.0.0"
-  dependencies:
-    yallist: "npm:^4.0.0"
-  checksum: b2d72088dd27df27189607554990b0fd31d3fbd4037df909ef66f48a14122baf8ffce7f33edc17e6543ea7cd71fa561136518355dde2ad57676fa0b2ea53b85f
-  languageName: node
-  linkType: hard
-
 "markdown-it@npm:13.0.1":
   version: 13.0.1
   resolution: "markdown-it@npm:13.0.1"
@@ -4573,18 +4564,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.7":
-  version: 7.3.8
-  resolution: "semver@npm:7.3.8"
-  dependencies:
-    lru-cache: "npm:^6.0.0"
-  bin:
-    semver: bin/semver.js
-  checksum: 94ad80ee14889020cb4a14d809fb99d16cbf4ff3dc7f4c564fc72efe2c5763a60090a1c16a9fd18ceeb1e993a1303a4d870c0a22f26adaf435b368b46a7d8462
-  languageName: node
-  linkType: hard
-
-"semver@npm:^7.7.3":
+"semver@npm:^7.3.7, semver@npm:^7.7.3":
   version: 7.7.3
   resolution: "semver@npm:7.7.3"
   bin:
@@ -5213,14 +5193,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.1.0, tslib@npm:^2.4.0":
-  version: 2.4.1
-  resolution: "tslib@npm:2.4.1"
-  checksum: a739a21e3ff059e62c7c3c0845333fbc9c081bcc91e015f2d246a31eeaf1fb0e29b10c0913c7d22f692b3203bb469fd60ca5288aa4f27d351a969df2d0714899
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.8.0":
+"tslib@npm:^2.1.0, tslib@npm:^2.4.0, tslib@npm:^2.8.0":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 080be9a9b50485142bd6dc8f159187fc90b8a0cd7e83b29a38d63f3a6a59a86ab729ece36ab5ced67c775416c9cf4465e8fb52ff03f3aa6a2e661c9c69e26909
@@ -5483,13 +5456,6 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 37d243a577dfeee20586eae1e3208dfb4e4cea1211a2a4116a19b50d91e619ff3dbc5ec934e28ca9baaa11a65df826c8d65c5fd1bb81f0ce0dadb469d47061c2
-  languageName: node
-  linkType: hard
-
-"yallist@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "yallist@npm:4.0.0"
-  checksum: cd7fe32508c6942d8b979278fbe13846fe88cd6840d78043d08c6b2c74d67ce38b58bd21618dca8a4e132dcc025fc0e66a7d87ca10cf6ed338465607ebff4378
   languageName: node
   linkType: hard
 
