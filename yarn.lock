@@ -3545,11 +3545,11 @@ __metadata:
   linkType: hard
 
 "minimatch@npm:^3.0.4, minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
-  version: 3.1.2
-  resolution: "minimatch@npm:3.1.2"
+  version: 3.1.4
+  resolution: "minimatch@npm:3.1.4"
   dependencies:
     brace-expansion: "npm:^1.1.7"
-  checksum: 97f5615ee8f7c0019277dadef7b2b81e5c60d369cb3155cbfb9da72688aef2edb652b105353ff08a6575ae95a6189d1c09a0829b9c254f60849148457c4d8a66
+  checksum: 0f045683cea83fd57d7e12c9bd788794febc4220fcb711a1ec06d5cd7d61a8bc11e1e729b7fe097922e5fa27b1c60fd8193032237627a8259cfdfc8c1acd3984
   languageName: node
   linkType: hard
 
