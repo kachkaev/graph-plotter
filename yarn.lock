@@ -4032,9 +4032,9 @@ __metadata:
   linkType: hard
 
 "picomatch@npm:^2.3.0, picomatch@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "picomatch@npm:2.3.1"
-  checksum: 6ba5938c24af2c5918e94b39aa0ad48d71f2c30634de69d46e0bd32feb666de4e909406db6ffb78f98d39ef450d6a41b6fa3954dc3659d7b2b750766c1261e5e
+  version: 2.3.2
+  resolution: "picomatch@npm:2.3.2"
+  checksum: 2b827db3b41ce5fef6060f74fc29f84687fd66af375af38c630eb18be52804c19b36997df67b8d0a5ee86335b5642442b6cd3ff2b29749bdeb2c5665c36da298
   languageName: node
   linkType: hard
 
