@@ -4465,7 +4465,7 @@ __metadata:
     styled-components: "npm:5.3.6"
     styled-normalize: "npm:8.0.7"
     typescript: "npm:4.9.4"
-    uuid: "npm:9.0.0"
+    uuid: "npm:14.0.0"
   languageName: unknown
   linkType: soft
 
@@ -5307,12 +5307,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:9.0.0":
-  version: 9.0.0
-  resolution: "uuid@npm:9.0.0"
+"uuid@npm:14.0.0":
+  version: 14.0.0
+  resolution: "uuid@npm:14.0.0"
   bin:
-    uuid: dist/bin/uuid
-  checksum: e1f76aff372e430bb129157360fd4cd3b393411b245604ea78e178a822ab7874ec2ebecec03ce94422b0b80bbd24733c6fa1df166c9cbad5086ef4b4843140bb
+    uuid: dist-node/bin/uuid
+  checksum: b7e21620c8f93a82700a15d6b677ce9a3f1b468b21a9653bada7f4e05e146cd8006adb9210ddc4f9bffd37fcbdb3ae46c3761dc279265d0fda10668872ea2952
   languageName: node
   linkType: hard
 
