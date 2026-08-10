@@ -3202,13 +3202,13 @@ __metadata:
   linkType: hard
 
 "js-yaml@npm:^4.1.0":
-  version: 4.1.1
-  resolution: "js-yaml@npm:4.1.1"
+  version: 4.3.0
+  resolution: "js-yaml@npm:4.3.0"
   dependencies:
     argparse: "npm:^2.0.1"
   bin:
     js-yaml: bin/js-yaml.js
-  checksum: b014ea44382b4d621a96b0fd6c44943c6c562ede664bcc017e451b925e7a67d3cb14c7cc8d18438b5c8df483d5433084fd4c4e70aad4a6e9122faf847e713542
+  checksum: 0458842e9ebc1cd558945970f461ba39ae72ffdd233a03e8a167d822e4876de5900a04e383a7386df5fd8a6c2a9747f25a4cc307d39300461379a6b292d5ccd8
   languageName: node
   linkType: hard
 
