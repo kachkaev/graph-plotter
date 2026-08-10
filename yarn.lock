@@ -3617,11 +3617,11 @@ __metadata:
   linkType: hard
 
 "nanoid@npm:^3.3.6":
-  version: 3.3.8
-  resolution: "nanoid@npm:3.3.8"
+  version: 3.3.18
+  resolution: "nanoid@npm:3.3.18"
   bin:
     nanoid: bin/nanoid.cjs
-  checksum: c326c0572499c8f8ad1021890074d9f1f3611af7f90dcc1ebc33a376518f9bed45dd8246d4586a19dfaebfd1bf829473cf076f7bca2953924503b4eeb0bea651
+  checksum: b566496dcb58a13fda961676ef9bb35d3e5ca1195d5362fcfa9a406039e88ca6b9820e3f3feed8bf1d5bfc6a9eb1f4831bcb4598499f3d4c0b64dff180124eb6
   languageName: node
   linkType: hard
 
