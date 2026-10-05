@@ -1404,12 +1404,12 @@ __metadata:
   linkType: hard
 
 "brace-expansion@npm:^1.1.7":
-  version: 1.1.16
-  resolution: "brace-expansion@npm:1.1.16"
+  version: 1.1.21
+  resolution: "brace-expansion@npm:1.1.21"
   dependencies:
     balanced-match: "npm:^1.0.0"
     concat-map: "npm:0.0.1"
-  checksum: d14feebf3054ecfe6a313c9996966d49df603a192563feb3f16f066207204fef804389663a1b8d8627356d0026db8bd2caaa4a8ff931eadbbaa4e71250b4a1a2
+  checksum: 7e383de3ed857a66acf26b580dd923853ebaa2786c45c9c07bc7e8d69c2d0c5328fe1229f0d55c9e22599cfc82373110fb20f4c085739599aa384c74896615e0
   languageName: node
   linkType: hard
 
