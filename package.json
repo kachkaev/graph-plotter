@@ -26,6 +26,9 @@
       "prettier --write"
     ]
   },
+  "resolutions": {
+    "@types/react": "18.3.31"
+  },
   "dependencies": {
     "@visx/axis": "3.0.0",
     "@visx/clip-path": "3.0.0",
@@ -57,6 +60,7 @@
     "@types/accept-language-parser": "1.5.3",
     "@types/lru-cache": "7.10.9",
     "@types/node": "18.11.18",
+    "@types/react": "18.3.31",
     "@types/styled-components": "5.1.26",
     "@types/uuid": "9.0.0",
     "eslint": "8.31.0",
