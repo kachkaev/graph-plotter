@@ -62,9 +62,9 @@ export const getServerSideProps: GetServerSideProps<VkPageProps> = async (
   // eslint-disable-next-line @typescript-eslint/require-await
 ) => {
   const locale =
-    parseVkLanguage(context.query.language) ??
-    parseVkLanguage(context.query.parent_language) ??
-    (typeof context.query.l === "string" ? context.query.l : undefined) ??
+    parseVkLanguage(context.query["language"]) ??
+    parseVkLanguage(context.query["parent_language"]) ??
+    (typeof context.query["l"] === "string" ? context.query["l"] : undefined) ??
     "en";
 
   return {

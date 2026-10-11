@@ -32,7 +32,7 @@ type Section = DataPoint[];
 const ChartShape: React.FunctionComponent<{
   numberOfPoints: number;
   formula: Formula;
-  isActive?: boolean;
+  isActive?: boolean | undefined;
   color: string;
   xScale: LinearScale;
   yScale: LinearScale;
@@ -87,7 +87,7 @@ const WrappedChartShape = React.memo(ChartShape);
 
 const Chart: React.FunctionComponent<{
   rawConfig: RawChartConfig;
-  isActive?: boolean;
+  isActive?: boolean | undefined;
   xScale: LinearScale;
   yScale: LinearScale;
 }> = ({ rawConfig, isActive, xScale, yScale }) => {

@@ -7,6 +7,11 @@ export default {
   },
 
   eslint: { ignoreDuringBuilds: true },
+
+  experimental: {
+    useTypeScriptCli: false,
+  },
+
   typescript: { ignoreBuildErrors: true },
 
   pageExtensions: ["page.tsx", "handler.ts"],

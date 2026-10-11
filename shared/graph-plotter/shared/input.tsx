@@ -4,7 +4,7 @@ import styled from "styled-components";
 export type InputStatus = "modified" | "error";
 export type InputTextAlign = "left" | "right";
 
-const Wrapper = styled.div<{ status?: InputStatus }>`
+const Wrapper = styled.div<{ status?: InputStatus | undefined }>`
   position: relative;
   height: 24px;
   vertical-align: baseline;
@@ -48,12 +48,12 @@ const Input: React.ForwardRefRenderFunction<
   HTMLInputElement,
   {
     value: string;
-    status?: InputStatus;
-    onChange?: (newValue: string) => void;
-    onSubmit?: () => void;
-    name?: string;
-    textAlign?: InputTextAlign;
-    prefix?: string;
+    status?: InputStatus | undefined;
+    onChange?: ((newValue: string) => void) | undefined;
+    onSubmit?: (() => void) | undefined;
+    name?: string | undefined;
+    textAlign?: InputTextAlign | undefined;
+    prefix?: string | undefined;
   } & Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "onChange">
 > = (
   { value, onChange, onSubmit, name, prefix, textAlign = "left", ...rest },
