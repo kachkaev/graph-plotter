@@ -69,3 +69,15 @@ jobs:
             echo 'ℹ️ ℹ️ ℹ️'
             exit 1
           fi
+
+      - name: Run pnpm test
+        if: ${{ success() || failure() }}
+        run: |
+          if ! pnpm test; then
+            echo ''
+            echo ''
+            echo 'ℹ️ ℹ️ ℹ️'
+            echo 'Please fix the above test failures locally for the check to pass.'
+            echo 'ℹ️ ℹ️ ℹ️'
+            exit 1
+          fi
