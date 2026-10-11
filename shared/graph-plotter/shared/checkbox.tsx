@@ -28,7 +28,7 @@ interface CheckboxProps extends React.HTMLProps<HTMLInputElement> {
   children: React.ReactNode;
 }
 
-const CheckboxWrapper = styled.span<{ isChecked: boolean }>`
+const CheckboxWrapper = styled.span`
   white-space: nowrap;
   position: relative;
   display: block;
@@ -64,7 +64,7 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = ({
   ...rest
 }) => {
   return (
-    <CheckboxWrapper isChecked={Boolean(rest.checked)}>
+    <CheckboxWrapper>
       <Input type="checkbox" {...rest} />
       <Label htmlFor={rest.id}>
         <StyledCheckIcon checked={Boolean(rest.checked)} />

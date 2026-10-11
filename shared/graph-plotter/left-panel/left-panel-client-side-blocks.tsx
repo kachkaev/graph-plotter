@@ -16,7 +16,7 @@ const Header = styled.h2`
   position: relative;
 `;
 
-const AddChartButton = styled.button`
+const AddChartButton = styled.button.attrs({ children: "+" })`
   background: var(--background-color);
   position: absolute;
   bottom: 3px;
@@ -33,9 +33,6 @@ const AddChartButton = styled.button`
     outline: none;
   }
 `;
-AddChartButton.defaultProps = {
-  children: "+",
-};
 
 const ChartList = styled.div`
   flex: 1;

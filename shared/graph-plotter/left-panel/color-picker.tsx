@@ -40,7 +40,7 @@ const Indicator = styled.span`
   border-radius: 10px;
 `;
 
-const Swatches = styled.div<{ toggled: boolean }>`
+const Swatches = styled.div<{ $toggled: boolean }>`
   display: block;
   white-space: nowrap;
   position: absolute;
@@ -49,7 +49,7 @@ const Swatches = styled.div<{ toggled: boolean }>`
   bottom: -3px;
   overflow: hidden;
   width: ${(props) =>
-    props.toggled ? (availableColors.length + 1) * 20 : 0}px;
+    props.$toggled ? (availableColors.length + 1) * 20 : 0}px;
   transition: all 0.3s;
   z-index: 10;
 `;
@@ -90,7 +90,7 @@ export const ColorPicker: React.FunctionComponent<ColorPickerProps> = ({
       <Toggler onClick={handleWrapperClick}>
         <Indicator style={{ background: value }} />
       </Toggler>
-      <Swatches toggled={!disabled && toggled}>
+      <Swatches $toggled={!disabled && toggled}>
         <Swatch
           value={transparentColor}
           selected={value === transparentColor}

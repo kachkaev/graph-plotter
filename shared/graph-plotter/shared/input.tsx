@@ -4,7 +4,7 @@ import styled from "styled-components";
 export type InputStatus = "modified" | "error";
 export type InputTextAlign = "left" | "right";
 
-const Wrapper = styled.div<{ status?: InputStatus | undefined }>`
+const Wrapper = styled.div<{ $status: InputStatus | undefined }>`
   position: relative;
   height: 24px;
   vertical-align: baseline;
@@ -12,11 +12,11 @@ const Wrapper = styled.div<{ status?: InputStatus | undefined }>`
   padding: 0 5px;
   border: 1px solid;
   border-color: ${(props) =>
-    props.status === "error" ? "#dd9e8c" : "#cacaca"};
+    props.$status === "error" ? "#dd9e8c" : "#cacaca"};
   background: ${(props) =>
-    props.status === "error"
+    props.$status === "error"
       ? "#fcefe9"
-      : props.status === "modified"
+      : props.$status === "modified"
         ? "#fffeb4"
         : "#fff"};
   box-sizing: border-box;
@@ -30,9 +30,9 @@ const Prefix = styled.span`
   line-height: 1.7;
 `;
 
-const InputControl = styled.input<{ textAlign: InputTextAlign }>`
+const InputControl = styled.input<{ $textAlign: InputTextAlign }>`
   min-width: 0;
-  text-align: ${(props) => props.textAlign};
+  text-align: ${(props) => props.$textAlign};
   background: transparent;
   border: none;
   flex-grow: 1;
@@ -44,8 +44,7 @@ const InputControl = styled.input<{ textAlign: InputTextAlign }>`
   }
 `;
 
-const Input: React.ForwardRefRenderFunction<
-  HTMLInputElement,
+const Input: React.FunctionComponent<
   {
     value: string;
     status?: InputStatus | undefined;
@@ -54,11 +53,22 @@ const Input: React.ForwardRefRenderFunction<
     name?: string | undefined;
     textAlign?: InputTextAlign | undefined;
     prefix?: string | undefined;
-  } & Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "onChange">
-> = (
-  { value, onChange, onSubmit, name, prefix, textAlign = "left", ...rest },
+    ref?: React.Ref<HTMLDivElement> | undefined;
+  } & Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    "value" | "onChange" | "prefix"
+  >
+> = ({
+  value,
+  status,
+  onChange,
+  onSubmit,
+  name,
+  prefix,
+  textAlign = "left",
   ref,
-) => {
+  ...rest
+}) => {
   const handleChange = React.useCallback<
     React.ChangeEventHandler<HTMLInputElement>
   >(
@@ -80,18 +90,17 @@ const Input: React.ForwardRefRenderFunction<
   );
 
   return (
-    <Wrapper {...rest} ref={ref}>
+    <Wrapper {...rest} $status={status} ref={ref}>
       {prefix ? <Prefix>{prefix}</Prefix> : undefined}
       <InputControl
         name={name}
         value={value}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
-        textAlign={textAlign}
+        $textAlign={textAlign}
       />
     </Wrapper>
   );
 };
 
-const WrappedInput = React.forwardRef(Input);
-export { WrappedInput as Input };
+export { Input };
