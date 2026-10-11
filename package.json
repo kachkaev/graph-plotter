@@ -26,6 +26,7 @@
       "prettier --write"
     ]
   },
+  "prettier": "@kachkaev/prettier-config",
   "resolutions": {
     "@types/react": "18.3.31"
   },
@@ -55,7 +56,7 @@
   "devDependencies": {
     "@kachkaev/eslint-config-react": "0.5.1",
     "@kachkaev/markdownlint-config": "1.0.1",
-    "@kachkaev/prettier-config": "1.4.0",
+    "@kachkaev/prettier-config": "2.2.1",
     "@next/eslint-plugin-next": "13.1.1",
     "@types/accept-language-parser": "1.5.3",
     "@types/lru-cache": "7.10.9",
@@ -67,7 +68,7 @@
     "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "markdownlint-cli": "0.49.1",
-    "prettier": "2.8.2",
+    "prettier": "3.9.10",
     "typescript": "4.9.4"
   },
   "packageManager": "yarn@4.0.0-rc.34"
