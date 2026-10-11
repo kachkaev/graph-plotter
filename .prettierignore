@@ -16,6 +16,9 @@
 !*.tsx
 !*.yml
 
+## Allow certain files without extensions
+!.husky/*
+
 ########################
 ## Same as in .gitignore
 ########################

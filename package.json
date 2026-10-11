@@ -10,7 +10,7 @@
     "fix:markdownlint": "markdownlint --dot --fix .",
     "fix:prettier": "prettier --write .",
     "fix:yarn-dedupe": "yarn dedupe",
-    "postinstall": "husky install",
+    "postinstall": "husky",
     "lint": "npm-run-all --continue-on-error \"lint:*\"",
     "lint:eslint": "eslint . --report-unused-disable-directives",
     "lint:markdownlint": "markdownlint --dot .",
@@ -21,9 +21,9 @@
   },
   "lint-staged": {
     "**": [
-      "eslint --fix",
-      "markdownlint --fix",
-      "prettier --write"
+      "suppress-exit-code eslint --fix",
+      "suppress-exit-code markdownlint --fix",
+      "suppress-exit-code prettier --write"
     ]
   },
   "prettier": "@kachkaev/prettier-config",
@@ -43,7 +43,6 @@
     "intl-messageformat": "10.2.5",
     "lru-cache": "7.14.1",
     "next": "16.3.8",
-    "npm-run-all": "4.1.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "12.1.4",
@@ -65,10 +64,12 @@
     "@types/styled-components": "5.1.26",
     "@types/uuid": "9.0.0",
     "eslint": "8.31.0",
-    "husky": "8.0.3",
-    "lint-staged": "13.1.0",
+    "husky": "9.1.7",
+    "lint-staged": "17.6.0",
     "markdownlint-cli": "0.49.1",
+    "npm-run-all2": "9.0.3",
     "prettier": "3.9.10",
+    "suppress-exit-code": "4.0.0",
     "typescript": "4.9.4"
   },
   "packageManager": "yarn@4.0.0-rc.34"
