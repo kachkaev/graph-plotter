@@ -4,11 +4,13 @@ import { useLocalStorage } from "react-use";
 import { ChartCollectionContext } from "./chart-collection-context";
 import { chartCollectionReducer } from "./chart-collection-reducer";
 import { generateRawChartConfig } from "./generate-raw-chart-config";
-import { ChartCollectionContextValue, RawChartConfig } from "./types";
+import type { ChartCollectionContextValue, RawChartConfig } from "./types";
 
-export const ChartCollectionProvider: React.FunctionComponent<{
+export function ChartCollectionProvider({
+  children,
+}: {
   children?: React.ReactNode;
-}> = ({ children }) => {
+}) {
   const [savedRawChartConfigs, saveRawChartConfigs] =
     useLocalStorage<RawChartConfig[]>("gp.chartConfigs");
 
@@ -43,8 +45,8 @@ export const ChartCollectionProvider: React.FunctionComponent<{
   }, [activeRawChartConfig, chartCollection.items]);
 
   return (
-    <ChartCollectionContext.Provider value={contextValue}>
+    <ChartCollectionContext value={contextValue}>
       {children}
-    </ChartCollectionContext.Provider>
+    </ChartCollectionContext>
   );
-};
+}

@@ -3,27 +3,29 @@ import { RectClipPath } from "@visx/clip-path";
 import { Grid } from "@visx/grid";
 import { Group } from "@visx/group";
 import { scaleLinear } from "@visx/scale";
-import * as React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { useChartCollection } from "../charting";
-import { ValidPlotAreaConfig } from "../plot-area";
+import type { ValidPlotAreaConfig } from "../plot-area";
 import { Graph } from "./chart";
 
 const Svg = styled.svg`
   position: absolute;
 `;
 
-export interface PlotContentsWithValidAreaProps {
+export type PlotContentsWithValidAreaProps = {
   areaConfig: ValidPlotAreaConfig;
   width: number;
   height: number;
   offset: number;
-}
+};
 
-export const PlotContentsWithValidArea: React.FunctionComponent<
-  PlotContentsWithValidAreaProps
-> = ({ areaConfig, width, height, offset }) => {
+export function PlotContentsWithValidArea({
+  areaConfig,
+  width,
+  height,
+  offset,
+}: PlotContentsWithValidAreaProps) {
   const { xDomain, yDomain, showGrid, showAxes } = areaConfig;
   const canvasWidth = width - offset * 2;
   const canvasHeight = height - offset * 2;
@@ -57,7 +59,7 @@ export const PlotContentsWithValidArea: React.FunctionComponent<
   const AxisY = canvasWidth - offset - axisYLeft > 20 ? AxisRight : AxisLeft;
 
   const { rawChartConfigs, activeRawChartConfig } = useChartCollection();
-  const reversedRawChartConfigs = [...rawChartConfigs].reverse();
+  const reversedRawChartConfigs = rawChartConfigs.toReversed();
 
   return (
     <Svg width={width} height={height}>
@@ -111,4 +113,4 @@ export const PlotContentsWithValidArea: React.FunctionComponent<
       ) : undefined}
     </Svg>
   );
-};
+}

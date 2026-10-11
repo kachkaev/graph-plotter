@@ -1,8 +1,8 @@
 import * as React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { availableColors, transparentColor } from "../shared/available-colors";
-import { Swatch, SwatchSelectCallback } from "./color-picker/swatch";
+import { Swatch, type SwatchSelectCallback } from "./color-picker/swatch";
 
 const Wrapper = styled.div`
   position: relative;
@@ -14,19 +14,15 @@ const Wrapper = styled.div`
   width: 10px;
 `;
 
-const Toggler = styled.button<{ disabled?: boolean }>`
+const Toggler = styled.button`
   padding: 5px;
   margin: -5px;
   background: none;
   border: none;
-  ${(props) =>
-    props.disabled
-      ? "pointer-events: none;"
-      : `
+
   :active {
     transform: translate(0px, 1px);
   }
-  `};
 
   :focus {
     outline: none;
@@ -54,32 +50,32 @@ const Swatches = styled.div<{ $toggled: boolean }>`
   z-index: 10;
 `;
 
-export interface ColorPickerProps {
-  disabled?: boolean;
+export type ColorPickerProps = {
+  disabled?: boolean | undefined;
   value: string;
-  onChange?: (newValue: string) => void;
-}
+  onChange?: ((newValue: string) => void) | undefined;
+};
 
-export const ColorPicker: React.FunctionComponent<ColorPickerProps> = ({
-  disabled,
-  value,
-  onChange,
-}) => {
-  const [toggled, toggle] = React.useState(false);
+export function ColorPicker({ disabled, value, onChange }: ColorPickerProps) {
+  const [toggled, setToggled] = React.useState(false);
 
-  React.useEffect(() => {
+  // Close the swatches as soon as the picker becomes disabled (state adjustment during render,
+  // see https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes)
+  const [previousDisabled, setPreviousDisabled] = React.useState(disabled);
+  if (previousDisabled !== disabled) {
+    setPreviousDisabled(disabled);
     if (disabled) {
-      toggle(false);
+      setToggled(false);
     }
-  }, [disabled]);
+  }
 
   const handleWrapperClick = React.useCallback<React.MouseEventHandler>(() => {
-    toggle((oldVisible) => !oldVisible);
+    setToggled((oldVisible) => !oldVisible);
   }, []);
 
   const handleSwatchSelect = React.useCallback<SwatchSelectCallback>(
     (color) => {
-      toggle(false);
+      setToggled(false);
       onChange?.(color);
     },
     [onChange],
@@ -107,4 +103,4 @@ export const ColorPicker: React.FunctionComponent<ColorPickerProps> = ({
       </Swatches>
     </Wrapper>
   );
-};
+}

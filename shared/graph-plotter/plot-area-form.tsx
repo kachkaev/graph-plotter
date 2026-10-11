@@ -1,10 +1,10 @@
 import { produce } from "immer";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import {
-  BoundaryName,
+  type BoundaryName,
   defaultRawPlotAreaConfig,
   usePlotArea,
 } from "./plot-area";
@@ -51,7 +51,6 @@ type WipStateUpdateAction = {
 };
 type WipStateResetAction = { type: "reset"; value: WipState };
 type WipStateAction = WipStateUpdateAction | WipStateResetAction;
-type WipStateReducer = React.Reducer<WipState, WipStateAction>;
 
 const BoundaryControlRow = styled.div`
   & + & {
@@ -76,12 +75,17 @@ const BoundaryControlInput = styled(NumericInput)`
   display: inline-flex;
 `;
 
-const BoundaryControl: React.FunctionComponent<{
+function BoundaryControl({
+  boundaryName,
+  wipState,
+  dispatchWipState,
+  onSubmit,
+}: {
   boundaryName: BoundaryName;
   wipState: WipState;
   dispatchWipState: React.Dispatch<WipStateAction>;
   onSubmit: () => void;
-}> = ({ boundaryName, wipState, dispatchWipState, onSubmit }) => {
+}) {
   const { rawPlotAreaConfig, plotAreaConfig } = usePlotArea();
   const { t } = useTranslation();
   const handleChange = React.useCallback(
@@ -99,7 +103,7 @@ const BoundaryControl: React.FunctionComponent<{
   const value = wipState[boundaryName];
   const hasError =
     plotAreaConfig.type === "invalid" &&
-    !!plotAreaConfig.errorRangeByBoundaryName[boundaryName];
+    plotAreaConfig.errorRangeByBoundaryName[boundaryName] !== undefined;
 
   return (
     <BoundaryControlWrapper>
@@ -111,15 +115,15 @@ const BoundaryControl: React.FunctionComponent<{
         onChange={handleChange}
         onSubmit={onSubmit}
         status={
-          value !== initialValue ? "modified" : hasError ? "error" : undefined
+          value === initialValue ? (hasError ? "error" : undefined) : "modified"
         }
         value={value}
       />
     </BoundaryControlWrapper>
   );
-};
+}
 
-const wipStateReducer: WipStateReducer = (state, action) => {
+function wipStateReducer(state: WipState, action: WipStateAction): WipState {
   return produce(state, (draft) => {
     switch (action.type) {
       case "update": {
@@ -132,9 +136,9 @@ const wipStateReducer: WipStateReducer = (state, action) => {
       }
     }
   });
-};
+}
 
-export const PlotAreaForm: React.FunctionComponent = () => {
+export function PlotAreaForm() {
   const { t } = useTranslation();
   const { rawPlotAreaConfig, updateRawPlotAreaConfig } = usePlotArea();
 
@@ -160,7 +164,7 @@ export const PlotAreaForm: React.FunctionComponent = () => {
     [updateRawPlotAreaConfig],
   );
 
-  const handleDefaultsClick = () => {
+  function handleDefaultsClick() {
     dispatchWipState({
       type: "reset",
       value: {
@@ -170,18 +174,14 @@ export const PlotAreaForm: React.FunctionComponent = () => {
         yMax: defaultRawPlotAreaConfig.yMax,
       },
     });
-    updateRawPlotAreaConfig(() => {
-      return defaultRawPlotAreaConfig;
-    });
-  };
+    updateRawPlotAreaConfig(() => defaultRawPlotAreaConfig);
+  }
 
   const handleApplyClick = React.useCallback(() => {
-    updateRawPlotAreaConfig((draft) => {
-      return {
-        ...draft,
-        ...wipState,
-      };
-    });
+    updateRawPlotAreaConfig((draft) => ({
+      ...draft,
+      ...wipState,
+    }));
   }, [updateRawPlotAreaConfig, wipState]);
 
   return (
@@ -238,4 +238,4 @@ export const PlotAreaForm: React.FunctionComponent = () => {
       </ButtonRow>
     </Wrapper>
   );
-};
+}

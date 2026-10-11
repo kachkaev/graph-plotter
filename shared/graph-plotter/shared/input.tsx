@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 export type InputStatus = "modified" | "error";
 export type InputTextAlign = "left" | "right";
@@ -44,21 +44,18 @@ const InputControl = styled.input<{ $textAlign: InputTextAlign }>`
   }
 `;
 
-const Input: React.FunctionComponent<
-  {
-    value: string;
-    status?: InputStatus | undefined;
-    onChange?: ((newValue: string) => void) | undefined;
-    onSubmit?: (() => void) | undefined;
-    name?: string | undefined;
-    textAlign?: InputTextAlign | undefined;
-    prefix?: string | undefined;
-    ref?: React.Ref<HTMLDivElement> | undefined;
-  } & Omit<
-    React.HTMLAttributes<HTMLDivElement>,
-    "value" | "onChange" | "prefix"
-  >
-> = ({
+export type InputProps = {
+  value: string;
+  status?: InputStatus | undefined;
+  onChange?: ((newValue: string) => void) | undefined;
+  onSubmit?: (() => void) | undefined;
+  name?: string | undefined;
+  textAlign?: InputTextAlign | undefined;
+  prefix?: string | undefined;
+  ref?: React.Ref<HTMLDivElement> | undefined;
+} & Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "onChange" | "prefix">;
+
+export function Input({
   value,
   status,
   onChange,
@@ -68,7 +65,7 @@ const Input: React.FunctionComponent<
   textAlign = "left",
   ref,
   ...rest
-}) => {
+}: InputProps) {
   const handleChange = React.useCallback<
     React.ChangeEventHandler<HTMLInputElement>
   >(
@@ -78,7 +75,7 @@ const Input: React.FunctionComponent<
     [onChange],
   );
 
-  const handleKeyPress = React.useCallback<
+  const handleKeyDown = React.useCallback<
     React.KeyboardEventHandler<HTMLInputElement>
   >(
     (event) => {
@@ -96,11 +93,9 @@ const Input: React.FunctionComponent<
         name={name}
         value={value}
         onChange={handleChange}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyDown}
         $textAlign={textAlign}
       />
     </Wrapper>
   );
-};
-
-export { Input };
+}

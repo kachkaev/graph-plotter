@@ -1,6 +1,6 @@
-import { ErrorConfig, ErrorRange } from "../shared/errors";
+import type { ErrorConfig, ErrorRange } from "../shared/errors";
 import { parseNumericValue } from "../shared/parse-numeric-value";
-import { BoundaryName, PlotAreaConfig, RawPlotAreaConfig } from "./types";
+import type { BoundaryName, PlotAreaConfig, RawPlotAreaConfig } from "./types";
 
 type ReportError = (error: ErrorConfig) => void;
 type ReportFailedBoundary = (
@@ -11,12 +11,12 @@ type ReportFailedBoundary = (
 const maxValue = 1000;
 const minDelta = 0.5;
 
-const parseBoundary = (
+function parseBoundary(
   rawPlotAreaConfig: RawPlotAreaConfig,
   boundaryName: BoundaryName,
   reportError: ReportError,
   reportFailedFiled: ReportFailedBoundary,
-): number => {
+): number {
   const rawValue = rawPlotAreaConfig[boundaryName];
   const value = parseNumericValue(rawValue);
   if (!Number.isFinite(value) || Math.abs(maxValue) > maxValue) {
@@ -27,15 +27,15 @@ const parseBoundary = (
     });
     reportFailedFiled(boundaryName, [0, rawValue.length]);
 
-    return Number.NaN;
+    return NaN;
   }
 
   return value;
-};
+}
 
-export const processRawPlotAreaConfig = (
+export function processRawPlotAreaConfig(
   rawPlotAreaConfig: RawPlotAreaConfig,
-): PlotAreaConfig => {
+): PlotAreaConfig {
   const errors: ErrorConfig[] = [];
 
   const reportError: ReportError = (error) => {
@@ -48,9 +48,7 @@ export const processRawPlotAreaConfig = (
     boundaryName,
     errorRange,
   ) => {
-    if (!errorRangeByBoundaryName[boundaryName]) {
-      errorRangeByBoundaryName[boundaryName] = errorRange;
-    }
+    errorRangeByBoundaryName[boundaryName] ??= errorRange;
   };
 
   const xMin = parseBoundary(
@@ -109,4 +107,4 @@ export const processRawPlotAreaConfig = (
     xDomain: [xMin, xMax],
     yDomain: [yMin, yMax],
   };
-};
+}

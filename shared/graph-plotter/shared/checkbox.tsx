@@ -1,12 +1,13 @@
-import * as React from "react";
-import styled from "styled-components";
+import type * as React from "react";
+import { styled } from "styled-components";
 
 // https://www.iconfinder.com/icons/326561/box_check_icon
 // https://www.iconfinder.com/icons/326558/blank_box_check_icon
 
-export const CheckedIcon: React.FunctionComponent<
-  React.HTMLAttributes<SVGElement> & { checked: boolean }
-> = ({ checked, ...rest }) => {
+export function CheckedIcon({
+  checked,
+  ...rest
+}: React.HTMLAttributes<SVGElement> & { checked: boolean }) {
   return (
     <svg viewBox="0 0 18 18" {...rest}>
       {checked ? (
@@ -22,11 +23,11 @@ export const CheckedIcon: React.FunctionComponent<
       )}
     </svg>
   );
-};
-
-interface CheckboxProps extends React.HTMLProps<HTMLInputElement> {
-  children: React.ReactNode;
 }
+
+type CheckboxProps = {
+  children: React.ReactNode;
+} & React.HTMLProps<HTMLInputElement>;
 
 const CheckboxWrapper = styled.span`
   white-space: nowrap;
@@ -57,12 +58,7 @@ const Label = styled.label`
   }
 `;
 
-export const Checkbox: React.FunctionComponent<CheckboxProps> = ({
-  children,
-  ref,
-  as,
-  ...rest
-}) => {
+export function Checkbox({ children, ref, as, ...rest }: CheckboxProps) {
   return (
     <CheckboxWrapper>
       <Input type="checkbox" {...rest} />
@@ -72,4 +68,4 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = ({
       </Label>
     </CheckboxWrapper>
   );
-};
+}

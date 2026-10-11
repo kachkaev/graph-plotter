@@ -1,8 +1,6 @@
 import * as React from "react";
 
-const Foreground: React.FunctionComponent<React.HTMLAttributes<SVGElement>> = (
-  props,
-) => {
+function Foreground(props: React.HTMLAttributes<SVGElement>) {
   return (
     <svg
       {...props}
@@ -33,7 +31,7 @@ const Foreground: React.FunctionComponent<React.HTMLAttributes<SVGElement>> = (
       </g>
     </svg>
   );
-};
+}
 
 const WrappedForeground = React.memo(Foreground);
 export { WrappedForeground as Foreground };

@@ -18,5 +18,4 @@ const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: true },
 };
 
-// eslint-disable-next-line import/no-default-export -- Next.js requires a default export
 export default nextConfig;

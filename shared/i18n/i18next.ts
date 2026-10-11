@@ -1,16 +1,19 @@
-import i18next from "i18next";
+import { createInstance, type i18n } from "i18next";
 import ICU from "i18next-icu";
 
 import { defaultLanguage, localeResourceLookup } from "./locale-resources";
 
-const icu = new ICU();
-i18next.use(icu);
+function createI18nextInstance(): i18n {
+  const instance = createInstance().use(new ICU());
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-i18next.init({
-  fallbackLng: defaultLanguage,
-  resources: localeResourceLookup,
-  keySeparator: "###",
-});
+  // Resources are inline, so initialisation completes synchronously
+  void instance.init({
+    fallbackLng: defaultLanguage,
+    resources: localeResourceLookup,
+    keySeparator: "###",
+  });
 
-export { default as i18next } from "i18next";
+  return instance;
+}
+
+export const i18next = createI18nextInstance();

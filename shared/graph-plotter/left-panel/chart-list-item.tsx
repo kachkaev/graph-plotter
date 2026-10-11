@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import {
-  RawChartConfig,
+  getProcessedChartConfig,
+  type RawChartConfig,
   useChartCollection,
-  useProcessedChartConfig,
 } from "../charting";
 import { transparentColor } from "../shared/available-colors";
 import { ColorPicker } from "./color-picker";
@@ -58,11 +58,13 @@ const DeleteButton = styled.button.attrs({ children: "×" })`
   }
 `;
 
-export const ChartListItem: React.FunctionComponent<{
+export function ChartListItem({
+  rawChartConfig,
+}: {
   rawChartConfig: RawChartConfig;
-}> = ({ rawChartConfig }) => {
+}) {
   const { activeRawChartConfig, modifyChartCollection } = useChartCollection();
-  const processedChartConfig = useProcessedChartConfig(rawChartConfig);
+  const processedChartConfig = getProcessedChartConfig(rawChartConfig);
   const { t } = useTranslation();
 
   const isActive = activeRawChartConfig === rawChartConfig;
@@ -123,4 +125,4 @@ export const ChartListItem: React.FunctionComponent<{
       {isActive ? <DeleteButton onClick={handleDeleteClick} /> : undefined}
     </Wrapper>
   );
-};
+}

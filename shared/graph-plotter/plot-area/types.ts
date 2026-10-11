@@ -1,6 +1,6 @@
-import { Draft } from "immer";
+import type { Draft } from "immer";
 
-import { ErrorConfig, ErrorRange } from "../shared/errors";
+import type { ErrorConfig, ErrorRange } from "../shared/errors";
 
 export type BoundaryName = "xMin" | "xMax" | "yMin" | "yMax";
 
@@ -9,32 +9,32 @@ export type RawPlotAreaConfig = {
   showAxes: boolean;
 } & Record<BoundaryName, string>;
 
-export interface InvalidPlotAreaConfig {
+export type InvalidPlotAreaConfig = {
   type: "invalid";
   errorRangeByBoundaryName: Partial<Record<BoundaryName, ErrorRange>>;
   errors: ErrorConfig[];
-}
+};
 
-export interface ValidPlotAreaConfig {
+export type ValidPlotAreaConfig = {
   type: "valid";
   showGrid: boolean;
   showAxes: boolean;
   xDomain: [number, number];
   yDomain: [number, number];
-}
+};
 
 export type PlotAreaConfig = InvalidPlotAreaConfig | ValidPlotAreaConfig;
 
 export type UpdateRawPlotAreaConfigFn = (
   draft: Draft<RawPlotAreaConfig>,
-) => void | RawPlotAreaConfig;
+) => undefined | RawPlotAreaConfig;
 
 export type UpdateRawPlotAreaConfig = (
   updateFn: UpdateRawPlotAreaConfigFn,
 ) => void;
 
-export interface PlotAreaContextValue {
+export type PlotAreaContextValue = {
   rawPlotAreaConfig: RawPlotAreaConfig;
   plotAreaConfig: PlotAreaConfig;
   updateRawPlotAreaConfig: UpdateRawPlotAreaConfig;
-}
+};

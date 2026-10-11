@@ -1,28 +1,30 @@
 import dynamic from "next/dynamic";
-import * as React from "react";
+import type * as React from "react";
 import { useMeasure } from "react-use";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { Foreground } from "./plot/foreground";
-import { PlotContentsWithInvalidAreaProps } from "./plot/plot-contents-with-invalid-area";
-import { PlotContentsWithValidAreaProps } from "./plot/plot-contents-with-valid-area";
+import type { PlotContentsWithInvalidAreaProps } from "./plot/plot-contents-with-invalid-area";
+import type { PlotContentsWithValidAreaProps } from "./plot/plot-contents-with-valid-area";
 import { usePlotArea } from "./plot-area";
 
 export const plotBorderRadius = 7;
 
 const PlotContentsWithInvalidArea = dynamic<PlotContentsWithInvalidAreaProps>(
-  () =>
-    import("./plot/plot-contents-with-invalid-area").then(
-      (mod) => mod.PlotContentsWithInvalidArea,
-    ),
+  async () => {
+    const mod = await import("./plot/plot-contents-with-invalid-area");
+
+    return mod.PlotContentsWithInvalidArea;
+  },
   { ssr: false },
 );
 
 const PlotContentsWithValidArea = dynamic<PlotContentsWithValidAreaProps>(
-  () =>
-    import("./plot/plot-contents-with-valid-area").then(
-      (mod) => mod.PlotContentsWithValidArea,
-    ),
+  async () => {
+    const mod = await import("./plot/plot-contents-with-valid-area");
+
+    return mod.PlotContentsWithValidArea;
+  },
   { ssr: false },
 );
 
@@ -56,9 +58,7 @@ const StyledForeground = styled(Foreground)`
   right: 0;
 `;
 
-export const Plot: React.FunctionComponent<
-  React.HTMLAttributes<HTMLDivElement>
-> = (props) => {
+export function Plot(props: React.HTMLAttributes<HTMLDivElement>) {
   const { plotAreaConfig } = usePlotArea();
   const [ref, { width, height }] = useMeasure<HTMLDivElement>();
 
@@ -79,4 +79,4 @@ export const Plot: React.FunctionComponent<
       <StyledForeground />
     </Wrapper>
   );
-};
+}

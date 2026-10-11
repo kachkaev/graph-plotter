@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 export const deLocalResource = {
   translation: {
     "ui.translator_name": "Джейсон Соло",

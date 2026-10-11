@@ -1,4 +1,4 @@
-import { RawPlotAreaConfig } from "./types";
+import type { RawPlotAreaConfig } from "./types";
 
 export const defaultRawPlotAreaConfig: RawPlotAreaConfig = {
   showAxes: true,

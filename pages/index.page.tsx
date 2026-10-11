@@ -1,20 +1,17 @@
 import { pick } from "accept-language-parser";
-import { GetServerSideProps, NextPage } from "next";
-import * as React from "react";
+import type { GetServerSideProps } from "next";
 
 import { defaultLanguage, supportedLanguages } from "../shared/i18n";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface IndexPageProps {}
+type IndexPageProps = Record<string, never>;
 
-const IndexPage: NextPage<IndexPageProps> = () => {
+export default function IndexPage() {
   return <div />;
-};
+}
 
-export const getServerSideProps: GetServerSideProps<IndexPageProps> = async ({
+export const getServerSideProps: GetServerSideProps<IndexPageProps> = ({
   req,
   res,
-  // eslint-disable-next-line @typescript-eslint/require-await
 }) => {
   const pickedLanguage = pick(
     supportedLanguages,
@@ -27,7 +24,5 @@ export const getServerSideProps: GetServerSideProps<IndexPageProps> = async ({
   res.writeHead(302, { Location: `/vk${query}` });
   res.end();
 
-  return { props: {} };
+  return Promise.resolve({ props: {} });
 };
-
-export default IndexPage;

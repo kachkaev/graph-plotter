@@ -1,28 +1,28 @@
 import Document, {
-  DocumentContext,
+  type DocumentContext,
+  type DocumentInitialProps,
   Head,
   Html,
   Main,
   NextScript,
 } from "next/document";
-import * as React from "react";
 import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
-  static override async getInitialProps(ctx: DocumentContext) {
+  static override async getInitialProps(
+    ctx: DocumentContext,
+  ): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet();
-    // eslint-disable-next-line testing-library/render-result-naming-convention
     const originalRenderPage = ctx.renderPage;
 
     try {
-      // eslint-disable-next-line no-param-reassign
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
         });
 
-      const initialProps = await Document.getInitialProps(ctx);
+      const initialProps = await super.getInitialProps(ctx);
 
       return {
         ...initialProps,

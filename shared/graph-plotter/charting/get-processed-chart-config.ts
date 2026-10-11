@@ -2,16 +2,16 @@ import { LRUCache } from "lru-cache";
 
 import { parseNumericValue } from "../shared/parse-numeric-value";
 import { getParsedFormula } from "./get-parsed-formula";
-import { ChartConfig, InvalidChartConfig, RawChartConfig } from "./types";
+import type { ChartConfig, InvalidChartConfig, RawChartConfig } from "./types";
 
 const chartConfigCache = new LRUCache<string, ChartConfig>({ max: 1000 });
 
 const minNumberOfPoints = 50;
 const maxNumberOfPoints = 10_000;
 
-const generateProcessedChartConfig = (
+function generateProcessedChartConfig(
   rawChartConfig: RawChartConfig,
-): ChartConfig => {
+): ChartConfig {
   const result: InvalidChartConfig = {
     type: "invalid",
     errors: [],
@@ -43,7 +43,7 @@ const generateProcessedChartConfig = (
   }
 
   const formulaOrErrors = getParsedFormula(rawFormula);
-  if (result.errors.length === 0 && typeof formulaOrErrors === "function") {
+  if (typeof formulaOrErrors === "function" && result.errors.length === 0) {
     return {
       type: "valid",
       numberOfPoints,
@@ -57,11 +57,11 @@ const generateProcessedChartConfig = (
   }
 
   return result;
-};
+}
 
-export const getProcessedChartConfig = (
+export function getProcessedChartConfig(
   rawChartConfig: RawChartConfig,
-): ChartConfig => {
+): ChartConfig {
   const cacheKey = JSON.stringify(rawChartConfig);
   const entry = chartConfigCache.get(cacheKey);
   if (entry) {
@@ -72,4 +72,4 @@ export const getProcessedChartConfig = (
   chartConfigCache.set(cacheKey, newEntry);
 
   return newEntry;
-};
+}
