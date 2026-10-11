@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { availableColors } from "../shared/available-colors";
 import { RawChartConfig } from "./types";
 
@@ -23,7 +21,7 @@ export const generateRawChartConfig = (
     availableColors[0];
 
   return {
-    id: uuidv4(),
+    id: crypto.randomUUID(),
 
     color,
     formula: "",

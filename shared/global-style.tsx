@@ -1,7 +1,6 @@
-import { createGlobalStyle, css } from "styled-components";
-import normalize from "styled-normalize";
+import { createGlobalStyle } from "styled-components";
 
-const base = css`
+export const GlobalStyle = createGlobalStyle`
   :root {
     --link-color: #2a5885;
     --background-color: rgb(250, 251, 252);
@@ -59,9 +58,4 @@ const base = css`
   button {
     padding: 1px 6px;
   }
-`;
-
-export const GlobalStyle = createGlobalStyle`
-  ${normalize}
-  ${base}
 `;
