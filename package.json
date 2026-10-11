@@ -58,12 +58,15 @@
     "@kachkaev/markdownlint-config": "1.0.1",
     "@kachkaev/prettier-config": "2.2.1",
     "@next/eslint-plugin-next": "13.1.1",
+    "@tsconfig/next": "2.0.6",
+    "@tsconfig/strictest": "2.0.8",
     "@types/accept-language-parser": "1.5.3",
     "@types/lru-cache": "7.10.9",
-    "@types/node": "18.11.18",
+    "@types/node": "24.19.2",
     "@types/react": "18.3.31",
     "@types/styled-components": "5.1.26",
     "@types/uuid": "9.0.0",
+    "@typescript/native": "npm:typescript@7.0.2",
     "eslint": "8.31.0",
     "husky": "9.1.7",
     "lint-staged": "17.6.0",
@@ -71,7 +74,7 @@
     "npm-run-all2": "9.0.3",
     "prettier": "3.9.10",
     "suppress-exit-code": "4.0.0",
-    "typescript": "4.9.4"
+    "typescript": "npm:@typescript/typescript6@6.0.2"
   },
   "packageManager": "pnpm@12.11.2",
   "devEngines": {

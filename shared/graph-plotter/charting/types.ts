@@ -32,7 +32,7 @@ export type ChartConfig =
   InvalidChartConfig | ValidChartConfig | EmptyChartConfig;
 
 export interface ChartCollection {
-  activeItemId?: string;
+  activeItemId?: string | undefined;
   items: RawChartConfig[];
 }
 
@@ -40,7 +40,7 @@ export type ChartCollectionAction =
   | { type: "addNewItem" }
   | { type: "updateItem"; rawChartConfig: RawChartConfig }
   | { type: "deleteItem"; itemId: string }
-  | { type: "setActiveItem"; itemId?: string };
+  | { type: "setActiveItem"; itemId?: string | undefined };
 
 export type ChartCollectionContextValue = {
   rawChartConfigs: RawChartConfig[];
