@@ -1,3 +1,5 @@
+import "normalize.css/normalize.css";
+
 import { AppProps } from "next/app";
 import * as React from "react";
 
