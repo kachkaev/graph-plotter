@@ -25,7 +25,7 @@ function isDrawable(
   );
 }
 
-type LinearScale = ReturnType<typeof scaleLinear>;
+type LinearScale = ReturnType<typeof scaleLinear<number>>;
 type DataPoint = [number, number];
 type Section = DataPoint[];
 
