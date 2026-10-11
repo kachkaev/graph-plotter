@@ -1,4 +1,7 @@
-import { FormulaSyntaxError } from "./formula-syntax-error";
+import {
+  type FormulaErrorHint,
+  FormulaSyntaxError,
+} from "./formula-syntax-error";
 
 export type Operator =
   | "+"
@@ -66,6 +69,12 @@ const numberPattern = /[\d.]+/y;
 const exponentPattern = /e[+-]?\d+/iy;
 const namePattern = /[a-z_]\w*/iy;
 
+const unknownSymbolHints = new Map<string, FormulaErrorHint>([
+  ["х", "x_rus"],
+  ["Х", "x_rus"],
+  ["|", "vertical_slash"],
+]);
+
 function matchAt(
   pattern: RegExp,
   text: string,
@@ -108,19 +117,22 @@ export function tokenize(rawFormula: string): Token[] {
     const digitsAndDots = matchAt(numberPattern, rawFormula, start);
     if (digitsAndDots && /\d/.test(digitsAndDots)) {
       if (digitsAndDots.indexOf(".") !== digitsAndDots.lastIndexOf(".")) {
-        throw new FormulaSyntaxError(start, start + digitsAndDots.length);
+        throw new FormulaSyntaxError(
+          32,
+          [start, start + digitsAndDots.length],
+          digitsAndDots,
+        );
       }
       const exponent =
         matchAt(exponentPattern, rawFormula, start + digitsAndDots.length) ??
         "";
       const text = digitsAndDots + exponent;
+      const value = Number(text);
       position += text.length;
-      tokens.push({
-        type: "number",
-        value: Number(text),
-        start,
-        end: position,
-      });
+      if (!Number.isFinite(value)) {
+        throw new FormulaSyntaxError(39, [start, position], text);
+      }
+      tokens.push({ type: "number", value, start, end: position });
       continue;
     }
 
@@ -146,10 +158,17 @@ export function tokenize(rawFormula: string): Token[] {
       continue;
     }
 
-    const codePoint = rawFormula.codePointAt(start) ?? 0;
+    const symbol = String.fromCodePoint(rawFormula.codePointAt(start) ?? 0);
+    const range: [number, number] = [start, start + symbol.length];
+    if (symbol === "=") {
+      throw new FormulaSyntaxError("equal_presents", range, symbol);
+    }
     throw new FormulaSyntaxError(
-      start,
-      start + String.fromCodePoint(codePoint).length,
+      3,
+      range,
+      symbol,
+      [],
+      unknownSymbolHints.get(symbol),
     );
   }
 

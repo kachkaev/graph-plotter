@@ -53,6 +53,7 @@ export type InputProps = {
   textAlign?: InputTextAlign | undefined;
   prefix?: string | undefined;
   ref?: React.Ref<HTMLDivElement> | undefined;
+  inputRef?: React.Ref<HTMLInputElement> | undefined;
 } & Omit<React.HTMLAttributes<HTMLDivElement>, "value" | "onChange" | "prefix">;
 
 export function Input({
@@ -64,6 +65,7 @@ export function Input({
   prefix,
   textAlign = "left",
   ref,
+  inputRef,
   ...rest
 }: InputProps) {
   const handleChange = React.useCallback<
@@ -90,6 +92,7 @@ export function Input({
     <Wrapper {...rest} $status={status} ref={ref}>
       {prefix ? <Prefix>{prefix}</Prefix> : undefined}
       <InputControl
+        ref={inputRef}
         name={name}
         value={value}
         onChange={handleChange}
