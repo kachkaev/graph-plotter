@@ -1,10 +1,7 @@
 import { LRUCache } from "lru-cache";
 
-import type { ErrorConfig } from "../shared/errors";
 import { parseFormula } from "./parse-formula";
-import type { Formula } from "./types";
-
-type FormulaParseResult = Formula | ErrorConfig[];
+import type { FormulaParseResult } from "./types";
 
 const formulaCache = new LRUCache<string, FormulaParseResult>({ max: 100 });
 

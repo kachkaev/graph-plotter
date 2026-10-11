@@ -50,4 +50,9 @@ export type ChartCollectionContextValue = {
   modifyChartCollection: React.Dispatch<ChartCollectionAction>;
 };
 
-export type FormulaParseResult = Formula | ErrorConfig[];
+export type FormulaParseError = {
+  error: ErrorConfig;
+  errorRange: ErrorRange;
+};
+
+export type FormulaParseResult = Formula | FormulaParseError;

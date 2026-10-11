@@ -29,6 +29,10 @@ const ErrorMessage = styled.div`
   margin-left: -70px;
 `;
 
+const ErrorHint = styled.span`
+  color: #666;
+`;
+
 const SectionBeforePlotArea = styled.div`
   flex-grow: 1;
   flex-shrink: 1;
@@ -62,6 +66,21 @@ const FormulaInput = styled(Input)`
   margin-right: 10px;
 `;
 
+// <Trans /> parses translations as HTML, so symbols like < in values need
+// escaping to show up in error messages (shouldUnescape restores them)
+function escapeI18nValues(
+  values: Array<string | number>,
+): Array<string | number> {
+  return values.map((value) =>
+    typeof value === "string"
+      ? value
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+      : value,
+  );
+}
+
 type WipStateField = "formula" | "numberOfPoints";
 type WipState = Pick<RawChartConfig, WipStateField>;
 type WipStateAction =
@@ -93,6 +112,7 @@ export function BottomPanel({ plotAreaWidth }: BottomPanelProps) {
     formula: activeRawChartConfig.formula,
     numberOfPoints: activeRawChartConfig.numberOfPoints,
   });
+  const formulaInputRef = React.useRef<HTMLInputElement>(null);
 
   React.useLayoutEffect(() => {
     dispatchWipState({ type: "reset", value: activeRawChartConfig });
@@ -123,6 +143,18 @@ export function BottomPanel({ plotAreaWidth }: BottomPanelProps) {
       type: "updateItem",
       rawChartConfig,
     });
+
+    // Point at the problem in the formula, like the Flash version did
+    const newProcessedChartConfig = getProcessedChartConfig(rawChartConfig);
+    if (
+      newProcessedChartConfig.type === "invalid" &&
+      newProcessedChartConfig.formulaErrorRange
+    ) {
+      formulaInputRef.current?.focus();
+      formulaInputRef.current?.setSelectionRange(
+        ...newProcessedChartConfig.formulaErrorRange,
+      );
+    }
   }, [activeRawChartConfig, modifyChartCollection, wipState]);
 
   const numberOfPointsHasError =
@@ -164,6 +196,7 @@ export function BottomPanel({ plotAreaWidth }: BottomPanelProps) {
         </SectionBeforePlotArea>
         <SectionUnderPlotArea style={{ width: plotAreaWidth }}>
           <FormulaInput
+            inputRef={formulaInputRef}
             prefix={t("ui.l_y_equals")}
             value={wipState.formula}
             status={formulaStatus}
@@ -178,11 +211,23 @@ export function BottomPanel({ plotAreaWidth }: BottomPanelProps) {
           <ErrorMessage>
             <Trans
               i18nKey={errorConfigToShow.i18nKey}
-              values={errorConfigToShow.i18nValues}
+              values={escapeI18nValues(errorConfigToShow.i18nValues)}
+              shouldUnescape={true}
             >
               <b />
               <Nobr />
             </Trans>
+            {errorConfigToShow.hint ? (
+              <ErrorHint>
+                <Trans
+                  i18nKey={errorConfigToShow.hint.i18nKey}
+                  values={escapeI18nValues(errorConfigToShow.hint.i18nValues)}
+                  shouldUnescape={true}
+                >
+                  <b />
+                </Trans>
+              </ErrorHint>
+            ) : undefined}
           </ErrorMessage>
         </ErrorRow>
       ) : undefined}

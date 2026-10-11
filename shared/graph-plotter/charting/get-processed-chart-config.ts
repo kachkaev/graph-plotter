@@ -42,18 +42,18 @@ function generateProcessedChartConfig(
     };
   }
 
-  const formulaOrErrors = getParsedFormula(rawFormula);
-  if (typeof formulaOrErrors === "function" && result.errors.length === 0) {
+  const formulaOrError = getParsedFormula(rawFormula);
+  if (typeof formulaOrError === "function" && result.errors.length === 0) {
     return {
       type: "valid",
       numberOfPoints,
-      formula: formulaOrErrors,
+      formula: formulaOrError,
       color: rawChartConfig.color,
     };
   }
-  if (typeof formulaOrErrors !== "function") {
-    result.errors.push(...formulaOrErrors);
-    result.formulaErrorRange = [0, rawFormula.length];
+  if (typeof formulaOrError !== "function") {
+    result.errors.push(formulaOrError.error);
+    result.formulaErrorRange = formulaOrError.errorRange;
   }
 
   return result;
