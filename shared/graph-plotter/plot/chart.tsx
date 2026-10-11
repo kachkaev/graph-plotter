@@ -1,6 +1,6 @@
 import { curveLinear } from "@visx/curve";
+import type { scaleLinear } from "@visx/scale";
 import { LinePath } from "@visx/shape";
-import { ScaleLinear } from "d3-scale";
 import * as React from "react";
 
 import { Formula, RawChartConfig, useProcessedChartConfig } from "../charting";
@@ -25,6 +25,7 @@ const deriveDrawability = (
   return true;
 };
 
+type LinearScale = ReturnType<typeof scaleLinear<number>>;
 type DataPoint = [number, number];
 type Section = DataPoint[];
 
@@ -33,8 +34,8 @@ const ChartShape: React.FunctionComponent<{
   formula: Formula;
   isActive?: boolean;
   color: string;
-  xScale: ScaleLinear<number, number>;
-  yScale: ScaleLinear<number, number>;
+  xScale: LinearScale;
+  yScale: LinearScale;
 }> = ({ numberOfPoints, formula, isActive, xScale, yScale, color }) => {
   const [xMin, xMax] = xScale.domain() as [number, number];
   const [yMin, yMax] = yScale.domain() as [number, number];
@@ -87,8 +88,8 @@ const WrappedChartShape = React.memo(ChartShape);
 const Chart: React.FunctionComponent<{
   rawConfig: RawChartConfig;
   isActive?: boolean;
-  xScale: ScaleLinear<number, number>;
-  yScale: ScaleLinear<number, number>;
+  xScale: LinearScale;
+  yScale: LinearScale;
 }> = ({ rawConfig, isActive, xScale, yScale }) => {
   const chartConfig = useProcessedChartConfig(rawConfig);
 

@@ -8,6 +8,7 @@
 
 ## allow certain file types
 !*.cjs
+!*.css
 !*.js
 !*.json
 !*.md
@@ -19,40 +20,9 @@
 ## Allow certain files without extensions
 !.husky/*
 
-########################
-## Same as in .gitignore
-########################
-
-## dependencies
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-node_modules
-
-## testing
-/coverage
-
-## next.js
-/.next/
-/out/
-tsconfig.tsbuildinfo
-
-## misc
-.DS_Store
-.env*
-
-## debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
 #########################
 ## Shared between linters
 #########################
 
 .git/
-.yarn/
+pnpm-lock.yaml

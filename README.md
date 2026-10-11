@@ -9,8 +9,8 @@ TypeScript + React port of the VK Graph Plotter app written in Flash in 2009-201
 ## Local development
 
 ```sh
-yarn install
-yarn dev
+pnpm install
+pnpm dev
 ```
 
 ## Interesting charts
