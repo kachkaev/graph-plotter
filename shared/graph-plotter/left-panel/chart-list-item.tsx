@@ -10,14 +10,14 @@ import {
 import { transparentColor } from "../shared/available-colors";
 import { ColorPicker } from "./color-picker";
 
-const Wrapper = styled.div<{ isActive?: boolean }>`
+const Wrapper = styled.div<{ $isActive: boolean }>`
   border-radius: 4px;
   padding: 0 5px 2px;
   display: flex;
   align-items: center;
   margin: 0;
   ${(props) =>
-    props.isActive ? "background-color: #dedede; " : "cursor: default;"};
+    props.$isActive ? "background-color: #dedede; " : "cursor: default;"};
 `;
 
 const Indicator = styled.span`
@@ -29,16 +29,16 @@ const FormulaContainer = styled.span`
   flex: 1;
   min-width: 0;
 `;
-const Formula = styled.span<{ isHidden?: boolean; isInvalid?: boolean }>`
+const Formula = styled.span<{ $isHidden: boolean; $isInvalid: boolean }>`
   display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  ${(props) => (props.isHidden && !props.isInvalid ? "opacity: 0.5" : "")};
-  ${(props) => (props.isInvalid ? "text-decoration: line-through;" : "")};
+  ${(props) => (props.$isHidden && !props.$isInvalid ? "opacity: 0.5" : "")};
+  ${(props) => (props.$isInvalid ? "text-decoration: line-through;" : "")};
 `;
 
-const DeleteButton = styled.button`
+const DeleteButton = styled.button.attrs({ children: "×" })`
   font-weight: bold;
   border: none;
   background: none;
@@ -57,10 +57,6 @@ const DeleteButton = styled.button`
     color: #c00;
   }
 `;
-
-DeleteButton.defaultProps = {
-  children: "×",
-};
 
 export const ChartListItem: React.FunctionComponent<{
   rawChartConfig: RawChartConfig;
@@ -105,7 +101,7 @@ export const ChartListItem: React.FunctionComponent<{
   );
 
   return (
-    <Wrapper isActive={isActive} onClick={handleClick}>
+    <Wrapper $isActive={isActive} onClick={handleClick}>
       <Indicator>
         {isInvalid ? undefined : (
           <ColorPicker
@@ -117,8 +113,8 @@ export const ChartListItem: React.FunctionComponent<{
       </Indicator>
       <FormulaContainer>
         <Formula
-          isInvalid={isInvalid}
-          isHidden={rawChartConfig.color === transparentColor}
+          $isInvalid={isInvalid}
+          $isHidden={rawChartConfig.color === transparentColor}
         >
           {t("ui.l_y_equals")}
           {rawChartConfig.formula}

@@ -138,15 +138,12 @@ export const PlotAreaForm: React.FunctionComponent = () => {
   const { t } = useTranslation();
   const { rawPlotAreaConfig, updateRawPlotAreaConfig } = usePlotArea();
 
-  const [wipState, dispatchWipState] = React.useReducer<WipStateReducer>(
-    wipStateReducer,
-    {
-      xMin: rawPlotAreaConfig.xMin,
-      xMax: rawPlotAreaConfig.xMax,
-      yMin: rawPlotAreaConfig.yMin,
-      yMax: rawPlotAreaConfig.yMax,
-    },
-  );
+  const [wipState, dispatchWipState] = React.useReducer(wipStateReducer, {
+    xMin: rawPlotAreaConfig.xMin,
+    xMax: rawPlotAreaConfig.xMax,
+    yMin: rawPlotAreaConfig.yMin,
+    yMax: rawPlotAreaConfig.yMax,
+  });
 
   const handleCheckboxChange = React.useCallback<
     React.FormEventHandler<HTMLInputElement>
@@ -234,7 +231,7 @@ export const PlotAreaForm: React.FunctionComponent = () => {
         />
       </BoundaryControlRow>
       <ButtonRow>
-        <Button onClick={handleDefaultsClick} secondary={true}>
+        <Button onClick={handleDefaultsClick} $secondary={true}>
           {t("ui.b_defaults")}
         </Button>
         <Button onClick={handleApplyClick}>{t("ui.b_apply")}</Button>
