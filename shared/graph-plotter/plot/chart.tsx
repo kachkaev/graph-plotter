@@ -1,6 +1,6 @@
 import { curveLinear } from "@visx/curve";
+import type { scaleLinear } from "@visx/scale";
 import { LinePath } from "@visx/shape";
-import type { ScaleLinear } from "d3-scale";
 import * as React from "react";
 
 import {
@@ -25,6 +25,7 @@ function isDrawable(
   );
 }
 
+type LinearScale = ReturnType<typeof scaleLinear>;
 type DataPoint = [number, number];
 type Section = DataPoint[];
 
@@ -40,8 +41,8 @@ function ChartShape({
   formula: Formula;
   isActive?: boolean | undefined;
   color: string;
-  xScale: ScaleLinear<number, number>;
-  yScale: ScaleLinear<number, number>;
+  xScale: LinearScale;
+  yScale: LinearScale;
 }) {
   const [xMin = 0, xMax = 0] = xScale.domain();
   const [yMin = 0, yMax = 0] = yScale.domain();
@@ -100,8 +101,8 @@ function Chart({
 }: {
   rawConfig: RawChartConfig;
   isActive?: boolean | undefined;
-  xScale: ScaleLinear<number, number>;
-  yScale: ScaleLinear<number, number>;
+  xScale: LinearScale;
+  yScale: LinearScale;
 }) {
   const chartConfig = getProcessedChartConfig(rawConfig);
 
