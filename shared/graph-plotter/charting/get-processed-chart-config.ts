@@ -1,10 +1,10 @@
-import LRU from "lru-cache";
+import { LRUCache } from "lru-cache";
 
 import { parseNumericValue } from "../shared/parse-numeric-value";
 import { getParsedFormula } from "./get-parsed-formula";
 import { ChartConfig, InvalidChartConfig, RawChartConfig } from "./types";
 
-const chartConfigCache = new LRU<string, ChartConfig>({ max: 1000 });
+const chartConfigCache = new LRUCache<string, ChartConfig>({ max: 1000 });
 
 const minNumberOfPoints = 50;
 const maxNumberOfPoints = 10_000;
