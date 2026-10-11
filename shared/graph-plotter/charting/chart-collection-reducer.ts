@@ -1,4 +1,11 @@
 import { produce } from "immer";
+<<<<<<< HEAD
+||||||| 7d998c5
+import produce from "immer";
+import * as React from "react";
+=======
+import * as React from "react";
+>>>>>>> origin/main
 
 import { generateRawChartConfig } from "./generate-raw-chart-config";
 import type { ChartCollection, ChartCollectionAction } from "./types";
