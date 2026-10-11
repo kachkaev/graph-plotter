@@ -62,6 +62,14 @@ describe("numbers, variables and constants", () => {
 
   test("whitespace and line breaks are ignored", () => {
     expectFormulaToMatch(" x\n+\t1\r\n ", (x) => x + 1);
+    expectFormulaToMatch("x\u{A0}+\u{A0}1", (x) => x + 1);
+  });
+
+  test("deep nesting", () => {
+    expectFormulaToMatch(`${"(".repeat(100)}x${")".repeat(100)}`, (x) => x);
+    expect(() =>
+      parseFormula(`${"(".repeat(100_000)}x${")".repeat(100_000)}`),
+    ).not.toThrow();
   });
 });
 
@@ -69,9 +77,12 @@ describe("operators", () => {
   test.each<[string, (x: number) => number]>([
     ["x + 1", (x) => x + 1],
     ["x - 1", (x) => x - 1],
+    ["x − 1", (x) => x - 1],
     ["x * 2", (x) => x * 2],
     ["x ∙ 2", (x) => x * 2],
     ["x • 2", (x) => x * 2],
+    ["x · 2", (x) => x * 2],
+    ["x × 2", (x) => x * 2],
     ["x / 2", (x) => x / 2],
     ["x % 2", (x) => x % 2],
     ["x ^ 2", (x) => x ** 2],
@@ -134,6 +145,9 @@ describe("comparisons, logic and conditions", () => {
     ["x < 0 ? -1 : x > 0 ? 1 : 0", (x) => Math.sign(x)],
     ["(x > 0) * x", (x) => Number(x > 0) * x],
     ["sqrt(x) ? 1 : 2", (x) => (Math.sqrt(x) ? 1 : 2)],
+    // expr-eval returned booleans here, so `(x > 0) == 1` was always 0
+    ["(x > 0) == 1", (x) => Number(x > 0)],
+    ["(x > 0) == true", (x) => Number(x > 0)],
   ])("%s", (rawFormula, expected) => {
     expectFormulaToMatch(rawFormula, expected);
   });
@@ -353,6 +367,58 @@ describe("invalid formulas", () => {
     "3,14",
     "x ? 1",
     "x ? 1 :",
+  ])("%j", (rawFormula) => {
+    const result = parseFormula(rawFormula);
+    expect(result).toBeInstanceOf(Array);
+    expect(result).not.toHaveLength(0);
+  });
+});
+
+describe("expr-eval syntax that is no longer supported", () => {
+  test.each([
+    // Member access, a known way to reach JavaScript internals
+    "x.constructor",
+    "x.__proto__",
+    "pi.toFixed",
+    "max.call",
+    "constructor",
+    "__proto__",
+    "toString(x)",
+    "hasOwnProperty(x)",
+    // Strings and arrays
+    '"abc"',
+    "'abc'",
+    "[1, 2]",
+    "[1, 2][0]",
+    "x in [1, 2]",
+    "x || 1",
+    "length 123",
+    "map(sin, [1, 2])",
+    'join(",", [1, 2])',
+    // Assignments, function definitions and statements
+    "x = 1",
+    "y = x",
+    "f(t) = t * 2",
+    "x; 1",
+    // Comments and hex or binary numbers
+    "x /* comment */",
+    "0x1F",
+    "0b11",
+    // Function names without a call, which used to evaluate to NaN
+    "sin",
+    "max",
+    "x ? 1 : sin",
+    // Wrong number of arguments, which used to evaluate to NaN or garbage
+    "pow(x)",
+    "atan2(1)",
+    "max()",
+    "if(x, 1)",
+    "random(1, 2)",
+    "gamma()",
+    // Unknown names in branches that are not taken at x = 0,
+    // which used to break plotting at other values of x
+    "x > 1 ? y : 0",
+    "x > 1 ? foo(x) : 0",
   ])("%j", (rawFormula) => {
     const result = parseFormula(rawFormula);
     expect(result).toBeInstanceOf(Array);
