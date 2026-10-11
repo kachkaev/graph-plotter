@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Trans, useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { Nobr } from "../essentials";
 import {
-  RawChartConfig,
+  getProcessedChartConfig,
+  type RawChartConfig,
   useChartCollection,
-  useProcessedChartConfig,
 } from "./charting";
 import { plotBorderRadius } from "./plot";
 import { Button } from "./shared/button";
@@ -67,8 +67,8 @@ type WipState = Pick<RawChartConfig, WipStateField>;
 type WipStateAction =
   | { type: "reset"; value: WipState }
   | { type: "update"; fieldName: WipStateField; value: string };
-type WipStateReducer = React.Reducer<WipState, WipStateAction>;
-const wipStateReducer: WipStateReducer = (wipState, action) => {
+
+function wipStateReducer(wipState: WipState, action: WipStateAction): WipState {
   switch (action.type) {
     case "reset": {
       return action.value;
@@ -78,17 +78,15 @@ const wipStateReducer: WipStateReducer = (wipState, action) => {
       return { ...wipState, [action.fieldName]: action.value };
     }
   }
-};
-
-export interface BottomPanelProps {
-  plotAreaWidth: number;
 }
 
-export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
-  plotAreaWidth,
-}) => {
+export type BottomPanelProps = {
+  plotAreaWidth: number;
+};
+
+export function BottomPanel({ plotAreaWidth }: BottomPanelProps) {
   const { activeRawChartConfig, modifyChartCollection } = useChartCollection();
-  const processedChartConfig = useProcessedChartConfig(activeRawChartConfig);
+  const processedChartConfig = getProcessedChartConfig(activeRawChartConfig);
 
   const { t } = useTranslation();
   const [wipState, dispatchWipState] = React.useReducer(wipStateReducer, {
@@ -136,18 +134,18 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
     processedChartConfig.formulaErrorRange;
 
   const numberOfPointsStatus =
-    wipState.numberOfPoints !== activeRawChartConfig.numberOfPoints
-      ? "modified"
-      : numberOfPointsHasError
-      ? "error"
-      : undefined;
+    wipState.numberOfPoints === activeRawChartConfig.numberOfPoints
+      ? numberOfPointsHasError
+        ? "error"
+        : undefined
+      : "modified";
 
   const formulaStatus =
-    wipState.formula !== activeRawChartConfig.formula
-      ? "modified"
-      : formulaHasError
-      ? "error"
-      : undefined;
+    wipState.formula === activeRawChartConfig.formula
+      ? formulaHasError
+        ? "error"
+        : undefined
+      : "modified";
 
   const errorConfigToShow =
     processedChartConfig.type === "invalid" && processedChartConfig.errors[0];
@@ -166,7 +164,7 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
         </SectionBeforePlotArea>
         <SectionUnderPlotArea style={{ width: plotAreaWidth }}>
           <FormulaInput
-            prefix={t("ui.l_y_equals")!}
+            prefix={t("ui.l_y_equals")}
             value={wipState.formula}
             status={formulaStatus}
             onChange={handleFormulaChange}
@@ -190,4 +188,4 @@ export const BottomPanel: React.FunctionComponent<BottomPanelProps> = ({
       ) : undefined}
     </Wrapper>
   );
-};
+}

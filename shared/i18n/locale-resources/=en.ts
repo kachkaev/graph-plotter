@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 export const enLocalResource = {
   translation: {
     // Interface elements

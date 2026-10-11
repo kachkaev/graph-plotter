@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { ChartCollectionContextValue } from "./types";
+import type { ChartCollectionContextValue } from "./types";
 
 export const ChartCollectionContext = React.createContext<
   ChartCollectionContextValue | undefined

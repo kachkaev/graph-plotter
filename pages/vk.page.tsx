@@ -1,14 +1,14 @@
-import { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps } from "next";
 import * as React from "react";
 import { I18nextProvider } from "react-i18next";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { App } from "../shared/graph-plotter";
 import { i18next } from "../shared/i18n";
 import { PageMetadata } from "../shared/page-metadata";
 
 // https://vk.com/faq11565
-const parseVkLanguage = (language: unknown): string | undefined => {
+function parseVkLanguage(language: unknown): string | undefined {
   switch (language) {
     case "0":
     case "2": {
@@ -26,11 +26,11 @@ const parseVkLanguage = (language: unknown): string | undefined => {
   }
 
   return undefined;
-};
-
-interface VkPageProps {
-  locale: string;
 }
+
+type VkPageProps = {
+  locale: string;
+};
 
 const Wrapper = styled.div`
   height: 100%;
@@ -40,12 +40,11 @@ const Wrapper = styled.div`
   flex-direction: row;
 `;
 
-const VkPage: NextPage<VkPageProps> = ({ locale }) => {
-  const i18n = React.useMemo(() => {
-    const instance = i18next.cloneInstance({ lng: locale });
-
-    return instance;
-  }, [locale]);
+export default function VkPage({ locale }: VkPageProps) {
+  const i18n = React.useMemo(
+    () => i18next.cloneInstance({ lng: locale }),
+    [locale],
+  );
 
   return (
     <I18nextProvider i18n={i18n}>
@@ -55,23 +54,16 @@ const VkPage: NextPage<VkPageProps> = ({ locale }) => {
       </Wrapper>
     </I18nextProvider>
   );
-};
+}
 
-export const getServerSideProps: GetServerSideProps<VkPageProps> = async (
+export const getServerSideProps: GetServerSideProps<VkPageProps> = (
   context,
-  // eslint-disable-next-line @typescript-eslint/require-await
 ) => {
   const locale =
-    parseVkLanguage(context.query.language) ??
-    parseVkLanguage(context.query.parent_language) ??
-    (typeof context.query.l === "string" ? context.query.l : undefined) ??
+    parseVkLanguage(context.query["language"]) ??
+    parseVkLanguage(context.query["parent_language"]) ??
+    (typeof context.query["l"] === "string" ? context.query["l"] : undefined) ??
     "en";
 
-  return {
-    props: {
-      locale,
-    },
-  };
+  return Promise.resolve({ props: { locale } });
 };
-
-export default VkPage;

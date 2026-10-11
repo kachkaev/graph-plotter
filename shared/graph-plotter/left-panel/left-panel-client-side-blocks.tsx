@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { useChartCollection } from "../charting";
 import { PlotAreaForm } from "../plot-area-form";
@@ -16,7 +16,7 @@ const Header = styled.h2`
   position: relative;
 `;
 
-const AddChartButton = styled.button`
+const AddChartButton = styled.button.attrs({ children: "+" })`
   background: var(--background-color);
   position: absolute;
   bottom: 3px;
@@ -33,9 +33,6 @@ const AddChartButton = styled.button`
     outline: none;
   }
 `;
-AddChartButton.defaultProps = {
-  children: "+",
-};
 
 const ChartList = styled.div`
   flex: 1;
@@ -46,13 +43,7 @@ const ChartList = styled.div`
   overflow: scroll;
 `;
 
-export interface LeftPanelClientSideBlocksProps {
-  children?: never;
-}
-
-export const LeftPanelClientSideBlocks: React.FunctionComponent<
-  LeftPanelClientSideBlocksProps
-> = () => {
+export function LeftPanelClientSideBlocks() {
   const { t } = useTranslation();
   const { rawChartConfigs, modifyChartCollection } = useChartCollection();
 
@@ -61,13 +52,13 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<
   }, [modifyChartCollection]);
 
   const handleEmptySpaceClick = React.useCallback(() => {
-    modifyChartCollection({ type: "setActiveItem", itemId: undefined });
+    modifyChartCollection({ type: "setActiveItem" });
   }, [modifyChartCollection]);
 
-  const addChartButton = (
+  const newChartButton = (
     <AddChartButton
       onClick={handleAddChartButtonClick}
-      title={t("ui.b_add_graph")!}
+      title={t("ui.b_add_graph")}
     />
   );
 
@@ -79,7 +70,7 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<
         <>
           <Header>
             {t("ui.h_graphs")}
-            {addChartButton}
+            {newChartButton}
           </Header>
           <ChartList onClick={handleEmptySpaceClick}>
             {rawChartConfigs.map((rawChartConfig) => (
@@ -94,7 +85,7 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<
         <>
           <Header>
             {t("ui.h_info")}
-            {addChartButton}
+            {newChartButton}
           </Header>
           <div>
             {t("ui.l_info_1")} {t("ui.l_info_2")}
@@ -103,4 +94,4 @@ export const LeftPanelClientSideBlocks: React.FunctionComponent<
       )}
     </>
   );
-};
+}

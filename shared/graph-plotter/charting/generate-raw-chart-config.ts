@@ -1,11 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { availableColors } from "../shared/available-colors";
-import { RawChartConfig } from "./types";
+import type { RawChartConfig } from "./types";
 
-export const generateRawChartConfig = (
+export function generateRawChartConfig(
   existingItems?: RawChartConfig[],
-): RawChartConfig => {
+): RawChartConfig {
   const colorUsageCount: Record<string, number> = {};
   if (existingItems) {
     for (const item of existingItems) {
@@ -15,18 +13,16 @@ export const generateRawChartConfig = (
 
   const color =
     availableColors.find(
-      (availableColor) => !colorUsageCount[availableColor],
+      (availableColor) => (colorUsageCount[availableColor] ?? 0) === 0,
     ) ??
-    Object.entries(colorUsageCount).sort((a, b) =>
-      a[1] > b[1] ? 1 : -1,
-    )[0]?.[0] ??
+    Object.entries(colorUsageCount).toSorted((a, b) => a[1] - b[1])[0]?.[0] ??
     availableColors[0];
 
   return {
-    id: uuidv4(),
+    id: crypto.randomUUID(),
 
     color,
     formula: "",
     numberOfPoints: "2000",
   };
-};
+}

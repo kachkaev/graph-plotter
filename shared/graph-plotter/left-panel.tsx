@@ -1,15 +1,13 @@
 import dynamic from "next/dynamic";
-import * as React from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
-import { LeftPanelClientSideBlocksProps } from "./left-panel/left-panel-client-side-blocks";
+const LeftPanelClientSideBlocks = dynamic(
+  async () => {
+    const mod = await import("./left-panel/left-panel-client-side-blocks");
 
-const LeftPanelClientSideBlocks = dynamic<LeftPanelClientSideBlocksProps>(
-  () =>
-    import("./left-panel/left-panel-client-side-blocks").then(
-      (mod) => mod.LeftPanelClientSideBlocks,
-    ),
+    return mod.LeftPanelClientSideBlocks;
+  },
   { ssr: false },
 );
 
@@ -33,7 +31,7 @@ const AppName = styled.h1`
   text-transform: uppercase;
 `;
 
-export const LeftPanel: React.FunctionComponent<{ children?: never }> = () => {
+export function LeftPanel() {
   const { t } = useTranslation();
 
   return (
@@ -46,4 +44,4 @@ export const LeftPanel: React.FunctionComponent<{ children?: never }> = () => {
       <LeftPanelClientSideBlocks />
     </Wrapper>
   );
-};
+}

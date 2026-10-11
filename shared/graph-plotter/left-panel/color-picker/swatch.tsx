@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { transparentColor } from "../../shared/available-colors";
 
@@ -33,30 +33,26 @@ const DiagonalLine = styled.div`
 
 export type SwatchSelectCallback = (color: string) => void;
 
-export interface SwatchProps {
+export type SwatchProps = {
   value: string;
   selected: boolean;
-  onSelect?: SwatchSelectCallback;
-}
+  onSelect?: SwatchSelectCallback | undefined;
+};
 
-export const Swatch: React.FunctionComponent<SwatchProps> = ({
-  value,
-  selected,
-  onSelect,
-}) => {
+export function Swatch({ value, selected, onSelect }: SwatchProps) {
   const handleClick = React.useCallback(() => {
     onSelect?.(value);
   }, [onSelect, value]);
 
-  const transparent = value === transparentColor;
+  const isTransparent = value === transparentColor;
 
   return (
     <Square
       onClick={handleClick}
-      style={{ backgroundColor: transparent ? "#fff" : value }}
+      style={{ backgroundColor: isTransparent ? "#fff" : value }}
     >
       {selected ? <Frame /> : undefined}
-      {transparent ? <DiagonalLine /> : undefined}
+      {isTransparent ? <DiagonalLine /> : undefined}
     </Square>
   );
-};
+}

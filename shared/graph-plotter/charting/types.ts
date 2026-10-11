@@ -1,48 +1,48 @@
-import { ErrorConfig, ErrorRange } from "../shared/errors";
+import type * as React from "react";
+
+import type { ErrorConfig, ErrorRange } from "../shared/errors";
 
 export type Formula = (x: number) => number;
 
-export interface RawChartConfig {
+export type RawChartConfig = {
   id: string;
 
   color: string;
   formula: string;
   numberOfPoints: string;
-}
+};
 
-export interface InvalidChartConfig {
+export type InvalidChartConfig = {
   type: "invalid";
   formulaErrorRange?: ErrorRange;
   numberOfPointsErrorRange?: ErrorRange;
   errors: ErrorConfig[];
-}
+};
 
-export interface ValidChartConfig {
+export type ValidChartConfig = {
   type: "valid";
   formula: Formula;
   numberOfPoints: number;
   color: string;
-}
+};
 
-export interface EmptyChartConfig {
+export type EmptyChartConfig = {
   type: "empty";
-}
+};
 
 export type ChartConfig =
-  | InvalidChartConfig
-  | ValidChartConfig
-  | EmptyChartConfig;
+  InvalidChartConfig | ValidChartConfig | EmptyChartConfig;
 
-export interface ChartCollection {
-  activeItemId?: string;
+export type ChartCollection = {
+  activeItemId?: string | undefined;
   items: RawChartConfig[];
-}
+};
 
 export type ChartCollectionAction =
   | { type: "addNewItem" }
   | { type: "updateItem"; rawChartConfig: RawChartConfig }
   | { type: "deleteItem"; itemId: string }
-  | { type: "setActiveItem"; itemId?: string };
+  | { type: "setActiveItem"; itemId?: string | undefined };
 
 export type ChartCollectionContextValue = {
   rawChartConfigs: RawChartConfig[];

@@ -1,23 +1,21 @@
-import produce from "immer";
+import { produce } from "immer";
 import * as React from "react";
 import { useLocalStorage } from "react-use";
 
 import { defaultRawPlotAreaConfig } from "./default-raw-plot-area-config";
 import { PlotAreaContext } from "./plot-area-context";
 import { processRawPlotAreaConfig } from "./process-raw-plot-area-config";
-import {
+import type {
   PlotAreaContextValue,
   RawPlotAreaConfig,
   UpdateRawPlotAreaConfig,
 } from "./types";
 
-export const PlotAreaProvider: React.FunctionComponent<{
-  children?: React.ReactNode;
-}> = ({ children }) => {
+export function PlotAreaProvider({ children }: { children?: React.ReactNode }) {
   const [savedRawPlotAreaConfig, saveRawPlotAreaConfig] =
     useLocalStorage<RawPlotAreaConfig>("gp.plotAreaConfig");
 
-  const [rawPlotAreaConfig, setRawConfig] = React.useState(
+  const [rawPlotAreaConfig, setRawPlotAreaConfig] = React.useState(
     savedRawPlotAreaConfig ?? defaultRawPlotAreaConfig,
   );
   React.useEffect(() => {
@@ -26,9 +24,9 @@ export const PlotAreaProvider: React.FunctionComponent<{
 
   const updateRawPlotAreaConfig = React.useCallback<UpdateRawPlotAreaConfig>(
     (updateFn) => {
-      setRawConfig((prevValue) => produce(prevValue, updateFn));
+      setRawPlotAreaConfig((prevValue) => produce(prevValue, updateFn));
     },
-    [setRawConfig],
+    [setRawPlotAreaConfig],
   );
 
   const contextValue = React.useMemo<PlotAreaContextValue>(() => {
@@ -41,9 +39,5 @@ export const PlotAreaProvider: React.FunctionComponent<{
     };
   }, [rawPlotAreaConfig, updateRawPlotAreaConfig]);
 
-  return (
-    <PlotAreaContext.Provider value={contextValue}>
-      {children}
-    </PlotAreaContext.Provider>
-  );
-};
+  return <PlotAreaContext value={contextValue}>{children}</PlotAreaContext>;
+}

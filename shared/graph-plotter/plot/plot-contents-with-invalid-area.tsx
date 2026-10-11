@@ -1,9 +1,8 @@
-import * as React from "react";
 import { Trans, useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 import { Nobr } from "../../essentials";
-import { InvalidPlotAreaConfig } from "../plot-area";
+import type { InvalidPlotAreaConfig } from "../plot-area";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -29,13 +28,13 @@ const ErrorMessage = styled.div`
   padding-bottom: 40px;
 `;
 
-export interface PlotContentsWithInvalidAreaProps {
+export type PlotContentsWithInvalidAreaProps = {
   areaConfig: InvalidPlotAreaConfig;
-}
+};
 
-export const PlotContentsWithInvalidArea: React.FunctionComponent<
-  PlotContentsWithInvalidAreaProps
-> = ({ areaConfig }) => {
+export function PlotContentsWithInvalidArea({
+  areaConfig,
+}: PlotContentsWithInvalidAreaProps) {
   const { t } = useTranslation();
   const error = areaConfig.errors[0];
 
@@ -52,4 +51,4 @@ export const PlotContentsWithInvalidArea: React.FunctionComponent<
       ) : undefined}
     </Wrapper>
   );
-};
+}

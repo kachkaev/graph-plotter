@@ -1,43 +1,50 @@
 import { curveLinear } from "@visx/curve";
 import { LinePath } from "@visx/shape";
-import { ScaleLinear } from "d3-scale";
+import type { ScaleLinear } from "d3-scale";
 import * as React from "react";
 
-import { Formula, RawChartConfig, useProcessedChartConfig } from "../charting";
+import {
+  type Formula,
+  getProcessedChartConfig,
+  type RawChartConfig,
+} from "../charting";
 
-const deriveDrawability = (
+function isDrawable(
   value1: number,
   value2: number,
   min: number,
   max: number,
-) => {
-  if (
+): boolean {
+  return !(
     !Number.isFinite(value1) ||
     !Number.isFinite(value2) ||
     (value1 < min && value2 < min) ||
     (value1 > max && value2 > max) ||
     (value1 < min && value2 > max) ||
     (value1 > max && value2 < min)
-  ) {
-    return false;
-  }
-
-  return true;
-};
+  );
+}
 
 type DataPoint = [number, number];
 type Section = DataPoint[];
 
-const ChartShape: React.FunctionComponent<{
+function ChartShape({
+  numberOfPoints,
+  formula,
+  isActive,
+  xScale,
+  yScale,
+  color,
+}: {
   numberOfPoints: number;
   formula: Formula;
-  isActive?: boolean;
+  isActive?: boolean | undefined;
   color: string;
   xScale: ScaleLinear<number, number>;
   yScale: ScaleLinear<number, number>;
-}> = ({ numberOfPoints, formula, isActive, xScale, yScale, color }) => {
-  const [xMin, xMax] = xScale.domain() as [number, number];
-  const [yMin, yMax] = yScale.domain() as [number, number];
+}) {
+  const [xMin = 0, xMax = 0] = xScale.domain();
+  const [yMin = 0, yMax = 0] = yScale.domain();
   const sections: Section[] = React.useMemo(() => {
     const result: Section[] = [];
     let prevDataPoint: DataPoint | undefined;
@@ -49,7 +56,7 @@ const ChartShape: React.FunctionComponent<{
       if (
         index > numberOfPoints ||
         (prevDataPoint &&
-          !deriveDrawability(dataPoint[1], prevDataPoint[1], yMin, yMax))
+          !isDrawable(dataPoint[1], prevDataPoint[1], yMin, yMax))
       ) {
         if (currentSection.length > 1) {
           result.push(currentSection);
@@ -66,9 +73,10 @@ const ChartShape: React.FunctionComponent<{
 
   return (
     <>
-      {sections.map((dataPoints, sectionIndex) => (
+      {sections.map((dataPoints) => (
         <LinePath<DataPoint>
-          key={sectionIndex}
+          // Sections never overlap, so the x of the first point is unique
+          key={dataPoints[0]?.[0]}
           curve={curveLinear}
           data={dataPoints}
           x={(data) => xScale(data[0]) || 0}
@@ -80,20 +88,25 @@ const ChartShape: React.FunctionComponent<{
       ))}
     </>
   );
-};
+}
 
 const WrappedChartShape = React.memo(ChartShape);
 
-const Chart: React.FunctionComponent<{
+function Chart({
+  rawConfig,
+  isActive,
+  xScale,
+  yScale,
+}: {
   rawConfig: RawChartConfig;
-  isActive?: boolean;
+  isActive?: boolean | undefined;
   xScale: ScaleLinear<number, number>;
   yScale: ScaleLinear<number, number>;
-}> = ({ rawConfig, isActive, xScale, yScale }) => {
-  const chartConfig = useProcessedChartConfig(rawConfig);
+}) {
+  const chartConfig = getProcessedChartConfig(rawConfig);
 
   if (chartConfig.type !== "valid") {
-    return <></>;
+    return;
   }
 
   return (
@@ -106,7 +119,7 @@ const Chart: React.FunctionComponent<{
       numberOfPoints={chartConfig.numberOfPoints}
     />
   );
-};
+}
 
 const WrappedChart = React.memo(Chart);
 export { WrappedChart as Graph };

@@ -1,14 +1,13 @@
-import produce from "immer";
-import * as React from "react";
+import { produce } from "immer";
 
 import { generateRawChartConfig } from "./generate-raw-chart-config";
-import { ChartCollection, ChartCollectionAction } from "./types";
+import type { ChartCollection, ChartCollectionAction } from "./types";
 
-export const chartCollectionReducer: React.Reducer<
-  ChartCollection,
-  ChartCollectionAction
-> = (chartCollection, action) =>
-  produce(chartCollection, (draft) => {
+export function chartCollectionReducer(
+  chartCollection: ChartCollection,
+  action: ChartCollectionAction,
+): ChartCollection {
+  return produce(chartCollection, (draft) => {
     switch (action.type) {
       case "addNewItem": {
         const rawChartConfig = generateRawChartConfig(chartCollection.items);
@@ -20,8 +19,7 @@ export const chartCollectionReducer: React.Reducer<
         const newItemIndex = selectedItemIndex === -1 ? 0 : selectedItemIndex;
         draft.items.splice(newItemIndex, 0, rawChartConfig);
         draft.activeItemId = rawChartConfig.id;
-
-        return;
+        break;
       }
 
       case "setActiveItem": {
@@ -58,3 +56,4 @@ export const chartCollectionReducer: React.Reducer<
       }
     }
   });
+}

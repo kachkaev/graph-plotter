@@ -1,6 +1,5 @@
 import Link from "next/link";
-import * as React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 const Container = styled.div`
   text-align: center;
@@ -20,10 +19,13 @@ const Message = styled.div`
   opacity: 0.3;
 `;
 
-export const ErrorPageContents: React.FunctionComponent<{
+export function ErrorPageContents({
+  statusCode,
+  message,
+}: {
   statusCode: number;
   message: string;
-}> = ({ statusCode, message }) => {
+}) {
   return (
     <Container>
       <StatusCode>{statusCode}</StatusCode>
@@ -31,4 +33,4 @@ export const ErrorPageContents: React.FunctionComponent<{
       <Link href="/">home page</Link>
     </Container>
   );
-};
+}

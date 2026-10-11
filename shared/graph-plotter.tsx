@@ -1,15 +1,18 @@
 import dynamic from "next/dynamic";
-import * as React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
-import { BottomPanelProps } from "./graph-plotter/bottom-panel";
+import type { BottomPanelProps } from "./graph-plotter/bottom-panel";
 import { ChartCollectionProvider } from "./graph-plotter/charting";
 import { LeftPanel } from "./graph-plotter/left-panel";
 import { Plot } from "./graph-plotter/plot";
 import { PlotAreaProvider } from "./graph-plotter/plot-area";
 
 const BottomPanel = dynamic<BottomPanelProps>(
-  () => import("./graph-plotter/bottom-panel").then((mod) => mod.BottomPanel),
+  async () => {
+    const mod = await import("./graph-plotter/bottom-panel");
+
+    return mod.BottomPanel;
+  },
   { ssr: false },
 );
 
@@ -23,10 +26,7 @@ const TopHalf = styled.div`
   flex-direction: row;
 `;
 
-export const App: React.FunctionComponent<{
-  width: number;
-  height: number;
-}> = ({ width, height }) => {
+export function App({ width, height }: { width: number; height: number }) {
   const canvasSize = Math.min(
     width - leftPanelMinWidth,
     height - bottomPanelMinHeight,
@@ -45,4 +45,4 @@ export const App: React.FunctionComponent<{
       </ChartCollectionProvider>
     </PlotAreaProvider>
   );
-};
+}

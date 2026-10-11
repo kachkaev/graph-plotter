@@ -1,9 +1,9 @@
-export const parseNumericValue = (rawValue: string): number => {
-  const rawValueWithoutSpaces = rawValue.replace(/\s/g, "");
-  const result = Number.parseFloat(rawValueWithoutSpaces);
+export function parseNumericValue(rawValue: string): number {
+  const rawValueWithoutSpaces = rawValue.replaceAll(/\s/g, "");
+  const result = Number(rawValueWithoutSpaces);
   if (result.toString() !== rawValueWithoutSpaces) {
-    return Number.NaN;
+    return NaN;
   }
 
   return result;
-};
+}
