@@ -35,7 +35,6 @@
     "@visx/scale": "4.0.0",
     "@visx/shape": "4.0.0",
     "accept-language-parser": "1.5.0",
-    "expr-eval": "2.0.2",
     "i18next": "26.4.3",
     "i18next-icu": "2.5.0",
     "immer": "11.1.21",
