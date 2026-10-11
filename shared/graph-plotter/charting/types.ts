@@ -29,9 +29,7 @@ export interface EmptyChartConfig {
 }
 
 export type ChartConfig =
-  | InvalidChartConfig
-  | ValidChartConfig
-  | EmptyChartConfig;
+  InvalidChartConfig | ValidChartConfig | EmptyChartConfig;
 
 export interface ChartCollection {
   activeItemId?: string;

@@ -17,8 +17,8 @@ const Wrapper = styled.div<{ status?: InputStatus }>`
     props.status === "error"
       ? "#fcefe9"
       : props.status === "modified"
-      ? "#fffeb4"
-      : "#fff"};
+        ? "#fffeb4"
+        : "#fff"};
   box-sizing: border-box;
 `;
 
